@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      style="background-color: #102A71;">
+    <mat-toolbar style="color: #fffdf0;" >Menu</mat-toolbar> 
+    <mat-nav-list >
+      <a mat-list-item routerLink="/dashboard" ><p style="color: #fffdf0;">Home</p></a>
+
+      <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Facilidades</p></a>
+      
+      <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">¿Como llegar?</p></a>
+
+      <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Tarifas</p></a>
+
+      <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Reservar en Linea</p></a>
+
+      <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Contactenos</p></a>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #001840; color: #fffdf0;">
+      @if (isHandset$ | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      }
+      <span>Hotel Playa</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
