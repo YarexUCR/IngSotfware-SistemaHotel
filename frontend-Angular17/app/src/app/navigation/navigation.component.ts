@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import {RouterLink, RouterOutlet} from '@angular/router';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
     selector: 'app-navigation',
@@ -25,7 +26,8 @@ import {RouterLink, RouterOutlet} from '@angular/router';
         MatIconModule,
         AsyncPipe,
         DashboardComponent,
-        RouterOutlet
+        RouterOutlet,
+        FooterComponent
     ]
 })
 export class NavigationComponent {
