@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { RouterLink,RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./navigation/navigation.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FooterComponent } from "./footer/footer.component";
+
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterLink,RouterOutlet, NavigationComponent,DashboardComponent],
     template: `
     <main>
       <header class="brand-name">
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       </header>
       <section class="content">
       </section>
-    </main>`
+    </main>`,
+    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent]
 })
 export class AppComponent {
   title = 'app';

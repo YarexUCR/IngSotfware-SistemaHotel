@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import {RouterLink, RouterOutlet} from '@angular/router';
+import { FooterComponent } from "../footer/footer.component";
+import { MatCard, MatCardFooter } from '@angular/material/card';
 
 @Component({
     selector: 'app-navigation',
@@ -17,6 +19,7 @@ import {RouterLink, RouterOutlet} from '@angular/router';
     styleUrl: './navigation.component.scss',
     standalone: true,
     imports: [
+       MatCard, MatCardFooter,
         RouterLink,
         MatToolbarModule,
         MatButtonModule,
@@ -25,7 +28,8 @@ import {RouterLink, RouterOutlet} from '@angular/router';
         MatIconModule,
         AsyncPipe,
         DashboardComponent,
-        RouterOutlet
+        RouterOutlet,
+        FooterComponent
     ]
 })
 export class NavigationComponent {
