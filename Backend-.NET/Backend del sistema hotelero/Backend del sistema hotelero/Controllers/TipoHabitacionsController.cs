@@ -16,7 +16,5 @@ namespace Backend_del_sistema_hotelero.Controllers
             return await (new TipoHabitacionBusiness().listarTipoHabitacion());
         }
 
-
-
     }
 }
