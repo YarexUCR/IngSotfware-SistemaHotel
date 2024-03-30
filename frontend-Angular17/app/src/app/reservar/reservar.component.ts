@@ -44,10 +44,14 @@ export class ReservarComponent {
  
   precio : number;
   personas: number;
+  checkOutDesactivado : boolean;
+  checkInDesactivado : boolean;
 
 constructor(private routerA: ActivatedRoute, private router: Router){
     this.personas = 0;
     this.precio = 0;
+    this.checkOutDesactivado = true;
+    this.checkInDesactivado = false;
 
 }
 
@@ -90,6 +94,9 @@ constructor(private routerA: ActivatedRoute, private router: Router){
   mostrarError = false;
   mostrarConfirmacion = false;
   mensajeConfirmacion = '';
+
+  
+
   validarFechaEntrada(event: Event){
     //const fechaActualCR = moment().tz('America/Costa_Rica').format('YYYY-MM-DD');
     const fechaActual = new Date().toISOString().split('T')[0];
@@ -100,6 +107,8 @@ constructor(private routerA: ActivatedRoute, private router: Router){
       this.mostrarConfirmacion = true;
       this.mensajeConfirmacion='Puedes hacer el check in el hoy a partir de las 3 pm.';
       this.mostrarError=false;
+      this.checkOutDesactivado=false;
+      this.checkInDesactivado=true;
     } else if (fechaLlegada.toISOString().slice(0, 10) < fechaActual) {//si elije un día pasado
       this.mostrarError=true;
       this.mostrarConfirmacion = false;
@@ -109,8 +118,9 @@ constructor(private routerA: ActivatedRoute, private router: Router){
       this.mostrarError=false;
       this.mostrarConfirmacion = true;
       this.mensajeConfirmacion='Puedes hacer el check in el '+fechaLlegada.toISOString().slice(0, 10)+' a partir de las 3 pm.';
+      this.checkOutDesactivado=false;
+      this.checkInDesactivado=true;
     }
-    this.validarCheckOut();
     this.validarCheckIn();
   }
   mensajeError_ = '';
@@ -132,11 +142,11 @@ validarFechaDeSalida(event: Event){
     this.mostrarError_=true;
     this.mostrarConfirmacion_=false;
   }else{
-    this.mensajeConfirmacion_='El día ' + fechaSalida.toISOString().slice(0, 10) + ' a las 11 debes hacer la salida del hotel';
+    this.mensajeConfirmacion_='El día ' + fechaSalida.toISOString().slice(0, 10) + ' a las 11 am debes hacer la salida del hotel';
     this.mostrarError_=false;
     this.mostrarConfirmacion_=true;
+    this.checkOutDesactivado = true;
   }
-  this.validarCheckIn();
   this.validarCheckOut();
 }
 

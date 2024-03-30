@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col">
                         <label for="checkIn">Fecha de Llegada</label>
-                        <input type="date" class="form-control"  id="checkIn" name="checkIn" #checkIn="ngModel" [(ngModel)]="formData.checkIn" (ngModelChange)="validarFechaEntrada($event)"required>
+                        <input type="date" class="form-control"  id="checkIn" name="checkIn" #checkIn="ngModel" [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn" (ngModelChange)="validarFechaEntrada($event)"required>
                         
                         <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
                             El check in es obligatorio
@@ -22,7 +22,7 @@
                     
                     <div class="col">
                         <label for="checkOut">Fecha de salida</label>
-                        <input type="date" class="form-control"  id="checkOut" name="checkOut" #checkOut="ngModel" [(ngModel)]="formData.checkOut" (ngModelChange)="validarFechaDeSalida($event)" required>
+                        <input type="date" class="form-control"  id="checkOut" name="checkOut" [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut" (ngModelChange)="validarFechaDeSalida($event)" required>
                         <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
                             El check out es obligatorio
                         </div>
@@ -60,7 +60,7 @@
                         <button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">Agregar</button>
                 </div>
                 </div>
-            
+            </form>
                 <div class="row  mb-3">
                     <div class="col">
                         <table class="table" style="max-width: 100;">
@@ -89,7 +89,7 @@
                                     
                     </div>
                 </div>
-            </form>
+            
        </div>    
        cantidad_habitacion:{{formData.cantidad_habitacion}}////tipo_habitacion:{{formData.tipo_habitacion}}////checkIn:{{formData.checkIn}}////checkOut:{{formData.checkOut}}
        
