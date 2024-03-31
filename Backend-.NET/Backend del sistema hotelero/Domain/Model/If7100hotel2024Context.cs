@@ -37,7 +37,8 @@ public partial class If7100hotel2024Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=163.178.107.10;Initial Catalog=IF7100Hotel2024;User ID=laboratorios;Password=TUy&)&nfC7QqQau.%278UQ24/=%;TrustServerCertificate=True");
+       // => optionsBuilder.UseSqlServer("Data Source=163.178.107.10;Initial Catalog=IF7100Hotel2024;User ID=laboratorios;Password=TUy&)&nfC7QqQau.%278UQ24/=%;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=YAREX;Initial Catalog=IF7100Hotel2024;User ID=sa;Password=Hola.125a;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
