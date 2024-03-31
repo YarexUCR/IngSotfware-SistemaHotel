@@ -3,6 +3,9 @@ import { RouterLink,RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./navigation/navigation.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
+import { ContactenosComponent } from './contactenos/contactenos.component';
+import { FacilidadesComponent } from './facilidades/facilidades.component';
+import { TarifasComponent } from './tarifas/tarifas.component';
 
 
 @Component({
@@ -18,7 +21,7 @@ import { FooterComponent } from "./footer/footer.component";
       <section class="content">
       </section>
     </main>`,
-    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent]
+    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent]
 })
 export class AppComponent {
   title = 'app';
