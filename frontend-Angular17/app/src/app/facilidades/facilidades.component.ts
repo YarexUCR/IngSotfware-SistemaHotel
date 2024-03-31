@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './facilidades.component.html',
     styleUrl: './facilidades.component.scss',
     imports: [FooterComponent]
+
 })
 export class FacilidadesComponent {
 
