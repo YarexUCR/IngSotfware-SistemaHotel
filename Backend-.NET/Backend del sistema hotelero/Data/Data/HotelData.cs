@@ -8,7 +8,7 @@ public class HotelData{
         {
             using (var _context = new If7100hotel2024Context())
             {
-                return await _context.FotosHotel.ToListAsync();
+                return await _context.FotosHotels.ToListAsync();
             }
         }
 }
