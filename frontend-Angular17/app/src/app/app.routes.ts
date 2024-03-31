@@ -2,9 +2,15 @@ import { Routes } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { InicioComponent } from "./inicio/inicio.component";
 import { ReservarComponent } from "./reservar/reservar.component";
+import { ContactenosComponent } from "./contactenos/contactenos.component";
+import { FacilidadesComponent } from "./facilidades/facilidades.component";
+import { TarifasComponent } from "./tarifas/tarifas.component";
 
 export const routes : Routes =[
     {path: "dashboard", component :  DashboardComponent},
     {path: "reservar", component :  ReservarComponent},
-    {path: "", component :  InicioComponent}
+    {path: "", component :  InicioComponent},
+    {path: "contactenos", component : ContactenosComponent},
+    {path: "facilidades", component : FacilidadesComponent},
+    {path: "tarifas", component : TarifasComponent}
 ]
