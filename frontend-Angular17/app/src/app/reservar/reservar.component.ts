@@ -10,6 +10,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { HotelService } from '../api/hotel.service';
 import { differenceInDays, parseISO } from 'date-fns';
+import { PaypalPagoService } from '../paypal/paypal-pago.service';
 
 interface TipoHabitacion{
   id : number;
@@ -59,7 +60,7 @@ export class ReservarComponent {
   tipo_habitacionDesactivado : boolean;
   tabla_contenidoVisible : boolean;
 
-constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router){
+constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router,private paypalPagoService: PaypalPagoService){
     
     
     //mostrar campos para entradas de forma ordenada
@@ -70,7 +71,7 @@ constructor(private hotelService: HotelService, private routerA: ActivatedRoute,
     this.tabla_contenidoVisible=false;
 
 }
- 
+  
   ngOnInit():void{
 
     this.routerA.params.subscribe(parametros =>{console.log(parametros)});
@@ -81,6 +82,9 @@ constructor(private hotelService: HotelService, private routerA: ActivatedRoute,
 
     this.formData.cantidad_habitacion = 1;
   }
+  ////////////////////////////////////paypal
+  
+
   ////////////////////////////////////validaciones
   mostrarErrorCheckIn=false;
   validarCheckIn() {
