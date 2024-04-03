@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,22 +8,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm, Validators} from '@angular/forms';
 import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
-
-
-//obejto habitacion
-interface Habitacion{
-  tipo : string;
-  cantidad: number;
-  precio: number;
-  personas: number;
-}
+import { HotelService } from '../api/hotel.service';
+import { differenceInDays, parseISO } from 'date-fns';
 
 interface TipoHabitacion{
-  nombre: string;
-  precioPorNoche: number;
-  niños: number;
-  adultos: number;
+  id : number;
+  descripcion : string;
+  cantidad : number;
+  nombre : string;
+  imagen : string;
+  precio : number;
 }
+
+
+
+
+
 
 @Component({
     selector: 'app-reservar',
@@ -45,12 +45,12 @@ interface TipoHabitacion{
 
 
 export class ReservarComponent {
-
-  formData: any = [];
-  habitaciones : Habitacion[]=[];
-  tipos : TipoHabitacion[]=[];
-  precio : number;
-  personas: number;
+ 
+  
+  //variables globales del proceso reservar
+  formData: any = [];//acceso a los input del formulario para reservar
+  tiposDeHabitacion : TipoHabitacion[]=[];//todos los tipos de habitaciones disponibles
+  tiposDeHabitacionElegidos : TipoHabitacion[]=[];//tipos de habitaciones elegidos
 
   //controlar el orden de la captura del proceso
   checkOutDesactivado : boolean;
@@ -59,10 +59,9 @@ export class ReservarComponent {
   tipo_habitacionDesactivado : boolean;
   tabla_contenidoVisible : boolean;
 
-constructor(private routerA: ActivatedRoute, private router: Router){
-
-    this.personas = 0;
-    this.precio = 0;
+constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router){
+    
+    
     //mostrar campos para entradas de forma ordenada
     this.checkInDesactivado = false;
     this.checkOutDesactivado = true;
@@ -71,37 +70,16 @@ constructor(private routerA: ActivatedRoute, private router: Router){
     this.tabla_contenidoVisible=false;
 
 }
-
-prueba(){
-  const tipo1 : TipoHabitacion = {
-    nombre: 'Habitacion Individual',
-    precioPorNoche: 28000,
-    niños: 1,
-    adultos: 1
-  };
-  
-  const tipo2 : TipoHabitacion = {
-    nombre: 'Habitacion Doble',
-    precioPorNoche: 48000,
-    niños: 3,
-    adultos: 2
-  };
-
-  const tipo3 : TipoHabitacion = {
-    nombre: 'Habitacion Triple',
-    precioPorNoche: 68000,
-    niños: 5,
-    adultos: 4
-  };
-
-  this.tipos.push(tipo1);
-  this.tipos.push(tipo2);
-  this.tipos.push(tipo3);
-}
-
+ 
   ngOnInit():void{
-    this.prueba();
+
     this.routerA.params.subscribe(parametros =>{console.log(parametros)});
+
+    this.hotelService.getTiposHabitaciones().subscribe(data => {
+      this.tiposDeHabitacion = data;
+    });
+
+    this.formData.cantidad_habitacion = 1;
   }
   ////////////////////////////////////validaciones
   mostrarErrorCheckIn=false;
@@ -146,18 +124,18 @@ prueba(){
     //const fechaActualCR = moment().tz('America/Costa_Rica').format('YYYY-MM-DD');
     const fechaActual = new Date().toISOString().split('T')[0];
     const fechaLlegada = new Date(this.formData.checkIn); // Obtener la fecha de llegada a las 00:00:00
-    alert(fechaActual);
+   
     // Validar que la fecha de llegada sea posterior o igual al día actual
     if (fechaLlegada.toISOString().slice(0, 10) === fechaActual) {//si es el día de hoy
       this.mostrarConfirmacion = true;
-      this.mensajeConfirmacion='Puedes hacer el check in el hoy a partir de las 3 pm.';
+      this.mensajeConfirmacion='Puedes hacer el check in a partir de las 3 pm.';
       this.mostrarError=false;
       this.checkOutDesactivado=false;
       this.checkInDesactivado=true;
     } else if (fechaLlegada.toISOString().slice(0, 10) < fechaActual) {//si elije un día pasado
       this.mostrarError=true;
       this.mostrarConfirmacion = false;
-      this.mensajeError = 'La fecha de llegada debe ser el día de hoy o posterior. llegada '+ this.formData.checkIn+ ' actual ' +fechaActual;
+      this.mensajeError = 'La fecha de llegada debe ser el día de '+fechaActual+' o posterior';
       
     }else{//si elije un día futuro
       this.mostrarError=false;
@@ -198,7 +176,26 @@ validarFechaDeSalida(event: Event){
   this.validarCheckOut();
 }
 
-////////////////////////////////////////validar la cantidad
+////////////////////////////////////////funciones
+totalReserva: number=0;
+detelleReserva='';
+calcular(){
+  this.totalReserva=0;
+  this.tiposDeHabitacionElegidos.forEach(tipoActual=>{
+    this.totalReserva += (tipoActual.precio * this.cantidadNoches)*tipoActual.cantidad;
+  });
+}
+
+cantidadNoches =0;
+contarNoches(){
+  if (this.formData.checkIn && this.formData.checkOut) {
+    const fechaInicioParsed = parseISO(this.formData.checkIn); // Parsea la fecha de inicio
+    const fechaFinParsed = parseISO(this.formData.checkOut); // Parsea la fecha de fin
+    this.cantidadNoches = differenceInDays(fechaFinParsed, fechaInicioParsed); // Calcula la diferencia en días
+  } else {
+    this.cantidadNoches = 0; // Reinicia la cantidad de noches si las fechas no están completas
+  }
+}
 
 
   /////////////////////////////////////acciones de los botones
@@ -217,33 +214,35 @@ validarFechaDeSalida(event: Event){
     {
       return;
     }
-
-    if(this.formData.tipo_habitacion==="Standart"){
-      this.precio=1000*this.formData.cantidad_habitacion;
-      this.personas = 4;
-    }else if(this.formData.tipo_habitacion==="Junior"){
-      this.precio=2000*this.formData.cantidad_habitacion;
-      this.personas = 2;
-    }else if(this.formData.tipo_habitacion==="Presidencial"){
-      this.precio=3000*this.formData.cantidad_habitacion;
-      this.personas = 8;
-    }
-    const nuevaHabitacion: Habitacion = {
-      tipo: this.formData.tipo_habitacion,
-      cantidad: this.formData.cantidad_habitacion,
-      precio: this.precio,
-      personas : this.personas*this.formData.cantidad_habitacion
-    };
-    this.habitaciones = this.habitaciones.filter(item => item.tipo !== this.formData.tipo_habitacion);
-    this.habitaciones.push(nuevaHabitacion);
-    this.precio = 0;
-    this.tabla_contenidoVisible=true;
     
+
+
+    this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id != this.formData.tipo_habitacion);
+    
+    this.tiposDeHabitacion.forEach(tipoActual=>{
+      
+      if(tipoActual.id==this.formData.tipo_habitacion){
+        tipoActual.cantidad=this.formData.cantidad_habitacion;
+        this.tiposDeHabitacionElegidos.push(tipoActual);
+      }
+      
+    });
+    this.contarNoches();
+    this.calcular();
+    this.tabla_contenidoVisible=true;
   }
 
 
-  quitarHabitacion(){
-    this.habitaciones = this.habitaciones.filter(item => item.tipo !== this.formData.tipo_habitacion);
+  quitarHabitacion(indice : number){
+    //obteber el valor del input oculto en la tabla dinamica con el carrito de habitaciones
+    const valorInputHidden = (<HTMLInputElement>document.getElementById(indice+'')).value;
+    //eliminar el tipo de habitacion con el id recibido del carrito de compras
+    this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id !== parseInt(valorInputHidden));
+    this.contarNoches();
+    this.calcular();
+    if(this.tiposDeHabitacionElegidos.length==0){
+      this.tabla_contenidoVisible=false;
+    }
   }
 
   reservar(){
@@ -255,12 +254,12 @@ validarFechaDeSalida(event: Event){
     this.formData.checkOut='';
     this.formData.cantidad_habitacion='';
     this.formData.tipo='';
+    this.cantidadNoches=0;
      //mostrar campos para entradas de forma ordenada
      this.checkInDesactivado = false;
      this.checkOutDesactivado = true;
      this.cantidad_habitacionDesactivado =true;
      this.tipo_habitacionDesactivado=true;
      this.tabla_contenidoVisible=false;
-     this.habitaciones = [];
   }
 }
