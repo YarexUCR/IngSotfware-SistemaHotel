@@ -6,6 +6,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { ContactenosComponent } from './contactenos/contactenos.component';
 import { FacilidadesComponent } from './facilidades/facilidades.component';
 import { TarifasComponent } from './tarifas/tarifas.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { TarifasComponent } from './tarifas/tarifas.component';
       <section class="content">
       </section>
     </main>`,
-    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent]
+    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent, SobreNosotrosComponent]
 })
 export class AppComponent {
   title = 'app';
