@@ -1,26 +1,27 @@
 .grid-container {
-    margin: 20px;
-  }
-  
-  .dashboard-card {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-  }
-  
-  .more-button {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-  
-  .dashboard-card-content {
-    text-align: center;
-  }
-//CSS BASE
+  margin: 20px;
+}
 
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+//CSS BASE
+/*
 .imgPrincipal{
 width: 500px;
 height: 500px;
@@ -30,4 +31,30 @@ height: 500px;
 .imgSecundaria{
     width: 200px;
     height: 200px;
-    }
+    }*/
+img {
+  width: 640px;
+  height: 640px;
+}
+
+.imgSecundaria {
+  width: 100px;
+  height: 100px;
+}
+
+.row {
+  height: 100%;
+}
+
+
+.p-galleria-item-prev,
+.p-galleria-item-next {
+  /* Agrega tus estilos personalizados aquí */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Fondo transparente con opacidad del 50% */
+  color: white;
+  /* Cambia el color del texto */
+  border-radius: 50%;
+  /* Aplica un borde redondeado */
+  /* Ajusta otros estilos según sea necesario */
+}
