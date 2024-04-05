@@ -7,18 +7,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FooterComponent } from '../footer/footer.component';
-
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.scss',
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
   standalone: true,
   imports: [
-
-    FooterComponent,
-
     AsyncPipe,
     MatGridListModule,
     MatMenuModule,
@@ -27,7 +22,7 @@ import { FooterComponent } from '../footer/footer.component';
     MatCardModule
   ]
 })
-export class InicioComponent {
+export class DashboardComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
   /** Based on the screen size, switch from standard to one column per row */

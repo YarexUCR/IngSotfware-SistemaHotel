@@ -12,16 +12,12 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
 import {RouterLink, RouterOutlet} from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 
-import { MatCard, MatCardFooter } from '@angular/material/card';
-
-
 @Component({
     selector: 'app-navigation',
     templateUrl: './navigation.component.html',
     styleUrl: './navigation.component.scss',
     standalone: true,
     imports: [
-       MatCard, MatCardFooter,
         RouterLink,
         MatToolbarModule,
         MatButtonModule,

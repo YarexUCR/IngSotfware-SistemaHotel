@@ -7,8 +7,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FooterComponent } from '../footer/footer.component';
-
 
 @Component({
   selector: 'app-inicio',
@@ -16,9 +14,6 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './inicio.component.scss',
   standalone: true,
   imports: [
-
-    FooterComponent,
-
     AsyncPipe,
     MatGridListModule,
     MatMenuModule,

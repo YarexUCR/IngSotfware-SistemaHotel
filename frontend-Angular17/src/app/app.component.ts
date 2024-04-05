@@ -4,8 +4,6 @@ import { NavigationComponent } from "./navigation/navigation.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
 
-import { HttpClientModule } from '@angular/common/http';
-
 
 @Component({
     selector: 'app-root',
@@ -20,8 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
       <section class="content">
       </section>
     </main>`,
-
-    imports: [HttpClientModule, RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent]
+    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent]
 })
 export class AppComponent {
   title = 'app';

@@ -1,9 +1,11 @@
+
 import { Component, inject } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm, Validators} from '@angular/forms';
 import { FooterComponent } from "../footer/footer.component";
@@ -266,4 +268,5 @@ contarNoches(){
      this.tipo_habitacionDesactivado=true;
      this.tabla_contenidoVisible=false;
   }
+
 }

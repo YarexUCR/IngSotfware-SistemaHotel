@@ -1,0 +1,73 @@
+<div class="grid-container">
+    
+    <h1 class="mat-h1">Reservar en Línea</h1>
+    <mat-grid-list cols="2" rowHeight="350px">
+        
+       <div class="container">
+            <form class="row g-2" (ngSubmit)="agregarHabitacion()">
+                <div class="row">
+                    <div class="col">
+                        <label for="checkIn">Fecha de Llegada</label>
+                        <input type="date" class="form-control" id="checkIn" name="checkIn" [(ngModel)]="formData.checkIn">
+                    </div>
+                    <div class="col">
+                        <label for="checkOut">Fecha de salida</label>
+                        <input type="date" class="form-control"  id="checkOut" name="checkOut" [(ngModel)]="formData.checkOut">
+                    </div>
+                </div>
+                <div class="row  mb-3">
+                    <div class="col">
+                        <label for="cantidad_habitacion">Cantidad</label>
+                        <input type="number" [value]="1" class="form-control" id="cantidad_habitacion" name="cantidad_habitacion" [(ngModel)]="formData.cantidad_habitacion" min="1">
+                    </div>
+                    <div class="col">
+                        <label for="tipo_habitacion">Tipo de habitacion</label>
+                        <select class="form-control" name="tipo_habitacion" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion">
+                            <option value="Standart">Standart</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Presidencial">Presidencial</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="row mb-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">Agregar</button>
+
+                    </div>
+                </div>
+            </form>
+            <div class="row  mb-3">
+                <div class="col">
+                    <table class="table" style="max-width: 100;">
+                        <thead class="table-light">
+                          <tr>
+                                <td>Tipo de habitacion</td>
+                                <td>Personas</td>
+                                <td>Cantidad</td>
+                                <td>Precio</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let habitacion of habitaciones">
+                                <td>{{habitacion.tipo}} <br><button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0;" (click)="quitarHabitacion()">Quitar</button>
+                                </td>
+                                <td>{{habitacion.personas}}</td>
+                                <td>{{habitacion.cantidad}}</td>
+                                <td>{{habitacion.precio}}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p style="text-align: center;">Total de la reservación <strong>₡65,000</strong> para 2 habitaciones Standar y 1 Junior <strong>para 5 personas</strong></p>
+                    <p style="text-align: center;">Total de la reservación <strong>$130</strong> para 2 habitaciones Standar y 1 Junior  <strong>para 5 personas</strong></p>
+                    <button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;" (click)="reservar()">Reservar</button>
+                                
+                </div>
+            </div>
+       </div>    
+       {{formData.cantidad_habitacion}}<br>{{formData.tipo_habitacion}}<br>{{formData.checkIn}}<br>{{formData.checkOut}}
+    </mat-grid-list>
+  </div>
+  
+  
