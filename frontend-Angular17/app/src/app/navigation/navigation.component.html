@@ -8,21 +8,127 @@
       style="background-color: #000918;">
       <mat-toolbar style="color: #fffdf0;" >Menu</mat-toolbar> 
       <mat-nav-list >
-        <a mat-list-item routerLink="/" ><p style="color: #fffdf0;">Home</p></a>
 
-        <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Facilidades</p></a>
         
-        <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">¿Como llegar?</p></a>
+        <a mat-list-item routerLink="/" >
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Inicio
+              </div>
+            </div>
+          </div>
+        </a>
 
-        <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Tarifas</p></a>
+        <a mat-list-item routerLink="/dashboard">
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Sobre Nosotros
+              </div>
+            </div>
+          </div>
+        </a>
+        
+        <a mat-list-item routerLink="/dashboard">
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-list-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Facilidades
+              </div>
+            </div>
+          </div>
+        </a>
+        
 
-        <a mat-list-item routerLink="/reservar"><p style="color: #fffdf0;">Reservar en Linea</p></a>
+        <a mat-list-item routerLink="/comollegar"><p style="color: #fffdf0;"></p>
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-map-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                ¿Como llegar?
+              </div>
+            </div>
+          </div>
+        </a>
 
-        <a mat-list-item routerLink="/dashboard"><p style="color: #fffdf0;">Contactenos</p></a>
-        <img style="max-width: 100%;" src="../../assets/ejemplospublicidadproductosdoritos.jpeg">
+        <a mat-list-item routerLink="/dashboard">
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-credit-card" viewBox="0 0 16 16">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                      <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Tarifas
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a mat-list-item routerLink="/reservar"><p style="color: #fffdf0;">
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+                
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-lamp-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5.04.303A.5.5 0 0 1 5.5 0h5c.2 0 .38.12.46.303l3 7a.5.5 0 0 1-.363.687h-.002q-.225.044-.45.081a33 33 0 0 1-4.645.425V13.5a.5.5 0 1 1-1 0V8.495a33 33 0 0 1-4.645-.425q-.225-.036-.45-.08h-.003a.5.5 0 0 1-.362-.688l3-7Z"/>
+                  <path d="M6.493 12.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.3 1.3 0 0 0-.37.265.3.3 0 0 0-.052.075l-.001.004-.004.01V14l.002.008.016.033a.6.6 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.6.6 0 0 0 .146-.15l.015-.033L12 14v-.004a.3.3 0 0 0-.057-.09 1.3 1.3 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465s-2.462-.172-3.34-.465c-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Reservar en línea
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a mat-list-item routerLink="/dashboard">
+          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+            <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
+              <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                </svg>
+              </div>
+              <div  style="color: #fffdf0;"> <!-- Utiliza ml-2 para agregar un margen a la izquierda -->
+                Contactenos
+              </div>
+            </div>
+          </div>
+        </a>
+        <img style="max-width: 98%; float: inline-end;" src="../../assets/ejemplospublicidadproductosdoritos.jpeg">
       </mat-nav-list>
-      
     </mat-sidenav>
+    
+
   <mat-sidenav-content style="background-color: #eaf2ff; color: #001840;">
     <mat-toolbar style="background-color: #001840; color: #fffdf0;">
       @if (isHandset$ | async) {
@@ -36,6 +142,7 @@
       }
       <img src="../../assets/logoPalm.png" style="max-height: 100%;">
       <span>Hotel</span>
+
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet ></router-outlet>
@@ -48,6 +155,7 @@
   
 </mat-sidenav-container>
 
+
 <style>
   .app-footer {
   position: fixed;
@@ -57,3 +165,5 @@
  
 }
 </style>
+
+
