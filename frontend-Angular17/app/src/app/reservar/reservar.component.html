@@ -1,26 +1,30 @@
 <div class="grid-container">
-    
-    <h1 class="mat-h1">Reservar en Línea 
+
+    <h1 class="mat-h1">Reservar en Línea
         <a href="/reservar" class="" style="float: right;">
             <button class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
-                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
-                  </svg>
-                  Reiniciar
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0"
+                    class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                    <path
+                        d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+                </svg>
+                Reiniciar
             </button>
         </a>
     </h1>
-    
     <mat-grid-list cols="2" rowHeight="350px">
-       <div class="container">
-            
+
+        <div class="container">
+
             <form class="row g-2" (ngSubmit)="agregarHabitacion()">
                 <div class="row">
                     <div class="col">
                         <label for="checkIn">Fecha de Llegada</label>
-                        <input type="date" class="form-control"  id="checkIn" name="checkIn" #checkIn="ngModel" [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn" (ngModelChange)="validarFechaEntrada($event)"required>
-                        
+                        <input type="date" class="form-control" id="checkIn" name="checkIn" #checkIn="ngModel"
+                            [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn"
+                            (ngModelChange)="validarFechaEntrada($event)" required>
+
                         <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
                             El check in es obligatorio
                         </div>
@@ -31,10 +35,12 @@
                             {{mensajeConfirmacion}}
                         </div>
                     </div>
-                    
+
                     <div class="col">
                         <label for="checkOut">Fecha de salida</label>
-                        <input type="date" class="form-control"  id="checkOut" name="checkOut" [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut" (ngModelChange)="validarFechaDeSalida($event)" required>
+                        <input type="date" class="form-control" id="checkOut" name="checkOut"
+                            [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut"
+                            (ngModelChange)="validarFechaDeSalida($event)" required>
                         <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
                             El check out es obligatorio
                         </div>
@@ -47,67 +53,81 @@
                     </div>
                 </div>
                 <div class="row  mb-3">
-                    <div class="col">
-                        <label for="cantidad_habitacion">Cantidad</label>
-                        <input type="number" [disabled]="cantidad_habitacionDesactivado" class="form-control" id="cantidad_habitacion" name="cantidad_habitacion" #cantidad_habitacion="ngModel" [(ngModel)]="formData.cantidad_habitacion" min="1" required>
-                        <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
-                            Es requerido una cantidad de habitaciones
-                        </div>
-                    </div>
+
                     <div class="col">
                         <label for="tipo_habitacion">Tipo de habitacion</label>
-                        <select  class="form-control" [disabled]="tipo_habitacionDesactivado " name="tipo_habitacion" #tipo_habitacion="ngModel" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion" required="">
-                            <option *ngFor="let tipo of tipos" value="{{ tipo.nombre }}">{{ tipo.nombre }}</option>
+                        <select class="form-control" [disabled]="tipo_habitacionDesactivado " name="tipo_habitacion"
+                            #tipo_habitacion="ngModel" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion"
+                            required="">
+                            <option *ngFor="let tipo of tiposDeHabitacion" value="{{ tipo.id }}">{{ tipo.nombre }}
+                            </option>
                         </select>
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorTipoHabitacion">
                             Es requerido un tipo de habitacion
                         </div>
                     </div>
+
+                    <div class="col">
+                        <label for="cantidad_habitacion">Cantidad</label>
+                        <input type="number" [disabled]="cantidad_habitacionDesactivado" class="form-control"
+                            id="cantidad_habitacion" name="cantidad_habitacion" #cantidad_habitacion="ngModel"
+                            [(ngModel)]="formData.cantidad_habitacion" min="1" required>
+                        <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
+                            Es requerido una cantidad de habitaciones
+                        </div>
+                    </div>
                 </div>
-               
+
                 <div class="row mb-3">
                     <div class="col">
-                        <button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">Agregar</button>
+                        <button type="submit" class="btn btn-sm"
+                            style="background-color: #001840; color: #fffdf0; float: right;">Agregar</button>
                     </div>
                 </div>
             </form>
-            
-            
-                <div class="row  mb-3" *ngIf="tabla_contenidoVisible">
-                    <div class="col">
-                        <table class="table" style="max-width: 100;">
-                            <thead class="table-light">
+
+
+            <div class="row  mb-3" *ngIf="tabla_contenidoVisible">
+                <div class="col">
+                    <table class="table" style="max-width: 100;">
+                        <thead class="table-light">
                             <tr>
-                                    <td>Tipo de habitacion</td>
-                                    <td>Personas</td>
-                                    <td>Cantidad</td>
-                                    <td>Precio</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let habitacion of habitaciones">
-                                    <td>{{habitacion.tipo}} </td>
-                                    <td>{{habitacion.personas}}</td>
-                                    <td>{{habitacion.cantidad}}</td>
-                                    <td>{{habitacion.precio}}</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0;" (click)="quitarHabitacion()">Quitar</button>
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                        <p style="text-align: center;">Total de la reservación <strong>₡65,000</strong> para 2 habitaciones Standar y 1 Junior <strong>para 5 personas</strong></p>
-                        <p style="text-align: center;">Total de la reservación <strong>$130</strong> para 2 habitaciones Standar y 1 Junior  <strong>para 5 personas</strong></p>
-                        <button  type="submit" class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;" (click)="reservar()">Reservar</button>
-                                    
-                    </div>
+                                <td>Tipo de habitacion</td>
+                                <td>Descripcion</td>
+                                <td>Cantidad</td>
+                                <td>Precio por noche</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let habitacion of tiposDeHabitacionElegidos; let i = index">
+                                <td>{{habitacion.nombre}} </td>
+                                <td>{{habitacion.descripcion}}</td>
+                                <td>{{habitacion.cantidad}}</td>
+                                <td>{{habitacion.precio}}</td>
+                                <td>
+                                    <input type="hidden" [id]="i" [value]="habitacion.id">
+                                    <button type="submit" class="btn btn-sm"
+                                        style="background-color: #001840; color: #fffdf0;"
+                                        (click)="quitarHabitacion(i)">Quitar</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <h2>
+                        <p style="text-align: right;">Total de la reservación <strong>₡{{totalReserva}}</strong> para
+                            <strong>{{cantidadNoches}} noches</strong></p>
+                    </h2>
+                    
+
                 </div>
-            
-       </div>
-    <app-footer></app-footer>
+                
+            </div>
+        </div>
+        <div id="paypal-button-container"></div>
+        
+        <app-footer></app-footer>
     </mat-grid-list>
-  </div>
-  
-  
+</div>
+
