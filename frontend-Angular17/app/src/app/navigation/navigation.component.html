@@ -8,6 +8,7 @@
       style="background-color: #000918;">
       <mat-toolbar style="color: #fffdf0;" >Menu</mat-toolbar> 
       <mat-nav-list >
+
         
         <a mat-list-item routerLink="/" >
           <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
@@ -25,8 +26,12 @@
           </div>
         </a>
 
+
+
         <a mat-list-item routerLink="/sobreNosotros">
-          <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+<div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
+
+
                 
             <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
               <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
@@ -42,7 +47,7 @@
           </div>
         </a>
         
-        <a mat-list-item routerLink="/facilidades">
+        <a mat-list-item routerLink="/dashboard">
           <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
                 
             <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
@@ -75,7 +80,7 @@
           </div>
         </a>
 
-        <a mat-list-item routerLink="/tarifas">
+        <a mat-list-item routerLink="/dashboard">
           <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
                 
             <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
@@ -109,7 +114,7 @@
           </div>
         </a>
 
-        <a mat-list-item routerLink="/contactenos">
+        <a mat-list-item routerLink="/dashboard">
           <div class="d-flex" > <!-- Utiliza d-flex para flexbox y align-items-center para alinear verticalmente -->
             <div class="d-flex align-items-center icon-text-container"> <!-- Agrega una clase para el contenedor -->
               <div style="margin-right: 10px;"> <!-- Agrega margen derecho -->
@@ -127,6 +132,7 @@
       </mat-nav-list>
     </mat-sidenav>
     
+
   <mat-sidenav-content style="background-color: #eaf2ff; color: #001840;">
     <mat-toolbar style="background-color: #001840; color: #fffdf0;">
       @if (isHandset$ | async) {
@@ -140,9 +146,28 @@
       }
       <img src="../../assets/logoPalm.png" style="max-height: 100%;">
       <span>Hotel</span>
-      
+
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet ></router-outlet>
+    <div class="app-footer">
+      <app-footer></app-footer>
+    </div>
+    
+
   </mat-sidenav-content>
+  
 </mat-sidenav-container>
+
+
+<style>
+  .app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+ 
+}
+</style>
+
+

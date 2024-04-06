@@ -8,6 +8,9 @@ import { FacilidadesComponent } from './facilidades/facilidades.component';
 import { TarifasComponent } from './tarifas/tarifas.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @Component({
     selector: 'app-root',
@@ -22,7 +25,9 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
       <section class="content">
       </section>
     </main>`,
-    imports: [RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent, SobreNosotrosComponent]
+
+    imports: [HttpClientModule, RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent, SobreNosotrosComponent]
+
 })
 export class AppComponent {
   title = 'app';
