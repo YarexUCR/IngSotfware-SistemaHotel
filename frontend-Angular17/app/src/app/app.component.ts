@@ -3,8 +3,13 @@ import { RouterLink,RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./navigation/navigation.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
+import { ContactenosComponent } from './contactenos/contactenos.component';
+import { FacilidadesComponent } from './facilidades/facilidades.component';
+import { TarifasComponent } from './tarifas/tarifas.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 @Component({
@@ -21,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
       </section>
     </main>`,
 
-    imports: [HttpClientModule, RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent]
+    imports: [HttpClientModule, RouterLink, RouterOutlet, NavigationComponent, DashboardComponent, FooterComponent, ContactenosComponent, FacilidadesComponent, TarifasComponent, SobreNosotrosComponent]
+
 })
 export class AppComponent {
   title = 'app';
