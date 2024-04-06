@@ -20,12 +20,7 @@ export class PaypalPagoService {
   private initPaypalSDK() {
     if (this.paypalSDK) {
       this.paypalSDK.Buttons({
-        style: {
-          layout: 'horizontal',
-          color:  'blue',
-          shape:  'rect',
-          label:  'paypal',
-        },
+        
         createOrder: (data: any, actions: any) => {
           return actions.order.create({
             purchase_units: [{
