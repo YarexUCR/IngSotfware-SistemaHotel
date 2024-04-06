@@ -7,7 +7,12 @@ import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
 
 export const routes : Routes =[
     {path: "dashboard", component :  DashboardComponent},
+    {path: "", component :  InicioComponent},
     {path: "reservar", component :  ReservarComponent},
     {path: "comollegar", component: ComoLlegarComponent},
-    {path: "", component :  InicioComponent}
+    {path: "sobreNosotros", component :  SobreNosotrosComponent},	
+    {path: "contactenos", component : ContactenosComponent},
+    {path: "facilidades", component : FacilidadesComponent},
+    {path: "tarifas", component : TarifasComponent}
+
 ]
