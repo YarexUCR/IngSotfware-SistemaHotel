@@ -47,7 +47,7 @@ export class PaypalPagoService  {
           console.log('Pago completado:', details);
           
           // Aquí puedes enviar el ID de la orden a tu backend para procesar la reserva
-          
+          this.router.navigate(['']);
         });
       }
     }).render('#paypal-button-container');
