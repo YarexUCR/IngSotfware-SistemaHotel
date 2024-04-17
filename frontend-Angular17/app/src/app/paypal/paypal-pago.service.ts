@@ -24,6 +24,13 @@ export class PaypalPagoService  {
     }
 
     this.paypalSDK.Buttons({
+      style: {
+        layout: 'vertical',
+        color:  'gold',
+        shape:  'rect',
+        label:  'paypal',
+        disableMaxWidth: true
+      },
       createOrder: (data: any, actions: any) => {
         return actions.order.create({
           purchase_units: [{

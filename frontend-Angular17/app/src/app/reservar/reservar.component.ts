@@ -12,21 +12,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { HotelService } from '../api/hotel.service';
 import { differenceInDays, parseISO } from 'date-fns';
-import { PaypalPagoService } from '../paypal/paypal-pago.service';
-
-interface TipoHabitacion{
-  id : number;
-  descripcion : string;
-  cantidad : number;
-  nombre : string;
-  imagen : string;
-  precio : number;
-}
-
-
-
-
-
+import{TipoHabitacion} from '../dominio/TipoHabitacion';
 
 @Component({
     selector: 'app-reservar',
@@ -62,7 +48,7 @@ export class ReservarComponent {
   tipo_habitacionDesactivado : boolean;
   tabla_contenidoVisible : boolean;
 
-constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router,private paypalPagoService: PaypalPagoService){
+constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router){
     
     
     //mostrar campos para entradas de forma ordenada
@@ -84,10 +70,7 @@ constructor(private hotelService: HotelService, private routerA: ActivatedRoute,
 
     this.formData.cantidad_habitacion = 1;
   }
-  ////////////////////////////////////paypal
-  ngAfterViewInit() {
-    this.paypalPagoService.renderPaypalButton();
-  }
+ 
 
   ////////////////////////////////////validaciones
   mostrarErrorCheckIn=false;
@@ -254,7 +237,7 @@ contarNoches(){
   }
 
   reservar(){
-    alert('Reservar');
+    this.router.navigate(['disponible']);
   }
 
   reiniciarFormulario(){

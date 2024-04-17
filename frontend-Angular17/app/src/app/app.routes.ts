@@ -6,15 +6,13 @@ import { SobreNosotrosComponent } from "./sobre-nosotros/sobre-nosotros.componen
 import { ContactenosComponent } from "./contactenos/contactenos.component";
 import { FacilidadesComponent } from "./facilidades/facilidades.component";
 import { TarifasComponent } from "./tarifas/tarifas.component";
-import { FooterComponent } from "./footer/footer.component";////cambiar
-//importar el componentwe
+import { DisponibleComponent } from "./disponible/disponible.component";
 
 import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
 
 export const routes : Routes =[
     {path: "dashboard", component :  DashboardComponent},
-    {path: "admin", component :  FooterComponent},//cambiar
-    // "admin"
+    {path: "disponible", component :  DisponibleComponent},
     {path: "", component :  InicioComponent},
     {path: "reservar", component :  ReservarComponent},
     {path: "comollegar", component: ComoLlegarComponent},
