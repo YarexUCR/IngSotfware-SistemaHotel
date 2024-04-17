@@ -85,7 +85,9 @@ constructor(private hotelService: HotelService, private routerA: ActivatedRoute,
     this.formData.cantidad_habitacion = 1;
   }
   ////////////////////////////////////paypal
-  
+  ngAfterViewInit() {
+    this.paypalPagoService.renderPaypalButton();
+  }
 
   ////////////////////////////////////validaciones
   mostrarErrorCheckIn=false;

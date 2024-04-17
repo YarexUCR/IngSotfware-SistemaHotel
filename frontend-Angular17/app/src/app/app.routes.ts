@@ -2,12 +2,25 @@ import { Routes } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { InicioComponent } from "./inicio/inicio.component";
 import { ReservarComponent } from "./reservar/reservar.component";
+import { SobreNosotrosComponent } from "./sobre-nosotros/sobre-nosotros.component";
+import { ContactenosComponent } from "./contactenos/contactenos.component";
+import { FacilidadesComponent } from "./facilidades/facilidades.component";
+import { TarifasComponent } from "./tarifas/tarifas.component";
+import { FooterComponent } from "./footer/footer.component";////cambiar
+//importar el componentwe
 
 import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
 
 export const routes : Routes =[
     {path: "dashboard", component :  DashboardComponent},
+    {path: "admin", component :  FooterComponent},//cambiar
+    // "admin"
+    {path: "", component :  InicioComponent},
     {path: "reservar", component :  ReservarComponent},
     {path: "comollegar", component: ComoLlegarComponent},
-    {path: "", component :  InicioComponent}
+    {path: "sobreNosotros", component :  SobreNosotrosComponent},	
+    {path: "contactenos", component : ContactenosComponent},
+    {path: "facilidades", component : FacilidadesComponent},
+    {path: "tarifas", component : TarifasComponent}
+
 ]
