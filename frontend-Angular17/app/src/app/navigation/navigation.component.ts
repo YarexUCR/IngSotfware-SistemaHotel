@@ -13,6 +13,7 @@ import {RouterLink, RouterOutlet} from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 
 import { MatCard, MatCardFooter } from '@angular/material/card';
+import { PublicidadComponent } from "../publicidad/publicidad.component";
 
 
 @Component({
@@ -21,7 +22,7 @@ import { MatCard, MatCardFooter } from '@angular/material/card';
     styleUrl: './navigation.component.scss',
     standalone: true,
     imports: [
-       MatCard, MatCardFooter,
+        MatCard, MatCardFooter,
         RouterLink,
         MatToolbarModule,
         MatButtonModule,
@@ -31,7 +32,8 @@ import { MatCard, MatCardFooter } from '@angular/material/card';
         AsyncPipe,
         DashboardComponent,
         RouterOutlet,
-        FooterComponent
+        FooterComponent,
+        PublicidadComponent
     ]
 })
 export class NavigationComponent {
