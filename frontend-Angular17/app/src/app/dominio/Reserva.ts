@@ -5,6 +5,5 @@ export interface Reserva{
     cliente : string;
     cedula : string;
     habitaciones : Habitacion [];
-    imagen : string;
     total : number;
   }
