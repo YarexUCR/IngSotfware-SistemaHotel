@@ -4,7 +4,6 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
 
                     <p>Desde nuestra apertura en 2002, el Hotel La Palma ha sido un destino de ensueño para aquellos
                         que buscan la combinación perfecta de relajación y aventura junto al mar. Fundado por una
@@ -27,10 +26,31 @@
                         </p-galleria>
                     </div>
 
-                </div>
             </div>
         </div>
 
+
+        <div class="container">
+           
+                <div style="max-width: 100%;">
+
+
+                    <p-galleria [value]="images" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions"
+                        [circular]="true" [numVisible]="5" [containerStyle]="{ 'max-width': '640px' }">
+                        <ng-template pTemplate="item" let-item>
+                            <img class="imgPrincipal" [src]="item.itemImageSrc" style="width: 640px; " />
+                        </ng-template>
+                        <ng-template pTemplate="thumbnail" let-item>
+                            <div class="grid grid-nogutter justify-content-center">
+                                <img class="imgSecundaria" [src]="item.thumbnailImageSrc" style="display: block;" />
+                            </div>
+                        </ng-template>
+                    </p-galleria>
+        
+        
+            </div>
+        </div>
+   
         <app-footer></app-footer>
     </mat-grid-list>
 </div>
