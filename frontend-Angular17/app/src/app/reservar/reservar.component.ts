@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 import { HotelService } from '../api/hotel.service';
 import { differenceInDays, parseISO } from 'date-fns';
 import{TipoHabitacion} from '../dominio/TipoHabitacion';
+import { Reserva } from '../dominio/Reserva';
+import { Habitacion } from '../dominio/Habitacion';
 
 @Component({
     selector: 'app-reservar',
@@ -236,8 +238,33 @@ contarNoches(){
     }
   }
 
+  habitaciones : Habitacion[]=[];
   reservar(){
-    this.router.navigate(['disponible']);
+    this.habitaciones = [];
+    for (const tipo of this.tiposDeHabitacionElegidos) {
+      for (let i = 1; i <= tipo.cantidad; i++) {
+        const habitacion: Habitacion = {
+          id: this.habitaciones.length + 1, // ID dinámico
+          estado: 'Disponible',
+          numero: this.habitaciones.length + 101, // Número dinámico
+          tipo: tipo
+        };
+        this.habitaciones.push(habitacion);
+      }
+    }
+
+    let reserva= {
+      id : 0,
+      cliente : "",
+      cedula : "",
+      email : "",
+      total : this.totalReserva,
+      checkIn : this.formData.checkIn,
+      checkOut : this.formData.checkOut,
+      habitaciones: this.habitaciones
+    }
+    
+    this.router.navigate(['disponible'], { queryParams: { reserva: JSON.stringify(reserva) } });
   }
 
   reiniciarFormulario(){

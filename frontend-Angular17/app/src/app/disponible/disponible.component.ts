@@ -8,6 +8,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Reserva } from '../dominio/Reserva'; // Importa la interfaz Reserva
 
 @Component({
     selector: 'app-disponible',
@@ -19,13 +22,23 @@ import { MatCardModule } from '@angular/material/card';
       MatMenuModule,
       MatIconModule,
       MatButtonModule,
-      MatCardModule
+      MatCardModule,
+      CommonModule
     ]
 })
 export class DisponibleComponent {
-  constructor(private paypalPagoService: PaypalPagoService){}
+
+  reserva: Reserva | null = null; // Propiedad para recibir la reserva
+  constructor(private paypalPagoService: PaypalPagoService,private route: ActivatedRoute){}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro
+    });
+  }
    ////////////////////////////////////paypal
    ngAfterViewInit() {
     this.paypalPagoService.renderPaypalButton();
+    
   }
 }
