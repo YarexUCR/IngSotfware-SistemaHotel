@@ -1,14 +1,14 @@
 <div class="grid-container">
     <h1 class="mat-h1">Reservar en Línea</h1>
-    <!--<div *ngIf="reserva">
+    <div *ngIf="reserva">
         <h2>Detalles de la Reserva</h2>
         <p>ID de Reserva: {{ reserva.id }}</p>
         <p>Cliente: {{ reserva.cliente }}</p>
         <p>Cédula: {{ reserva.cedula }}</p>
         <p>Email: {{ reserva.email }}</p>
         <p>Total: {{ reserva.total }}</p>
-        <p>Check-In: {{ reserva.checkIn | date }}</p>
-        <p>Check-Out: {{ reserva.checkOut | date }}</p>
+        <p>Check-In: {{ reserva.checkIn }}</p>
+        <p>Check-Out: {{ reserva.checkOut}}</p>
       
         <h3>Habitaciones Reservadas</h3>
         <table>
@@ -31,7 +31,7 @@
             </tr>
           </tbody>
         </table>
-      </div>-->
+      </div>
 
     <mat-grid-list cols="2" rowHeight="350px">
         <div class="container">

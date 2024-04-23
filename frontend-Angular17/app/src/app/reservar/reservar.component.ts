@@ -247,12 +247,13 @@ contarNoches(){
           id: this.habitaciones.length + 1, // ID dinámico
           estado: 'Disponible',
           numero: this.habitaciones.length + 101, // Número dinámico
-          tipo: tipo
+          tipo: tipo,
+          activo : true
         };
         this.habitaciones.push(habitacion);
       }
     }
-
+    
     let reserva= {
       id : 0,
       cliente : "",

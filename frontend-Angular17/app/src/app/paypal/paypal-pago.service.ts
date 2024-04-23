@@ -52,4 +52,5 @@ export class PaypalPagoService  {
       }
     }).render('#paypal-button-container');
   }  
+  
 }

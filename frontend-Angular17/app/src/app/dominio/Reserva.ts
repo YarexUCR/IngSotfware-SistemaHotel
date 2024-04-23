@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import { Habitacion } from "./Habitacion";
 
 export interface Reserva{
@@ -7,6 +8,6 @@ export interface Reserva{
     email : string;
     habitaciones : Habitacion [];
     total : number;
-    checkIn : Date,
-    checkOut : Date
-  }
+    checkIn : DatePipe,
+    checkOut : DatePipe
+}

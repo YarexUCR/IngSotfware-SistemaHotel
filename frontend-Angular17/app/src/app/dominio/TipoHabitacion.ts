@@ -1,11 +1,11 @@
 
 
 export interface TipoHabitacion{
+    nombre : string;
     id : number;
     descripcion : string;
-    cantidad : number;
-    nombre : string;
-    imagen : string;
     precio : number;
+    imagen : string;
+    cantidad : number;
   }
   
