@@ -1,11 +1,13 @@
 
 
 <mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav  #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"
-      style="background-color: #000918;">
+      style="background-color: #000918;"
+      [opened]="(isHandset$ | async) === false && !esLogin"
+      
+      >
       <mat-toolbar style="color: #fffdf0;" >Menu</mat-toolbar> 
       <mat-nav-list >
 
@@ -139,8 +141,8 @@
 
   <mat-sidenav-content style="background-color: #eaf2ff; color: #001840;">
     <mat-toolbar style="background-color: #001840; color: #fffdf0;">
-      @if (isHandset$ | async) {
-        <button
+      @if ( isHandset$ | async) {
+        <button *ngIf="!esLogin"
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
@@ -148,9 +150,11 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
+      
       <img src="../../assets/logoPalm.png" style="max-height: 100%;">
-      <span>Hotel</span>
-
+      <span style="margin-left: 10px;" *ngIf="showAdminMensaje">Módulo Administrador</span>
+      
+      <a class="mat-button salir" mat-list-item *ngIf="token" (click)="cerrarSession()"><p style="color: #fffdf0;">Salir</p></a>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet ></router-outlet>

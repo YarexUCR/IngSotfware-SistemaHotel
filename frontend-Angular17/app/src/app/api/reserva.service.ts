@@ -2,6 +2,7 @@ import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { Reserva } from "../dominio/Reserva";
+import { TipoHabitacion } from "../dominio/TipoHabitacion";
 
 @Injectable({providedIn: "root"})
 export class ReservaService {

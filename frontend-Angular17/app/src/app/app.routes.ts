@@ -9,9 +9,9 @@ import { TarifasComponent } from "./tarifas/tarifas.component";
 import { DisponibleComponent } from "./disponible/disponible.component";
 
 import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
-
+import { LoginComponent } from "./login/login.component";
 export const routes : Routes =[
-    {path: "dashboard", component :  DashboardComponent},
+    {path: "login", component :  LoginComponent},
     {path: "disponible", component :  DisponibleComponent},
     {path: "", component :  InicioComponent},
     {path: "reservar", component :  ReservarComponent},
@@ -19,6 +19,6 @@ export const routes : Routes =[
     {path: "sobreNosotros", component :  SobreNosotrosComponent},	
     {path: "contactenos", component : ContactenosComponent},
     {path: "facilidades", component : FacilidadesComponent},
-    {path: "tarifas", component : TarifasComponent}
-
+    {path: "tarifas", component : TarifasComponent},
+    { path: '**', component: InicioComponent }
 ]
