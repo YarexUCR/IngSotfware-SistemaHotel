@@ -1,34 +1,108 @@
 <div class="grid-container">
     <h1 class="mat-h1">Reservar en Línea</h1>
+    <div *ngIf="reserva">
+        <h2>Detalles de la Reserva</h2>
+        <p>ID de Reserva: {{ reserva.id }}</p>
+        <p>Cliente: {{ reserva.cliente }}</p>
+        <p>Cédula: {{ reserva.cedula }}</p>
+        <p>Email: {{ reserva.email }}</p>
+        <p>Total: {{ reserva.total }}</p>
+        <p>Check-In: {{ reserva.checkIn }}</p>
+        <p>Check-Out: {{ reserva.checkOut}}</p>
+      
+        <h3>Habitaciones Reservadas</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Estado</th>
+              <th>Número</th>
+              <th>Tipo</th>
+              <th>Imagen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let habitacion of reserva.habitaciones">
+              <td>{{ habitacion.id }}</td>
+              <td>{{ habitacion.estado }}</td>
+              <td>{{ habitacion.numero }}</td>
+              <td>{{ habitacion.tipo.nombre }}</td>
+              <td><img [src]="habitacion.tipo.imagen" alt="Imagen de Habitación" style="max-width: 100%;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
     <mat-grid-list cols="2" rowHeight="350px">
         <div class="container">
+            <div *ngIf="reserva">
+                <div *ngFor="let habitacion of reserva.habitaciones">
+                    <h2>Habitacion disponible</h2>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p>
+                                <img style="max-width: 100%;margin-right: 20px;" [src]="habitacion.tipo.imagen"
+                                    align="left">
+                            <p>
+                        </div>
+                        <div class="col-md-7">
+                            <p>
+                            <h3>Habitacion {{habitacion.tipo.nombre}}</h3>
+                            <br>
+                            {{habitacion.tipo.descripcion}}
+                            <br>
+                            <br>
+                            Numero de habitacion {{habitacion.numero}}
+                            <p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
 
-            <form>
-                <div class="row  mb-3">
-                    <div class="col">
-                        <label for="">Nombre</label>
-                        <input type="text" class="form-control" id="" name="">
-                    </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="">Cedula</label>
-                        <input type="text" class="form-control" id="" name="">
+                <h4>
+                    <p style="text-align: left;">Monto de su reservación <strong>${{reserva.total}}</strong></p>
+                </h4>
+                <div class="container mb-3">
+                    <div class="row">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+
+                        <div class="alert alert-danger mt-2" *ngIf="">
+
+                        </div>
+                        <div class="alert alert-danger mt-2" *ngIf="">
+
+                        </div>
+                        <div class="alert alert-success mt-2" *ngIf="">
+
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
+
+                    <div class="row">
+                        <label for="cedula">Cedula</label>
+                        <input type="text" class="form-control" id="cedula" name="cedula" required>
+                        <div class="alert alert-danger mt-2" *ngIf="">
+
+                        </div>
+                        <div class="alert alert-danger mt-2" *ngIf="">
+
+                        </div>
+                        <div class="alert alert-success mt-2" *ngIf="">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+
                         <label for="">Email</label>
-                        <input type="email" class="form-control" id="" name="">
+                        <input type="email" class="form-control" id="email" name="email">
+
                     </div>
                 </div>
                 
-            </form>
-            <div id="paypal-button-container"></div>
-
-
-
+                <div id="paypal-button-container"></div>
+            </div>
 
             <app-footer></app-footer>
         </div>

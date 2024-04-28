@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FooterComponent } from '../footer/footer.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { GalleriaResponsiveOptions } from 'primeng/galleria';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-sobre-nosotros',
@@ -28,6 +29,25 @@ import { GalleriaResponsiveOptions } from 'primeng/galleria';
   styleUrls: ['./sobre-nosotros.component.scss'] // Corregido 'styleUrls'
 })
 export class SobreNosotrosComponent  {
+
+  token: string | null;//token de session
+
+  constructor(private router: Router) {
+    //para resguardar ruta
+    if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+    }
+  }
+  ngOnInit() {
+    //verificar autenticacion
+    if (this.token != null) {
+      this.router.navigate(['/admin/home']);
+      
+    }
+  }
+
   images: any[] = [
     { 
       itemImageSrc: 'assets/Hotel/Hotel1.jpg', 

@@ -18,5 +18,20 @@ import { CommonModule } from '@angular/common';
 
 })
 export class FacilidadesComponent {
+    token: string | null;//token de session
 
+    constructor(private router: Router) {
+      //para resguardar ruta
+      if (typeof localStorage !== 'undefined') {
+        this.token = localStorage.getItem('token');
+      } else {
+        this.token = null;
+      }
+    }
+    ngOnInit() {
+      //verificar autenticacion
+      if (this.token != null) {
+        this.router.navigate(['/admin/home']);
+      }
+    }
 }

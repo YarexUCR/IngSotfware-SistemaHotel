@@ -7,11 +7,12 @@ import { ContactenosComponent } from "./contactenos/contactenos.component";
 import { FacilidadesComponent } from "./facilidades/facilidades.component";
 import { TarifasComponent } from "./tarifas/tarifas.component";
 import { DisponibleComponent } from "./disponible/disponible.component";
-
 import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
+import { LoginComponent } from "./login/login.component";
 
+import { HomeComponent } from "./admin/home/home.component";
 export const routes : Routes =[
-    {path: "dashboard", component :  DashboardComponent},
+    {path: "login", component :  LoginComponent},
     {path: "disponible", component :  DisponibleComponent},
     {path: "", component :  InicioComponent},
     {path: "reservar", component :  ReservarComponent},
@@ -19,6 +20,7 @@ export const routes : Routes =[
     {path: "sobreNosotros", component :  SobreNosotrosComponent},	
     {path: "contactenos", component : ContactenosComponent},
     {path: "facilidades", component : FacilidadesComponent},
-    {path: "tarifas", component : TarifasComponent}
-
+    {path: "tarifas", component : TarifasComponent},
+    {path: "admin/home", component : HomeComponent},
+    { path: '**', component: InicioComponent }
 ]

@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { isPlatformBrowser } from '@angular/common';
-
+import { Router } from '@angular/router';
 
 declare const google: any;
 @Component({
@@ -27,11 +27,25 @@ declare const google: any;
 })
 
 export class ComoLlegarComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  token: string | null;//token de session
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private router: Router) { 
+     //para resguardar ruta
+     if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+    }
+  }
   puntoFijoLatLng = { lat: 10.300314, lng: -85.840938 }; // Coordenadas del punto fijo
   ubicacionUsuarioMarker: any;
 
   ngOnInit(): void {
+     //verificar autenticacion
+     if (this.token != null) {
+      this.router.navigate(['/admin/home']);
+      
+    }
     // Verifica si el código se está ejecutando en el lado del cliente
     if (isPlatformBrowser(this.platformId)) {
       // Define la función `initMap` en el ámbito global

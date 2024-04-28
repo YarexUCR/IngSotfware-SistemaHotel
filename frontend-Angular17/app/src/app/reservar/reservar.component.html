@@ -69,7 +69,7 @@
 
                     <div class="col">
                         <label for="cantidad_habitacion">Cantidad</label>
-                        <input type="number" [disabled]="cantidad_habitacionDesactivado" class="form-control"
+                        <input type="number" max="5" min="1" [disabled]="cantidad_habitacionDesactivado" class="form-control"
                             id="cantidad_habitacion" name="cantidad_habitacion" #cantidad_habitacion="ngModel"
                             [(ngModel)]="formData.cantidad_habitacion" min="1" required>
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
@@ -116,7 +116,7 @@
                         </tbody>
                     </table>
                     <h2>
-                        <p style="text-align: right;">Total de la reservación <strong>₡{{totalReserva}}</strong> para
+                        <p style="text-align: right;">Total de la reservación <strong>${{totalReserva}}</strong> para
                             <strong>{{cantidadNoches}} noches</strong>
                         </p>
                     </h2>
