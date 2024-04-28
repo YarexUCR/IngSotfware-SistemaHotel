@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Business
-build_property.ProjectDir = d:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Backend del sistema hotelero\Business\
+build_property.ProjectDir = C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Backend del sistema hotelero\Business\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
