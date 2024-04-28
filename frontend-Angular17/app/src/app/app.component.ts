@@ -8,7 +8,9 @@ import { FacilidadesComponent } from './facilidades/facilidades.component';
 import { TarifasComponent } from './tarifas/tarifas.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
+
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 
