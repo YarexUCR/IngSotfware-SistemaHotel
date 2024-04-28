@@ -29,16 +29,28 @@ import { ReservaService } from '../api/reserva.service';
     ]
 })
 export class DisponibleComponent {
-
+  token: string | null;//token de session
   reserva: Reserva | null = null; // Propiedad para recibir la reserva
   private paypalSDK: any;
   constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService){
     this.paypalSDK = (window as any).paypal;
+     //para resguardar ruta
+     if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+    }
   }
 
   ngOnInit(): void {
+    //verificar autenticacion
+    if (this.token != null) {
+      this.router.navigate(['/admin/home']);
+      window.location.reload();
+    }
     this.route.queryParams.subscribe(params => {
       this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro
+      
     });
     
   }

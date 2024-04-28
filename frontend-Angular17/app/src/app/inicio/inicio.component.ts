@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FooterComponent } from '../footer/footer.component';
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-inicio',
@@ -28,6 +28,24 @@ import { FooterComponent } from '../footer/footer.component';
   ]
 })
 export class InicioComponent {
+
+  token: string | null;//token de session
+
+  constructor(private router: Router) {
+    //para resguardar ruta
+    if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+    }
+  }
+  ngOnInit() {
+    //verificar autenticacion
+    if (this.token != null) {
+      this.router.navigate(['/admin/home']);
+    }
+  }
+
   private breakpointObserver = inject(BreakpointObserver);
 
   /** Based on the screen size, switch from standard to one column per row */

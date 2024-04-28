@@ -85,7 +85,7 @@ export class NavigationComponent {
     this.checkTamañoVentana();
   }
   checkTamañoVentana(): void {
-    this.mostrarNombre= window.innerWidth >= 820; // Devuelve un valor booleano según el tamaño de la ventana
+    this.mostrarNombre= window.innerWidth >= 1200; // Devuelve un valor booleano según el tamaño de la ventana
     this.mostrarAdminMensaje = window.innerWidth >= 390;
   }
 

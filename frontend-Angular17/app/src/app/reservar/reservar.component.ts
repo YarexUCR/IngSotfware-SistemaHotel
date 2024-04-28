@@ -36,7 +36,8 @@ import { Habitacion } from '../dominio/Habitacion';
 
 
 export class ReservarComponent {
- 
+  
+  token: string | null;//token de session
   
   //variables globales del proceso reservar
   formData: any = [];//acceso a los input del formulario para reservar
@@ -52,7 +53,12 @@ export class ReservarComponent {
 
 constructor(private hotelService: HotelService, private routerA: ActivatedRoute, private router: Router){
     
-    
+     //para resguardar ruta
+     if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+    }
     //mostrar campos para entradas de forma ordenada
     this.checkInDesactivado = false;
     this.checkOutDesactivado = true;
@@ -63,7 +69,10 @@ constructor(private hotelService: HotelService, private routerA: ActivatedRoute,
 }
   
   ngOnInit():void{
-
+     //verificar autenticacion
+     if (this.token != null) {
+      this.router.navigate(['/admin/home']);
+    }
     this.routerA.params.subscribe(parametros =>{console.log(parametros)});
 
     this.hotelService.getTiposHabitaciones().subscribe(data => {
