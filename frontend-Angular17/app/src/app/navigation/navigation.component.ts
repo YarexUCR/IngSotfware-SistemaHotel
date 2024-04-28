@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,HostListener } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -42,7 +42,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
   esLogin: boolean = false;
-  showAdminMensaje: boolean=false;
+  mostrarAdminMensaje: boolean=false;
+  mostrarNombre: boolean = true;
 
   constructor(private router: Router) {
 
@@ -55,9 +56,9 @@ export class NavigationComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd && event.url === '/login') {
         // Mostrar el mensaje "Módulo Administrador" cuando se carga la ruta '/login'
-        this.showAdminMensaje = true;
+        this.mostrarAdminMensaje = true;
       } else {
-        this.showAdminMensaje = false;
+        this.mostrarAdminMensaje = false;
       }
     });
 
@@ -67,15 +68,25 @@ export class NavigationComponent {
     } else {
       this.token = null;
     }
+
+    
   }
   token: string |  null;
   ngOnInit(){
-    
+    this.checkTamañoVentana();
   }
   
   cerrarSession(){
     localStorage.removeItem('token');
     window.location.reload();
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkTamañoVentana();
+  }
+  checkTamañoVentana(): void {
+    this.mostrarNombre= window.innerWidth >= 820; // Devuelve un valor booleano según el tamaño de la ventana
+    this.mostrarAdminMensaje = window.innerWidth >= 390;
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
