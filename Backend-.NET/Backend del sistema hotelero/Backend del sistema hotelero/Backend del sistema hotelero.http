@@ -1,6 +1,0 @@
-@Backend_del_sistema_hotelero_HostAddress = http://localhost:5237
-
-GET {{Backend_del_sistema_hotelero_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
