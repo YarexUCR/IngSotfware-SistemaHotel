@@ -8,6 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { SeguridadService } from '../api/seguridad.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -28,7 +29,7 @@ export class LoginComponent {
   token: string | null;//token de session
   usuario: string = '';
   password: string = '';
-  constructor(private router: Router) {
+  constructor(private router: Router, private seguridad: SeguridadService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -43,14 +44,29 @@ export class LoginComponent {
     }
   }
 
-  login(){
+  login() {
     if (!this.usuario || !this.password) {
       //modal
       alert('Por favor, completa todos los campos.');
       return;
-  } 
-    //llamar a servicio
-    localStorage.setItem('token','Kevin Jiménez Granados');
-    window.location.reload();
+    }
+    this.seguridad.login(this.usuario,this.password).subscribe(
+      (respuesta) => {
+        console.log('Respuesta del servicio:', respuesta);
+        // Aquí puedes manejar la respuesta según tu lógica
+        if(respuesta ==""){
+          alert('usario y constraseña invalido');
+        }else{
+          localStorage.setItem('token', respuesta);
+          window.location.reload();
+        }
+        
+      },
+      (error) => {
+        console.error('Error al llamar al servicio:', error);
+        // Aquí puedes manejar el error según tu lógica
+      }
+    );
+    
   }
 }
