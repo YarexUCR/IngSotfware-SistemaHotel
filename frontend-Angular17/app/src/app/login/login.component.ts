@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { Router } from "@angular/router";
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -17,14 +18,16 @@ import { Router } from "@angular/router";
     MatButtonModule,
     MatCardModule,
     FooterComponent,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   token: string | null;//token de session
-
+  usuario: string = '';
+  password: string = '';
   constructor(private router: Router) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -41,7 +44,12 @@ export class LoginComponent {
   }
 
   login(){
-    alert('login');
+    if (!this.usuario || !this.password) {
+      //modal
+      alert('Por favor, completa todos los campos.');
+      return;
+  } 
+    //llamar a servicio
     localStorage.setItem('token','Kevin Jiménez Granados');
     window.location.reload();
   }
