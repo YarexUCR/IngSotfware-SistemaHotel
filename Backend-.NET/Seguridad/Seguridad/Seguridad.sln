@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seguridad", "Seguridad.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datos", "..\Datos\Datos.csproj", "{3131E1A8-37CD-4507-9C87-C9E698ED8F04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReglasNegocio", "..\ReglasNegocio\ReglasNegocio.csproj", "{84814630-B6DE-4BCA-B161-8C7F44F9BF59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReglasNegocio", "..\ReglasNegocio\ReglasNegocio.csproj", "{84814630-B6DE-4BCA-B161-8C7F44F9BF59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
