@@ -56,7 +56,7 @@ namespace Datos
             return habitacionesDisponibles;
         }
 
-       public List<Habitacion> VerificarDisponibilidad(string check)
+        public async Task<List<Habitacion>> VerificarDisponibilidad(string check)
         {
             List<Habitacion> habitacionesDisponibles = new List<Habitacion>( );
 
