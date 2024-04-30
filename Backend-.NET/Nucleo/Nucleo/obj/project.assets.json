@@ -2630,19 +2630,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yarex\\.nuget\\packages\\": {}
+    "C:\\Users\\Estudiante\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
+      "projectUniqueName": "D:\\Usuarios\\Estudiante\\Desktop\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
       "projectName": "Nucleo",
-      "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
-      "packagesPath": "C:\\Users\\yarex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\obj\\",
+      "projectPath": "D:\\Usuarios\\Estudiante\\Desktop\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
+      "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
+      "outputPath": "D:\\Usuarios\\Estudiante\\Desktop\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\yarex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Estudiante\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2656,8 +2661,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
-              "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj"
+            "D:\\Usuarios\\Estudiante\\Desktop\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
+              "projectPath": "D:\\Usuarios\\Estudiante\\Desktop\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj"
             }
           }
         }
@@ -2666,11 +2671,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2705,7 +2705,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
