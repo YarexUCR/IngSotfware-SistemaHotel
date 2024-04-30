@@ -1,0 +1,88 @@
+<H1>Promociones</H1>
+<div class="container">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+        </div>
+      </div>
+
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- No. Habitacion Column -->
+        <ng-container matColumnDef="Descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <!-- Tipo de Habitacion Column -->
+        <ng-container matColumnDef="Inicio">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Inicio</th>
+            <td mat-cell *matCellDef="let element"> {{element.inicio}} </td>
+        </ng-container>
+
+        <!-- Estado Column -->
+        <ng-container matColumnDef="Inicio">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Inicio</th>
+            <td mat-cell *matCellDef="let element"> {{element.inicio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Inicio">
+            <th mat-header-cell *matHeaderCellDef> Descuento</th>
+            <td mat-cell *matCellDef="let element"> {{element.inicio}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="TipOHabitacion">
+            <th mat-header-cell *matHeaderCellDef> Tipo de Habitacion</th>
+            <td mat-cell *matCellDef="let element"> {{element.inicio}} </td>
+        </ng-container>
+
+        <!-- Activa Column -->
+        <ng-container matColumnDef="Editar">
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
+            <td mat-cell *matCellDef="let element">
+                <div class="example-button-container">
+                    <button mat-fab color="primary" >
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Eliminar">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- <button mat-raised-button [color]="element.Activa ? 'success' : 'warn'"> -->
+
+                <div class="example-button-container">
+                    <button mat-fab color="primary">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Encabezado de fila -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <!-- Fila -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
+
+
+
+</div>
+
+<app-footer></app-footer>
