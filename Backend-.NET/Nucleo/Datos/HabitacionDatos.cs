@@ -56,5 +56,48 @@ namespace Datos
             return habitacionesDisponibles;
         }
 
+       public List<Habitacion> VerificarDisponibilidad(string check)
+        {
+            List<Habitacion> habitacionesDisponibles = new List<Habitacion>( );
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("VerificarDisponibilidad ", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@fecha_verificacion", check);
+                
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+
+                        TipoHabitacion tipoHabitacion=new(){
+           
+                            Nombre = reader["nombre"].ToString()
+                        };
+                    
+                        Habitacion habitacion = new Habitacion
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Numero = Convert.ToInt32(reader["numero"]),
+                            Activo = Convert.ToBoolean(reader["activo"]),
+                            Disponible = Convert.ToBoolean(reader["Disponible"]),
+                            Tipo = tipoHabitacion
+                            // Mapea otros campos según tu estructura de datos
+                        };
+
+                        habitacionesDisponibles.Add(habitacion);
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return habitacionesDisponibles;
+        }
+
     }
 }
