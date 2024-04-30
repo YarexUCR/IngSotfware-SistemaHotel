@@ -22,3 +22,14 @@ C:\Users\gmg55\Desktop\Nucleo\Dominio\obj\Debug\net6.0\Dominio.dll
 C:\Users\gmg55\Desktop\Nucleo\Dominio\obj\Debug\net6.0\refint\Dominio.dll
 C:\Users\gmg55\Desktop\Nucleo\Dominio\obj\Debug\net6.0\Dominio.pdb
 C:\Users\gmg55\Desktop\Nucleo\Dominio\obj\Debug\net6.0\ref\Dominio.dll
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.deps.json
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.dll
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.pdb
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.AssemblyInfoInputs.cache
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.AssemblyInfo.cs
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.csproj.CoreCompileInputs.cache
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.dll
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\refint\Dominio.dll
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.pdb
+D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\ref\Dominio.dll

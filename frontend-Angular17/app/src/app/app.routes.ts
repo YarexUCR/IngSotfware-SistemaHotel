@@ -11,7 +11,19 @@ import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
 import { LoginComponent } from "./login/login.component";
 
 import { HomeComponent } from "./admin/home/home.component";
+import { ModificarPaginasComponent } from "./admin/modificar-paginas/modificar-paginas.component";
+import { ListadoReservacionesComponent } from "./admin/listado-reservaciones/listado-reservaciones.component";
+import { AdministrarHabitacionesComponent } from "./admin/administrar-habitaciones/administrar-habitaciones.component";
+import { VerEstadoHotelHoyComponent } from "./admin/ver-estado-hotel-hoy/ver-estado-hotel-hoy.component";
+import { ConsultarDisponibilidadHabitacionesComponent } from "./admin/consultar-disponibilidad-habitaciones/consultar-disponibilidad-habitaciones.component";
+import { PublicidadAdminComponent } from "./admin/publicidad-admin/publicidad-admin.component";
 export const routes : Routes =[
+    {path: "admin/modificarPaginas", component : ModificarPaginasComponent},
+    {path: "admin/listadoReservaciones", component : ListadoReservacionesComponent},
+    {path: "admin/administrarHabitaciones", component : AdministrarHabitacionesComponent},
+    {path: "admin/verEstadoHotelHoy", component : VerEstadoHotelHoyComponent},
+    {path: "admin/consultarDisponibilidadHabitaciones", component : ConsultarDisponibilidadHabitacionesComponent},
+    {path: "admin/publicidadAdmin", component : PublicidadAdminComponent},
     {path: "login", component :  LoginComponent},
     {path: "disponible", component :  DisponibleComponent},
     {path: "", component :  InicioComponent},
