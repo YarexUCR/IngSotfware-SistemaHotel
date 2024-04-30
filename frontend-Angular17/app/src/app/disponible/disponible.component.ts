@@ -46,7 +46,6 @@ export class DisponibleComponent {
     //verificar autenticacion
     if (this.token != null) {
       this.router.navigate(['/admin/home']);
-      window.location.reload();
     }
     this.route.queryParams.subscribe(params => {
       this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro

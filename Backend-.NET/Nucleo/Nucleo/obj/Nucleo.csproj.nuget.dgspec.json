@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gmg55\\Desktop\\Nucleo\\Nucleo\\Nucleo.csproj": {}
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\Datos.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\Datos.csproj",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\Datos.csproj",
         "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\obj\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\Dominio.csproj"
+              "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Dominio.csproj"
               }
             }
           }
@@ -77,14 +77,14 @@
         }
       }
     },
-    "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\Dominio.csproj",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Dominio\\obj\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -136,14 +136,14 @@
         }
       }
     },
-    "C:\\Users\\gmg55\\Desktop\\Nucleo\\Nucleo\\Nucleo.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Nucleo\\Nucleo.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
         "projectName": "Nucleo",
-        "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Nucleo\\Nucleo.csproj",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Nucleo.csproj",
         "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Nucleo\\obj\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -165,8 +165,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
-                "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj"
+              "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
+                "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj"
               }
             }
           }
@@ -213,14 +213,14 @@
         }
       }
     },
-    "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
         "projectName": "ReglasNegocio",
-        "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
         "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\obj\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -241,8 +241,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\Datos.csproj": {
-                "projectPath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\Datos\\Datos.csproj"
+              "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\Datos.csproj"
               }
             }
           }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fO5lkJT2rdSA9tKVdhGcbsLarzg6EX07gcTdUqF/mMaxwWMnL8JqrzWJV4dAT5HIDRUZq9aX7CYf3/7DW/yyJg==",
+  "dgSpecHash": "3KriBu9vF8I93twOQb3l1r7JFqIn2OYwbfbU86ZlLPvC4p40VI4MxTzSu0zxJ2EyOg2WtDrOX+RgimYQnbP+7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gmg55\\Desktop\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
+  "projectFilePath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\ReglasNegocio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gmg55\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\gmg55\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
