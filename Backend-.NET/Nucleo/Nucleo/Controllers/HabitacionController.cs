@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dominio;
+using Microsoft.AspNetCore.Mvc;
 using ReglasNegocio;
 
 namespace Nucleo.Controllers
@@ -17,5 +18,12 @@ namespace Nucleo.Controllers
         public IActionResult ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
             return Ok(_reglasNegocio.ObtenerHabitacionesDisponiblesParaReserva(checkIn,checkOut,tipoHabitacion));
         }
+
+        [HttpGet("verificar")]
+        public async Task<List<Habitacion>> VerificarDisponibilidad(string check)
+        {
+            return await _reglasNegocio.VerificarDisponibilidad(check);
+        }
+
     }
 }

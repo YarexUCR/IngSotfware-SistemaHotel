@@ -21,5 +21,11 @@ namespace ReglasNegocio
         public List<Habitacion> ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
             return this.datos.ObtenerHabitacionesDisponiblesParaReserva(checkIn,checkOut,tipoHabitacion);
         }
+
+        public  async Task<List<Habitacion>> VerificarDisponibilidad(string check)
+        {
+            return await datos.VerificarDisponibilidad(check);
+        }
+
     }
 }

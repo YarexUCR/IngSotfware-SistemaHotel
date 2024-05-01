@@ -35,6 +35,7 @@ namespace Dominio
         public string Estado { get => estado; set => estado = value; }
         public bool Activo { get => activo; set => activo = value; }
         public int Numero { get => numero; set => numero = value; }
+        public bool Disponible { get => activo; set => activo = value; }
         public TipoHabitacion Tipo { get => tipo; set => tipo = value; }
     }
 }
