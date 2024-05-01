@@ -1,0 +1,13 @@
+<div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>{{ title }}</h2>
+                <button class="close" (click)="closeModal()">Cerrar</button>
+            </div>
+            <div class="modal-body">
+                <p>{{ message }}</p>
+            </div>
+        </div>
+    </div>
+</div>
