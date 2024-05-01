@@ -8,6 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Datos
-build_property.ProjectDir = C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\

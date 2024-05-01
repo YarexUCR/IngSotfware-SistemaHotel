@@ -45,3 +45,15 @@ D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Domi
 D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\refint\Dominio.dll
 D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.pdb
 D:\Usuarios\Estudiante\Desktop\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\ref\Dominio.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.deps.json
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\bin\Debug\net6.0\Dominio.pdb
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.csproj.AssemblyReference.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.AssemblyInfoInputs.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.AssemblyInfo.cs
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\refint\Dominio.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\Dominio.pdb
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Dominio\obj\Debug\net6.0\ref\Dominio.dll
