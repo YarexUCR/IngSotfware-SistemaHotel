@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dominio;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using ReglasNegocio;
@@ -29,6 +30,9 @@ namespace Nucleo.Controllers
         public IActionResult ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(DateTime fecha, int tipoHabitacionId) {
             return Ok(_reglasNegocio.ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(fecha,tipoHabitacionId));
         }
-
+        [HttpGet("ObtenerHabitacionesDisponiblesParaReserva")]
+        public IActionResult ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
+            return Ok(_reglasNegocio.ObtenerHabitacionesDisponiblesParaReserva(checkIn, checkOut,tipoHabitacion));
+        }
     }
 }

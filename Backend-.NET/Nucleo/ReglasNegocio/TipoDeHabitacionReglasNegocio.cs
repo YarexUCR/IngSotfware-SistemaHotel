@@ -24,5 +24,9 @@
         public int ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(DateTime fecha, int tipoHabitacionId) {
             return this.datos.ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(fecha,tipoHabitacionId);
         }
+
+        public List<Habitacion> ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
+            return this.datos.ObtenerHabitacionesDisponiblesParaReserva(checkIn,checkOut,tipoHabitacion);
+        }
     }
 }
