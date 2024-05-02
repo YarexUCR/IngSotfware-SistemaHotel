@@ -6,7 +6,7 @@ import { TipoHabitacion } from "../dominio/TipoHabitacion";
 export class HotelService{
     private readonly _http= inject(HttpClient);
 
-    getTiposHabitaciones():Observable<TipoHabitacion[]>{
+    obtenerTiposHabitaciones():Observable<TipoHabitacion[]>{
          return this._http.get<TipoHabitacion[]>('https://localhost:7200/TipoHabitacion');
     }
 
