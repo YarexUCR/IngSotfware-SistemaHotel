@@ -3,7 +3,7 @@ import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { TipoHabitacion } from "../dominio/TipoHabitacion";
 @Injectable({providedIn: "root"})
-export class HotelService{
+export class TipoHabitacionService{
     private readonly _http= inject(HttpClient);
 
     obtenerTiposHabitaciones():Observable<TipoHabitacion[]>{
