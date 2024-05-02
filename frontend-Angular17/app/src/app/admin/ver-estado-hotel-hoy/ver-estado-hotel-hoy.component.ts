@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from "../../footer/footer.component";
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,11 +17,12 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
     styleUrl: './ver-estado-hotel-hoy.component.scss',
     imports: [MatTableModule, MatButtonModule, MatDividerModule, MatIconModule, CommonModule, MatPaginatorModule,MatPaginator,FooterComponent]
 })
-export class VerEstadoHotelHoyComponent {
+export class VerEstadoHotelHoyComponent implements OnInit {
   habitaciones: HabiacionesConsulta[] = [];
   check: string | null = null;
   token: string | null;//token de session
   habitacionesPaginadas: HabiacionesConsulta[] = [];
+  displayedColumns: string[] = ['Numero', 'TipoHabitacion', 'Disponible'];
 
   cargarHabitacionesPaginadas(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
@@ -36,7 +37,7 @@ export class VerEstadoHotelHoyComponent {
       this.token = null;
     }
   }
-  ngOnInit() {
+  ngOnInit(): void{
     this.obtenerHora();
     //verificar autenticacion
     if (this.token == null) {
