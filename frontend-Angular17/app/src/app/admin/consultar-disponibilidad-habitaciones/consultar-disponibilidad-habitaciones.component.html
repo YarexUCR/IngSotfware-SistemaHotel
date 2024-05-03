@@ -55,7 +55,7 @@
                             required="">
                             <option *ngFor="let tipo of tiposDeHabitacion" value="{{ tipo.id }}">{{ tipo.nombre }}
                             </option>
-                            <option value="todos">Todos los tipos</option>
+                            <option value="0">Todos los tipos de habitacion</option>
                         </select>
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorTipoHabitacion">
                             Es requerido un tipo de habitacion
@@ -69,6 +69,10 @@
                             >Consultar</button>
                     </div>
                 </div>
+            
+        </div>
+        <div class="row mb-3" *ngIf="habitacionesDisponibles.length > 0">
+            <h2>Resultados de habitaciones disponibles para {{cantidadNoches}} noches y {{cantidadNoches + 1}} días</h2>
             
         </div>
     </div>
