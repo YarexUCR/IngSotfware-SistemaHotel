@@ -10,13 +10,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { differenceInDays, parseISO } from 'date-fns';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ModalComponent } from "../../modal/modal.component";
 
 @Component({
   selector: 'app-consultar-disponibilidad-habitaciones',
   standalone: true,
   templateUrl: './consultar-disponibilidad-habitaciones.component.html',
   styleUrl: './consultar-disponibilidad-habitaciones.component.scss',
-  imports: [MatProgressSpinnerModule,FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule]
+  imports: [MatProgressSpinnerModule,FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule, ModalComponent]
 })
 export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   
@@ -31,6 +32,9 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   mensajeConfirmacion = '';
   tiposDeHabitacion: TipoHabitacion[] = [];//todos los tipos de habitaciones disponibles
   habitacionesDisponibles: Habitacion[] = [];
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   displayedColumns: string[] = ['Numero de Habitacion', 'Tipo de Habitacion', 'Costo de estadia'];
 
@@ -149,7 +153,7 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
       this.cantidadNoches = 0; // Reinicia la cantidad de noches si las fechas no están completas
     }
   }
-  habitacionesActuales: Habitacion[] = [];
+  
   cargando: boolean= false;
   consultar() {
     
@@ -169,6 +173,7 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
       this.service.obtenerTodasHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
+          this.verificarRespuestaVacia();
           this.contarNoches();
           this.cargando  = false;
         });
@@ -176,16 +181,31 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
       this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
+          this.verificarRespuestaVacia();
           this.contarNoches();
           this.cargando  = false;
         });
 
     }
 
+    
   }
 
+  verificarRespuestaVacia(){
+    if(this.habitacionesDisponibles.length==0){
+     
+      //modal
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'No hay habitaciones disponibles';
+      this.showModal = true;
+    }
+  }
 
   calcular(precio: number): number {
     return precio * this.cantidadNoches;
+  }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
   }
 }
