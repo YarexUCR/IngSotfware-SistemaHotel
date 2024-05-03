@@ -34,5 +34,11 @@ namespace Nucleo.Controllers
         public IActionResult ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
             return Ok(_reglasNegocio.ObtenerHabitacionesDisponiblesParaReserva(checkIn, checkOut,tipoHabitacion));
         }
+
+        [HttpGet("ObtenerTodasHabitacionesDisponiblesParaReserva")]
+        public IActionResult ObtenerTodasHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut)
+        {
+            return Ok(_reglasNegocio.ObtenerTodasHabitacionesDisponiblesParaReserva(checkIn,checkOut));
+        }
     }
 }

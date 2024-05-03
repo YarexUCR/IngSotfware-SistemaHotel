@@ -28,5 +28,8 @@
         public List<Habitacion> ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
             return this.datos.ObtenerHabitacionesDisponiblesParaReserva(checkIn,checkOut,tipoHabitacion);
         }
+        public List<Habitacion> ObtenerTodasHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut) {
+            return this.datos.ObtenerTodasHabitacionesDisponiblesParaReserva(checkIn,checkOut);
+        }
     }
 }
