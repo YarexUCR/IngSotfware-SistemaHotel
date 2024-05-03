@@ -9,14 +9,14 @@ import { Habitacion } from '../../dominio/Habitacion';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { differenceInDays, parseISO } from 'date-fns';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-consultar-disponibilidad-habitaciones',
   standalone: true,
   templateUrl: './consultar-disponibilidad-habitaciones.component.html',
   styleUrl: './consultar-disponibilidad-habitaciones.component.scss',
-  imports: [FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule]
+  imports: [MatProgressSpinnerModule,FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule]
 })
 export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   
@@ -150,7 +150,9 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
     }
   }
   habitacionesActuales: Habitacion[] = [];
+  cargando: boolean= false;
   consultar() {
+    
     this.validarRequerido();
     if (
       this.mostrarErrorTipoHabitacion
@@ -161,18 +163,21 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
     ) {
       return;
     }
+    this.cargando  = true;
     this.habitacionesDisponibles.splice(0, this.habitacionesDisponibles.length);
     if (this.formData.tipo_habitacion == 0) {
       this.service.obtenerTodasHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
           this.contarNoches();
+          this.cargando  = false;
         });
     } else {
       this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
           this.contarNoches();
+          this.cargando  = false;
         });
 
     }

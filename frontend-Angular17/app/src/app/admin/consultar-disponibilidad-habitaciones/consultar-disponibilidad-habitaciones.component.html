@@ -70,7 +70,9 @@
                 </div>
                 
             </div>
-
+            <div class="centered-spinner-container" *ngIf="cargando">
+                    <mat-spinner class="centered-spinner"></mat-spinner>
+            </div>
         </div>
         <div class="row mb-3" *ngIf="habitacionesDisponibles.length > 0">
             <h2>Resultados de habitaciones disponibles para {{cantidadNoches}} noches</h2>
