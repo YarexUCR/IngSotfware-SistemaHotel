@@ -15,65 +15,91 @@
                 </button>
             </a>
             <br>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="checkIn">Fecha de Llegada</label>
-                        <input type="date" class="form-control" id="checkIn" name="checkIn" #checkIn="ngModel"
-                            [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn"
-                            (ngModelChange)="validarFechaEntrada($event)" required>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="checkIn">Fecha de Llegada</label>
+                    <input type="date" class="form-control" id="checkIn" name="checkIn" #checkIn="ngModel"
+                        [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn"
+                        (ngModelChange)="validarFechaEntrada($event)" required>
 
-                        <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
-                            El check in es obligatorio
-                        </div>
-                        <div class="alert alert-danger mt-2" *ngIf="mostrarError">
-                            {{mensajeError}}
-                        </div>
-                        <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion">
-                            {{mensajeConfirmacion}}
-                        </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
+                        El check in es obligatorio
                     </div>
-
-                    <div class="col">
-                        <label for="checkOut">Fecha de salida</label>
-                        <input type="date" class="form-control" id="checkOut" name="checkOut"
-                            [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut"
-                            (ngModelChange)="validarFechaDeSalida($event)" required>
-                        <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
-                            El check out es obligatorio
-                        </div>
-                        <div class="alert alert-danger mt-2" *ngIf="mostrarError_">
-                            {{mensajeError_}}
-                        </div>
-                        <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion_">
-                            {{mensajeConfirmacion_}}
-                        </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarError">
+                        {{mensajeError}}
                     </div>
-                    <div class="col">
-                        <label for="tipo_habitacion">Tipo de habitacion</label>
-                        <select class="form-control" [disabled]="tipo_habitacionDesactivado " name="tipo_habitacion"
-                            #tipo_habitacion="ngModel" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion"
-                            required="">
-                            <option *ngFor="let tipo of tiposDeHabitacion" value="{{ tipo.id }}">{{ tipo.nombre }}
-                            </option>
-                            <option value="0">Todos los tipos de habitacion</option>
-                        </select>
-                        <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorTipoHabitacion">
-                            Es requerido un tipo de habitacion
-                        </div>
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion">
+                        {{mensajeConfirmacion}}
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <button type="submit" class="btn btn-sm"
-                            style="background-color: #001840; color: #fffdf0; float: right;" (click)="consultar()"
-                            >Consultar</button>
+
+                <div class="col">
+                    <label for="checkOut">Fecha de salida</label>
+                    <input type="date" class="form-control" id="checkOut" name="checkOut"
+                        [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut"
+                        (ngModelChange)="validarFechaDeSalida($event)" required>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
+                        El check out es obligatorio
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarError_">
+                        {{mensajeError_}}
+                    </div>
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion_">
+                        {{mensajeConfirmacion_}}
                     </div>
                 </div>
-            
+                <div class="col">
+                    <label for="tipo_habitacion">Tipo de habitacion</label>
+                    <select class="form-control" [disabled]="tipo_habitacionDesactivado " name="tipo_habitacion"
+                        #tipo_habitacion="ngModel" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion"
+                        required="">
+                        <option *ngFor="let tipo of tiposDeHabitacion" value="{{ tipo.id }}">{{ tipo.nombre }}
+                        </option>
+                        <option value="0">Todos los tipos de habitacion</option>
+                    </select>
+                    <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorTipoHabitacion">
+                        Es requerido un tipo de habitacion
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-sm"
+                        style="background-color: #001840; color: #fffdf0; float: right;"
+                        (click)="consultar()">Consultar</button>
+                </div>
+            </div>
+
         </div>
         <div class="row mb-3" *ngIf="habitacionesDisponibles.length > 0">
-            <h2>Resultados de habitaciones disponibles para {{cantidadNoches}} noches y {{cantidadNoches + 1}} días</h2>
-            
+            <h2>Resultados de habitaciones disponibles para {{cantidadNoches}} noches</h2>
+
+            <table mat-table [dataSource]="habitacionesDisponibles" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="Numero de Habitacion">
+                    <th mat-header-cell *matHeaderCellDef>Numero de habitacion</th>
+                    <td mat-cell *matCellDef="let element"> {{element.numero}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="Tipo de Habitacion">
+                    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.tipo.nombre}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="Costo de estadia">
+                    <th mat-header-cell *matHeaderCellDef> Costo de estadia </th>
+                    <td mat-cell *matCellDef="let element"> {{calcular(element.tipo.precio)}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </div>
     </div>
 

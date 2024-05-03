@@ -15,6 +15,41 @@ namespace Datos
 
         }
 
+        public List<Habitacion> ObtenerTodasHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut)
+        {
+            List<Habitacion> habitacionesDisponibles = new List<Habitacion>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerTodasHabitacionesDisponiblesParaReserva", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@checkIn", checkIn);
+                    command.Parameters.AddWithValue("@checkOut", checkOut);
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                   
+                    while (reader.Read())
+                    {
+                        Habitacion habitacion = new Habitacion
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Numero = Convert.ToInt32(reader["numero"]),
+                            Activo = Convert.ToBoolean(reader["activo"])
+                            // Mapea otros campos según tu estructura de datos
+                        };
+                        habitacion.tipo = this.ObtenerTipoHabitacionPorId(Convert.ToInt32(reader["tipoHabitacionId"]));
+                        habitacionesDisponibles.Add(habitacion);
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return habitacionesDisponibles;
+        }
+
         public List<Habitacion> ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion)
         {
             List<Habitacion> habitacionesDisponibles = new List<Habitacion>();

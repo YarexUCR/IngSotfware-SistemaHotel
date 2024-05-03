@@ -6,7 +6,7 @@ import { TipoHabitacion } from '../../dominio/TipoHabitacion';
 import { FormsModule, NgForm, Validators } from '@angular/forms';
 import { TipoHabitacionService } from '../../api/tipo.habitacion.service';
 import { Habitacion } from '../../dominio/Habitacion';
-
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { differenceInDays, parseISO } from 'date-fns';
 
@@ -15,7 +15,7 @@ import { differenceInDays, parseISO } from 'date-fns';
   standalone: true,
   templateUrl: './consultar-disponibilidad-habitaciones.component.html',
   styleUrl: './consultar-disponibilidad-habitaciones.component.scss',
-  imports: [FooterComponent, CommonModule, FormsModule,MatPaginator]
+  imports: [FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule]
 })
 export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   token: string | null;//token de session
@@ -30,6 +30,8 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   tiposDeHabitacion: TipoHabitacion[] = [];//todos los tipos de habitaciones disponibles
   habitacionesDisponibles: Habitacion[] = [];
 
+  displayedColumns: string[] = ['Numero de Habitacion', 'Tipo de Habitacion', 'Costo de estadia'];
+  dataSource = this.habitacionesDisponibles;
   constructor(private router: Router, private service: TipoHabitacionService) {
 
     //para resguardar ruta
@@ -157,12 +159,12 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
     ) {
       return;
     }
-
+    this.habitacionesDisponibles.splice(0, this.habitacionesDisponibles.length);
     if (this.formData.tipo_habitacion == 0) {
+
       
-      this.habitacionesDisponibles.splice(0, this.habitacionesDisponibles.length);
       this.contarNoches();
-      
+
       this.tiposDeHabitacion.forEach(tipo => {
 
         this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, tipo.id.toString())
@@ -170,22 +172,18 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
 
             this.habitacionesActuales = data;
             this.habitacionesActuales.forEach(habitacion => {
-            this.habitacionesDisponibles.push(habitacion);
+              this.habitacionesDisponibles.push(habitacion);
+              alert(habitacion.numero);
             });
-
-
           });
 
-      });
-      this.habitacionesDisponibles.forEach(habitacion => {
-        alert(habitacion.numero);
       });
     } else {
       this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
           this.contarNoches();
-         
+
           this.habitacionesDisponibles.forEach(habitacion => {
             alert(habitacion.numero);
           });
@@ -195,10 +193,9 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
     }
 
   }
-  displayedColumns: string[] = ['Numerom Habitacion', 'Tipo', 'Costo Estadia'];
-  cargarHabitacionesPaginadas(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    const endIndex = startIndex + event.pageSize;
-    this.habitacionesDisponibles = this.habitacionesDisponibles.slice(startIndex, endIndex);
+
+
+  calcular(precio: number): number {
+    return precio * this.cantidadNoches;
   }
 }
