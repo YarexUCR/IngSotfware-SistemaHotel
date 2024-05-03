@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { FooterComponent } from "../../footer/footer.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { differenceInDays, parseISO } from 'date-fns';
 
+
 @Component({
   selector: 'app-consultar-disponibilidad-habitaciones',
   standalone: true,
@@ -18,6 +19,7 @@ import { differenceInDays, parseISO } from 'date-fns';
   imports: [FooterComponent, CommonModule, FormsModule, MatPaginator, MatTableModule]
 })
 export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
+  
   token: string | null;//token de session
   checkOutDesactivado: boolean;
   checkInDesactivado: boolean;
