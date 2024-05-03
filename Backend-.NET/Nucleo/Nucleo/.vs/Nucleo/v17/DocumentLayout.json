@@ -3,6 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8438810C-4A63-4176-8F2B-84A11E7C7802}|..\\Datos\\Datos.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\datos\\ofertadatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8438810C-4A63-4176-8F2B-84A11E7C7802}|..\\Datos\\Datos.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\datos\\habitaciondatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08561A07-C29A-4DDE-AF11-4A7F645FD16D}|..\\Dominio\\Dominio.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\dominio\\oferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2D4163D3-A302-44EB-94A7-492AA0476BA7}|Nucleo.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\nucleo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D4163D3-A302-44EB-94A7-492AA0476BA7}|Nucleo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -12,9 +21,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF6D3827-6F18-499A-B324-7651C90C0113}|..\\ReglasNegocio\\ReglasNegocio.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\reglasnegocio\\habitacionreglasnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8438810C-4A63-4176-8F2B-84A11E7C7802}|..\\Datos\\Datos.csproj|c:\\users\\yarex\\videos\\ingsotfware-sistemahotel\\backend-.net\\nucleo\\datos\\habitaciondatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D4163D3-A302-44EB-94A7-492AA0476BA7}|Nucleo.csproj|C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -32,23 +38,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HabitacionReglasNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\HabitacionReglasNegocio.cs",
-              "RelativeDocumentMoniker": "..\\ReglasNegocio\\HabitacionReglasNegocio.cs",
-              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\HabitacionReglasNegocio.cs",
-              "RelativeToolTip": "..\\ReglasNegocio\\HabitacionReglasNegocio.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAwBgAAABSAAAA",
+              "DocumentIndex": 0,
+              "Title": "OfertaDatos.cs",
+              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\OfertaDatos.cs",
+              "RelativeDocumentMoniker": "..\\Datos\\OfertaDatos.cs",
+              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\OfertaDatos.cs",
+              "RelativeToolTip": "..\\Datos\\OfertaDatos.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAcwBgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T19:54:11.429Z"
+              "WhenOpened": "2024-05-03T02:44:05.87Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Oferta.cs",
+              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Oferta.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Oferta.cs",
+              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Dominio\\Oferta.cs",
+              "RelativeToolTip": "..\\Dominio\\Oferta.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T02:40:58.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "HabitacionController.cs",
               "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Controllers\\HabitacionController.cs",
               "RelativeDocumentMoniker": "Controllers\\HabitacionController.cs",
@@ -60,31 +80,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "HabitacionDatos.cs",
               "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\HabitacionDatos.cs",
               "RelativeDocumentMoniker": "..\\Datos\\HabitacionDatos.cs",
               "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Datos\\HabitacionDatos.cs",
               "RelativeToolTip": "..\\Datos\\HabitacionDatos.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAWwGAAAAANAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T19:40:00.977Z"
+              "WhenOpened": "2024-04-30T19:40:00.977Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-30T06:12:33.653Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -98,6 +107,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "HabitacionReglasNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\HabitacionReglasNegocio.cs",
+              "RelativeDocumentMoniker": "..\\ReglasNegocio\\HabitacionReglasNegocio.cs",
+              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\ReglasNegocio\\HabitacionReglasNegocio.cs",
+              "RelativeToolTip": "..\\ReglasNegocio\\HabitacionReglasNegocio.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAwBgAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T19:54:11.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-30T06:12:33.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TipoHabitacionController.cs",
               "DocumentMoniker": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Nucleo\\Nucleo\\Controllers\\TipoHabitacionController.cs",
               "RelativeDocumentMoniker": "Controllers\\TipoHabitacionController.cs",
