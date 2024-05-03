@@ -24,6 +24,7 @@ namespace Dominio
         }
 
         public int Id { get => id; set => id = value; }
+        public string Nombre { get; set; }
         public DateTime Inicio { get => inicio; set => inicio = value; }
 
         public DateTime Fin { get => fin; set => fin = value; }
