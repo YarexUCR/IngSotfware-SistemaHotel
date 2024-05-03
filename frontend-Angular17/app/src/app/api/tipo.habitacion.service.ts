@@ -16,7 +16,7 @@ export class TipoHabitacionService {
     return this._http.get<Habitacion[]>(`https://localhost:7200/TipoHabitacion/ObtenerHabitacionesDisponiblesParaReserva?checkIn=${checkIn}&checkOut=${checkOut}&tipoHabitacion=${tipoHabitacion}`);
   }
 
-  obtenerTodaHabitacionesDisponibles(checkIn: string, checkOut: string): Observable<Habitacion[]> {
+  obtenerTodasHabitacionesDisponibles(checkIn: string, checkOut: string): Observable<Habitacion[]> {
     return this._http.get<Habitacion[]>(`https://localhost:7200/TipoHabitacion/ObtenerTodasHabitacionesDisponiblesParaReserva?checkIn=${checkIn}&checkOut=${checkOut}`);
   }
 }
