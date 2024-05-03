@@ -32,6 +32,7 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   mensajeConfirmacion = '';
   tiposDeHabitacion: TipoHabitacion[] = [];//todos los tipos de habitaciones disponibles
   habitacionesDisponibles: Habitacion[] = [];
+  habitacionesDisponiblesPaginacio: Habitacion[] = [];
   showModal: boolean = false;
   modalTitle!: string;
   modalMessage!: string;
@@ -50,6 +51,11 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
     this.checkOutDesactivado = true;
     this.tipo_habitacionDesactivado = true;
 
+  }
+  cargarHabitacionesPaginadas(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    const endIndex = startIndex + event.pageSize;
+    this.habitacionesDisponiblesPaginacio = this.habitacionesDisponibles.slice(startIndex, endIndex);
   }
 
   ngOnInit(): void {
@@ -173,6 +179,8 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
       this.service.obtenerTodasHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
+          this.habitacionesDisponiblesPaginacio=this.habitacionesDisponibles.slice(0,5);
+
           this.verificarRespuestaVacia();
           this.contarNoches();
           this.cargando  = false;
@@ -181,13 +189,15 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
       this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion)
         .subscribe((data) => {
           this.habitacionesDisponibles = data;
+          this.habitacionesDisponiblesPaginacio=this.habitacionesDisponibles.slice(0,5);
+
           this.verificarRespuestaVacia();
           this.contarNoches();
           this.cargando  = false;
         });
 
     }
-
+    
     
   }
 
