@@ -58,7 +58,7 @@
                         <label for="tipo_habitacion">Tipo de habitacion</label>
                         <select class="form-control" [disabled]="tipo_habitacionDesactivado " name="tipo_habitacion"
                             #tipo_habitacion="ngModel" [(ngModel)]="formData.tipo_habitacion" id="tipo_habitacion"
-                            required="">
+                            (ngModelChange)="validarCantidad($event)"  required="">
                             <option *ngFor="let tipo of tiposDeHabitacion" value="{{ tipo.id }}">{{ tipo.nombre }}
                             </option>
                         </select>
@@ -69,7 +69,7 @@
 
                     <div class="col">
                         <label for="cantidad_habitacion">Cantidad</label>
-                        <input type="number" max="5" min="1" [disabled]="cantidad_habitacionDesactivado" class="form-control"
+                        <input type="number" max="{{maximo}}" min="{{minimo}}" [disabled]="cantidad_habitacionDesactivado" class="form-control"
                             id="cantidad_habitacion" name="cantidad_habitacion" #cantidad_habitacion="ngModel"
                             [(ngModel)]="formData.cantidad_habitacion" min="1" required>
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
