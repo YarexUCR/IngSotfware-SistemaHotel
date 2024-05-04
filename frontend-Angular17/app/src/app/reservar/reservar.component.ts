@@ -206,6 +206,7 @@ export class ReservarComponent {
             this.modalTitle = 'Recomendaciones';
             this.modalMessage = this.recomendacion;
             this.showModal = true;
+            this.cantidad_habitacionDesactivado=true;
           });
         
 
@@ -241,6 +242,8 @@ export class ReservarComponent {
 
 
   /////////////////////////////////////acciones de los botones
+  habitaciones: Habitacion[] = [];
+  habitacionesTemporal : Habitacion[]=[];
   agregarHabitacion() {
 
     this.validarRequerido();
@@ -257,15 +260,22 @@ export class ReservarComponent {
     }
 
     this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id != this.formData.tipo_habitacion);
-
+    this.habitaciones = this.habitaciones.filter(item => item.tipo.id != this.formData.tipo_habitacion);
     this.tiposDeHabitacion.forEach(tipoActual => {
 
       if (tipoActual.id == this.formData.tipo_habitacion) {
         tipoActual.cantidad = this.formData.cantidad_habitacion;
         this.tiposDeHabitacionElegidos.push(tipoActual);
+        this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion).
+        subscribe(data => {
+            this.habitacionesTemporal = data;
+            this.habitacionesTemporal = this.habitacionesTemporal.slice(0, tipoActual.cantidad);
+            alert(this.habitacionesTemporal.length);
+            this.habitaciones = this.habitaciones.concat(this.habitacionesTemporal);
+        });
       }
-
     });
+    
     this.contarNoches();
     this.calcular();
     this.tabla_contenidoVisible = true;
@@ -277,6 +287,7 @@ export class ReservarComponent {
     const valorInputHidden = (<HTMLInputElement>document.getElementById(indice + '')).value;
     //eliminar el tipo de habitacion con el id recibido del carrito de compras
     this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id !== parseInt(valorInputHidden));
+    this.habitaciones = this.habitaciones.filter(item => item.tipo.id !==  parseInt(valorInputHidden));
     this.contarNoches();
     this.calcular();
     if (this.tiposDeHabitacionElegidos.length == 0) {
@@ -284,10 +295,9 @@ export class ReservarComponent {
     }
   }
 
-  habitaciones: Habitacion[] = [];
+
   reservar() {
-    this.habitaciones = [];
-    for (const tipo of this.tiposDeHabitacionElegidos) {
+    /*for (const tipo of this.tiposDeHabitacionElegidos) {
       for (let i = 1; i <= tipo.cantidad; i++) {
         const habitacion: Habitacion = {
           id: this.habitaciones.length + 1, // ID dinámico
@@ -298,7 +308,7 @@ export class ReservarComponent {
         };
         this.habitaciones.push(habitacion);
       }
-    }
+    }*/
 
     let reserva = {
       id: 0,
