@@ -17,7 +17,7 @@
             return this.datos.obtenerTipoHabitacion();
         }
 
-        public Dictionary<string, int> ObtenerCantidadHabitacionesDisponibles(DateTime fechaInicio, DateTime fechaFin) {
+        public List<HabitacionesDisponibles> ObtenerCantidadHabitacionesDisponibles(DateTime fechaInicio, DateTime fechaFin) {
             return this.datos.ObtenerCantidadHabitacionesDisponibles(fechaInicio, fechaFin);
         }
 

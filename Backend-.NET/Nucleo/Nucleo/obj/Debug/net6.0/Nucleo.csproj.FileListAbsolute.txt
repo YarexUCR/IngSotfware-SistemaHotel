@@ -68,7 +68,6 @@ C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\Nucleo.AssemblyInfoInputs.cache
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\Nucleo.AssemblyInfo.cs
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\Nucleo.csproj.CoreCompileInputs.cache
-C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\Nucleo.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\Nucleo.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\staticwebassets\msbuild.Nucleo.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Nucleo\Nucleo\obj\Debug\net6.0\staticwebassets\msbuild.build.Nucleo.props

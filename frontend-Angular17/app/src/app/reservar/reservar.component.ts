@@ -14,9 +14,10 @@ import { HotelService } from '../api/hotel.service';
 import { differenceInDays, parseISO } from 'date-fns';
 import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Reserva } from '../dominio/Reserva';
-import { Habitacion } from '../dominio/Habitacion';
+import { Habitacion, HabitacionesDisponibles } from '../dominio/Habitacion';
 import { TipoHabitacionService } from '../api/tipo.habitacion.service';
-
+import{ModalComponent} from '../modal/modal.component';
+ 
 @Component({
   selector: 'app-reservar',
   standalone: true,
@@ -30,7 +31,8 @@ import { TipoHabitacionService } from '../api/tipo.habitacion.service';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    FooterComponent
+    FooterComponent,
+    ModalComponent
   ]
 })
 
@@ -51,6 +53,10 @@ export class ReservarComponent {
   cantidad_habitacionDesactivado: boolean;
   tipo_habitacionDesactivado: boolean;
   tabla_contenidoVisible: boolean;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
+
 
   constructor(private service: TipoHabitacionService, private routerA: ActivatedRoute, private router: Router) {
 
@@ -181,14 +187,28 @@ export class ReservarComponent {
 
   minimo: number = 0;
   maximo: number = 0;
-
+  recomendacion: string = '';
+  disponibles : HabitacionesDisponibles[]=[];
   validarCantidad(event: Event) {
 
     this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion).subscribe(data => {
-      alert(data.length);
 
       if (data.length === 0) {
-        alert('¡Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles');
+        this.recomendacion = '¡Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles: \n'
+        this.service.obtenerCantidadHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut).
+          subscribe(data => {
+           this.disponibles = data;
+           this.disponibles.forEach(element => {
+            
+            this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
+            });
+            alert(this.recomendacion);
+            this.modalTitle = 'Recomendaciones';
+            this.modalMessage = this.recomendacion;
+            this.showModal = true;
+          });
+        
+
       } else {
         this.cantidad_habitacionDesactivado = false;
         this.minimo = 1;
@@ -308,4 +328,7 @@ export class ReservarComponent {
     this.tabla_contenidoVisible = false;
   }
 
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
 }
