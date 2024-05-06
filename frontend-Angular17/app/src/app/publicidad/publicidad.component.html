@@ -1,6 +1,6 @@
 <p-galleria [value]="images" [showThumbnailNavigators]="false" [circular]="true" [autoPlay]="true">
     <ng-template pTemplate="item" let-item>
-        <a [href]="item.enlace">
+        <a [href]="item.enlace" target="_blank">
             <img class="imgPrincipal" [src]="item.itemImageSrc" style="width: 100%; display: block;" />
         </a>
     </ng-template>
