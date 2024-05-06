@@ -3,6 +3,7 @@
     <mat-grid-list cols="2" rowHeight="350px">
         <div class="container">
             <div *ngIf="reserva">
+                <a href="\reserva">Volver</a>
                 <div *ngFor="let habitacion of reserva.habitaciones">
                     <h2>Habitacion disponible</h2>
                     <div class="row">
@@ -35,7 +36,8 @@
 
                     <div class="row">
                         <label for="cedula">Cedula</label>
-                        <input type="text" class="form-control" id="cedula" name="cedula" required>
+                        <input type="text" class="form-control" id="cedula" name="cedula"
+                        [(ngModel)]="cedula" required>
                         <div class="alert alert-danger mt-2" *ngIf="">
 
                         </div>
