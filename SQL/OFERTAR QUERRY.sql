@@ -43,20 +43,16 @@ BEGIN
     END CATCH
 END
 --
-drop PROCEDURE BuscarTipoHabitacionPorOferta
+
 CREATE PROCEDURE BuscarTipoHabitacionPorOferta
     @IDBUSCAR INT
 AS
 BEGIN
-    SELECT TH.id, TH.nombre 
+
     FROM [dbo].[TipoHabitacion] TH
     JOIN [dbo].[OfertaTipoHabitacion] OTH ON TH.id = OTH.tipoHabitacionId
     WHERE OTH.ofertaId = @IDBUSCAR
 END
-
-select * from oferta 
-sele
-select * from [dbo].[TipoHabitacion] TH
 
 
 CREATE PROCEDURE InsertarOfertaTipoHabitacion
@@ -120,7 +116,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Eliminar todas las relaciones entre la oferta y los tipos de habitación asociados
+        -- Eliminar todas las relaciones entre la oferta y los tipos de habitaciÃ³n asociados
         DELETE FROM [HotelPalm].[dbo].[OfertaTipoHabitacion]
         WHERE [ofertaId] = @ofertaId;
 
@@ -162,7 +158,7 @@ BEGIN
         THROW;
     END CATCH
 END
---
+
 CREATE PROCEDURE SeleccionarOfertaPorFecha
     @fechaInicio DATETIME,
     @fechaFin DATETIME
@@ -174,3 +170,4 @@ BEGIN
         OR [fin] BETWEEN @fechaInicio AND @fechaFin
         OR ([inicio] <= @fechaInicio AND [fin] >= @fechaFin);
 END;
+
