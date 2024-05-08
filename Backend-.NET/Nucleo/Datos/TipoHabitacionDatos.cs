@@ -122,9 +122,9 @@ namespace Datos
             return listaTipoHabitacion;
         }
 
-        public Dictionary<string, int> ObtenerCantidadHabitacionesDisponibles(DateTime fechaInicio, DateTime fechaFin)
+        public List<HabitacionesDisponibles> ObtenerCantidadHabitacionesDisponibles(DateTime fechaInicio, DateTime fechaFin)
         {
-            Dictionary<string, int> cantidadPorTipo = new Dictionary<string, int>();
+            List<HabitacionesDisponibles> habitaciones = new List<HabitacionesDisponibles>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -140,17 +140,20 @@ namespace Datos
 
                     while (reader.Read())
                     {
-                        string nombreTipoHabitacion = reader["NombreTipoHabitacion"].ToString();
-                        int cantidadDisponible = Convert.ToInt32(reader["CantidadDisponible"]);
+                        string tipo = reader["NombreTipoHabitacion"].ToString();
+                        int  cantidad = Convert.ToInt32(reader["CantidadDisponible"]);
+                        HabitacionesDisponibles habitacionDisponible = new HabitacionesDisponibles();
+                        habitacionDisponible.Tipo = tipo;
+                        habitacionDisponible.Cantidad = cantidad;
 
-                        cantidadPorTipo.Add(nombreTipoHabitacion, cantidadDisponible);
+                        habitaciones.Add(habitacionDisponible);
                     }
 
                     reader.Close();
                 }
             }
 
-            return cantidadPorTipo;
+            return habitaciones;
         }
 
         public int ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(DateTime fecha, int tipoHabitacionId)
