@@ -71,7 +71,7 @@
                         <label for="cantidad_habitacion">Cantidad</label>
                         <input type="number" max="{{maximo}}" min="{{minimo}}" [disabled]="cantidad_habitacionDesactivado" class="form-control"
                             id="cantidad_habitacion" name="cantidad_habitacion" #cantidad_habitacion="ngModel"
-                            [(ngModel)]="formData.cantidad_habitacion" min="1" required>
+                            [(ngModel)]="formData.cantidad_habitacion" required>
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
                             Es requerido una cantidad de habitaciones
                         </div>

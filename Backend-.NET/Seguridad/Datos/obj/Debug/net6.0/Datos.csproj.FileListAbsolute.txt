@@ -11,3 +11,15 @@ C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\
 C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\refint\Datos.dll
 C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.pdb
 C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\ref\Datos.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\bin\Debug\net6.0\Datos.deps.json
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\bin\Debug\net6.0\Datos.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\bin\Debug\net6.0\Datos.pdb
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.csproj.AssemblyReference.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.AssemblyInfoInputs.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.AssemblyInfo.cs
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.csproj.CoreCompileInputs.cache
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\refint\Datos.dll
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\Datos.pdb
+C:\Users\gmg55\Desktop\kerex\Kerex\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\Datos\obj\Debug\net6.0\ref\Datos.dll

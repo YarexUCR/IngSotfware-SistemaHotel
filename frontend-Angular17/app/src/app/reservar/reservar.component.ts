@@ -115,6 +115,8 @@ export class ReservarComponent {
     return;
   }
 
+  
+
   validarRequerido() {
     this.validarCheckIn();
     this.validarCheckOut();
@@ -258,6 +260,10 @@ export class ReservarComponent {
     ) {
       return;
     }
+    if(this.formData.cantidad_habitacion>this.maximo||this.formData.cantidad_habitacion<this.minimo){
+      alert("El maximo de habitaciones disponibles es "+this.maximo+ " y el minimo "+ this.minimo);
+      return;
+    }
 
     this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id != this.formData.tipo_habitacion);
     this.habitaciones = this.habitaciones.filter(item => item.tipo.id != this.formData.tipo_habitacion);
@@ -270,7 +276,6 @@ export class ReservarComponent {
         subscribe(data => {
             this.habitacionesTemporal = data;
             this.habitacionesTemporal = this.habitacionesTemporal.slice(0, tipoActual.cantidad);
-            alert(this.habitacionesTemporal.length);
             this.habitaciones = this.habitaciones.concat(this.habitacionesTemporal);
         });
       }
