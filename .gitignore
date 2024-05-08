@@ -1,5 +1,9 @@
 Backend-.NET/Nucleo/Nucleo/.vs/
+Backend-.NET/Nucleo/Nucleo/.bin/
+Backend-.NET/Nucleo/Nucleo/.obj/
 Backend-.NET/Seguridad/Seguridad/.vs/
+Backend-.NET/Seguridad/Seguridad/.bin/
+Backend-.NET/Seguridad/Seguridad/.obj/
 Backend-.NET/Nucleo/Datos/bin/
 Backend-.NET/Nucleo/Datos/obj/
 Backend-.NET/Nucleo/Dominio/bin/
