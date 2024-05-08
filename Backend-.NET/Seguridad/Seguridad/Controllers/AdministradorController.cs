@@ -16,7 +16,7 @@ namespace Seguridad.Controllers
         [HttpGet]
         public IActionResult ObtenerNombreAdministrador(string nombreUsuario, string contrasena) {
            
-            return Ok(JsonConvert.SerializeObject(_admnistradorDatos.ObtenerNombreAdministrador(nombreUsuario, contrasena)));
+            return Ok(JsonConvert.SerializeObject(_admnistradorDatos.ObtenerNombreAdministrador(nombreUsuario, contrasena)))a;
         }
     }
 }

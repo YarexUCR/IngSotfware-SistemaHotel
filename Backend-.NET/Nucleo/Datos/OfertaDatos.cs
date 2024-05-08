@@ -21,35 +21,35 @@ namespace Datos
         }
 
 
-        public async Task<List<Oferta>> getAllOfertas()
+         public async Task<List<Oferta>> getAllOfertas()
         {
 
             List<Oferta> ofertas = new List<Oferta>();
-            List<TipoHabitacion> TipoHabitacion = new List<TipoHabitacion>();
+
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand command = new SqlCommand("ObtenerHabitacionesDisponiblesParaReserva", connection))
+                using (SqlCommand command = new SqlCommand("SeleccionarOferta", connection))
                 {
-                    
+
 
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        Oferta oferta  = new Oferta
+                        List<TipoHabitacion> tipoHabitacion = new List<TipoHabitacion>();
+                        Oferta oferta = new Oferta
                         {
                             Id = Convert.ToInt32(reader["id"]),
-                            Nombre = Convert.ToString(reader["nombre"]),
+                            Nombre = Convert.ToString(reader["descripcion"]),
                             Descuento = Convert.ToInt32(reader["descuento"]),
-                            //FechaInicio = Convert.ToDateTime(reader["fechaInicio"]),
-                           // FechaFin = Convert.ToDateTime(reader["fechaFin"]),
-//Activo = Convert.ToBoolean(reader["activo"])
-                            // Mapea otros campos según tu estructura de datos
+                            Inicio = Convert.ToDateTime(reader["inicio"]),
+                            Fin = Convert.ToDateTime(reader["fin"]),
+
                         };
-
-
+                        tipoHabitacion = await getTipoDeHabitcion(oferta.Id);
+                        oferta.TipoHabitacions = tipoHabitacion;
                         ofertas.Add(oferta);
                     }
 
@@ -60,17 +60,18 @@ namespace Datos
             return ofertas;
         }
 
-        public async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id) {
+         async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id)
+        {
 
-            List<TipoHabitacion> TipoHabitacion = new List<TipoHabitacion>();
+            List<TipoHabitacion> tipoHabitaciones = new List<TipoHabitacion>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = new SqlCommand("BuscarTipoHabitacionPorOferta", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@checkIn", id);
-                   
+                    command.Parameters.AddWithValue("@IDBUSCAR", id);
+
 
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -80,22 +81,81 @@ namespace Datos
                         TipoHabitacion tipoHabitacion = new TipoHabitacion
                         {
                             Id = Convert.ToInt32(reader["id"]),
-                            Nombre = Convert.ToString(reader["descripcion"]),
-                        
+                            Nombre = Convert.ToString(reader["nombre"]),
+
                         };
 
-                        TipoHabitacion.Add(tipoHabitacion);
+                        tipoHabitaciones.Add(tipoHabitacion);
                     }
 
                     reader.Close();
                 }
             }
 
-            return TipoHabitacion;
+            return tipoHabitaciones;
         }
-      
 
 
+        public async Task<bool> agregarOferta(Oferta oferta)
+        {
+            int nuevoID = 0; // Variable para almacenar el nuevo ID de la oferta
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("InsertarOferta", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@inicio", oferta.Inicio);
+                    command.Parameters.AddWithValue("@fin", oferta.Fin);
+                    command.Parameters.AddWithValue("@descripcion", oferta.Nombre);
+                    command.Parameters.AddWithValue("@descuento", oferta.Descuento);
+                    command.Parameters.Add("@nuevoID", SqlDbType.Int).Direction = ParameterDirection.Output; // Agregar parámetro de salida
+
+                    connection.Open();
+                    await command.ExecuteNonQueryAsync(); // Ejecutar el procedimiento almacenado
+
+                    nuevoID = Convert.ToInt32(command.Parameters["@nuevoID"].Value); // Obtener el valor del parámetro de salida
+                }
+            }
+
+            await insertarTipoHabitacionoferta(nuevoID, oferta.TipoHabitacions);
+            if (nuevoID == 0) { return false; }
+            else { return true;}
+        }
+
+
+        async Task<bool> insertarTipoHabitacionoferta(int idOferta, List<TipoHabitacion> tipoHabitacions)
+        {
+            int tamaño = 0;
+            foreach (TipoHabitacion tipoHabitacion in tipoHabitacions)
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand("InsertarOfertaTipoHabitacion", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ofertaId", idOferta);
+                        command.Parameters.AddWithValue("@tipoHabitacionId", tipoHabitacion.Id);
+                        connection.Open();
+
+                        command.ExecuteReader();
+
+                        connection.Close();
+                    }
+                }
+            }
+            if (tamaño != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
+
+
+
 }
