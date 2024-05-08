@@ -9,6 +9,7 @@ import { TarifasComponent } from "./tarifas/tarifas.component";
 import { DisponibleComponent } from "./disponible/disponible.component";
 import { ComoLlegarComponent } from "./como-llegar/como-llegar.component";
 import { LoginComponent } from "./login/login.component";
+import { ListaOfertasComponent } from "./admin/lista-ofertas/lista-ofertas.component";
 
 import { HomeComponent } from "./admin/home/home.component";
 import { ModificarPaginasComponent } from "./admin/modificar-paginas/modificar-paginas.component";
@@ -17,6 +18,7 @@ import { AdministrarHabitacionesComponent } from "./admin/administrar-habitacion
 import { VerEstadoHotelHoyComponent } from "./admin/ver-estado-hotel-hoy/ver-estado-hotel-hoy.component";
 import { ConsultarDisponibilidadHabitacionesComponent } from "./admin/consultar-disponibilidad-habitaciones/consultar-disponibilidad-habitaciones.component";
 import { PublicidadAdminComponent } from "./admin/publicidad-admin/publicidad-admin.component";
+import { AgregarOfertaComponent } from "./admin/agregar-oferta/agregar-oferta.component";
 export const routes : Routes =[
     {path: "admin/modificarPaginas", component : ModificarPaginasComponent},
     {path: "admin/listadoReservaciones", component : ListadoReservacionesComponent},
@@ -34,5 +36,8 @@ export const routes : Routes =[
     {path: "facilidades", component : FacilidadesComponent},
     {path: "tarifas", component : TarifasComponent},
     {path: "admin/home", component : HomeComponent},
+    {path: "admin/listaOferta", component : ListaOfertasComponent},
+    {path: "admin/agregarOferta", component : AgregarOfertaComponent},
     { path: '**', component: InicioComponent }
+    
 ]

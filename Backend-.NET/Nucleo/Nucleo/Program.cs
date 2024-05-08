@@ -1,3 +1,4 @@
+using Datos;
 using ReglasNegocio;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddControllers();
 // Registrar las clases ReglasNegocio
 builder.Services.AddScoped<TipoDeHabitacionReglasNegocio>();
 builder.Services.AddScoped<HabitacionReglasNegocio>();
+builder.Services.AddScoped<OfertaReglaDeNegocio, OfertaReglaDeNegocio>();
+builder.Services.AddScoped<OfertaDatos>();
+
 
 // Configure CORS para ser consumido por la capa de interfaz grafica de angular
 builder.Services.AddCors(options =>

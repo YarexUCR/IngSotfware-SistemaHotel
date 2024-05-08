@@ -85,8 +85,10 @@ export class NavigationComponent {
     this.checkTamañoVentana();
   }
   checkTamañoVentana(): void {
-    this.mostrarNombre= window.innerWidth >= 1200; // Devuelve un valor booleano según el tamaño de la ventana
-    this.mostrarAdminMensaje = window.innerWidth >= 390;
+    try {this.mostrarNombre= window.innerWidth >= 1200; // Devuelve un valor booleano según el tamaño de la ventana
+    this.mostrarAdminMensaje = window.innerWidth >= 390;} catch (error) {
+      console.log('Error al intentar obtener el tamaño de la ventana');
+    }
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
