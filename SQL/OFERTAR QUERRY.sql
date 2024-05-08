@@ -48,11 +48,12 @@ CREATE PROCEDURE BuscarTipoHabitacionPorOferta
     @IDBUSCAR INT
 AS
 BEGIN
-    SELECT TH.id, TH.descripcion 
+
     FROM [dbo].[TipoHabitacion] TH
     JOIN [dbo].[OfertaTipoHabitacion] OTH ON TH.id = OTH.tipoHabitacionId
     WHERE OTH.ofertaId = @IDBUSCAR
 END
+
 
 CREATE PROCEDURE InsertarOfertaTipoHabitacion
     @ofertaId int,
@@ -115,7 +116,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Eliminar todas las relaciones entre la oferta y los tipos de habitación asociados
+        -- Eliminar todas las relaciones entre la oferta y los tipos de habitaciÃ³n asociados
         DELETE FROM [HotelPalm].[dbo].[OfertaTipoHabitacion]
         WHERE [ofertaId] = @ofertaId;
 
@@ -157,3 +158,16 @@ BEGIN
         THROW;
     END CATCH
 END
+
+CREATE PROCEDURE SeleccionarOfertaPorFecha
+    @fechaInicio DATETIME,
+    @fechaFin DATETIME
+AS
+BEGIN
+    SELECT [id], [inicio], [fin], [descuento], [descripcion]
+    FROM [dbo].[Oferta]
+    WHERE [inicio] BETWEEN @fechaInicio AND @fechaFin
+        OR [fin] BETWEEN @fechaInicio AND @fechaFin
+        OR ([inicio] <= @fechaInicio AND [fin] >= @fechaFin);
+END;
+

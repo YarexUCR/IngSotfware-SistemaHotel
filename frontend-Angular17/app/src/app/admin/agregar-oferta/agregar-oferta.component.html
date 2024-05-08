@@ -1,0 +1,79 @@
+<div class="grid-container">
+
+    <div class="container">
+        <div class="row">
+            <h1 class="mat-h1">Agregar Oferta</h1>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <form class="row g-2" (ngSubmit)="agregarOferta()">
+            <div class="row">
+                <div class="col">
+                    <label for="checkIn">Fecha de Inicio</label>
+                    <input type="date" class="form-control" id="checkIn" name="checkIn" #checkIn="ngModel"
+                        [disabled]="checkInDesactivado" [(ngModel)]="formData.checkIn"
+                        (ngModelChange)="validarFechaEntrada($event)" required>
+
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
+                        Fecha de Inicio es obligatorio
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarError">
+                        {{mensajeError}}
+                    </div>
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion">
+                        {{mensajeConfirmacion}}
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label for="checkOut">Fecha de Fin</label>
+                    <input type="date" class="form-control" id="checkOut" name="checkOut"
+                        [disabled]="checkOutDesactivado" [(ngModel)]="formData.checkOut"
+                        (ngModelChange)="validarFechaDeSalida($event)" required>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
+                        La Fecha Final es obligatorio
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarError_">
+                        {{mensajeError_}}
+                    </div>
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion_">
+                        {{mensajeConfirmacion_}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <label for="Descrip">Nombre de la Oferta</label>
+                        <textarea matInput placeholder="Día de San Valentín....."></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <label for="Descuento">Monto de descueto</label>
+                        <mat-label>Monto de descueto</mat-label>
+                        <input matInput placeholder="30" value="">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <label for="TipoHabitacion"><H2>Selecione a cual Tipo de habitacion desea asignar</H2></label>
+
+                <div *ngFor="let tipoHabitacion of tiposDeHabitaciones">
+                    <label>
+                        <input type="checkbox" [value]="tipoHabitacion.id" [(ngModel)]="tipoHabitacion.checked"> {{
+                        tipoHabitacion.nombre }}
+                    </label>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <app-footer></app-footer>
