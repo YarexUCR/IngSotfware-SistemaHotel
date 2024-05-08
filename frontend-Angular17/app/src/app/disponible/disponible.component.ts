@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva } from '../dominio/Reserva'; // Importa la interfaz Reserva
 import { ReservaService } from '../api/reserva.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,12 +26,14 @@ import { ReservaService } from '../api/reserva.service';
       MatIconModule,
       MatButtonModule,
       MatCardModule,
-      CommonModule
+      CommonModule,
+      FormsModule
     ]
 })
 export class DisponibleComponent {
   token: string | null;//token de session
   reserva: Reserva | null = null; // Propiedad para recibir la reserva
+  cedula: string = '';
   private paypalSDK: any;
   constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService){
     this.paypalSDK = (window as any).paypal;
@@ -84,15 +87,12 @@ export class DisponibleComponent {
           //console.log('Pago completado:', details);
           const nombrePaypal = details.payer.name.given_name; // Nombre del comprador de PayPal
           const apellidoPaypal = details.payer.name.surname;
-          if (this.reserva) {
-            this.reserva.cliente = nombrePaypal+' '+apellidoPaypal;
-          }
           const correoPaypal = details.payer.email_address; // Correo electrónico del comprador de PayPal
-          if (this.reserva) {
-            this.reserva.email = correoPaypal;
-          }
+        
           if(this.reserva){
-            
+            this.reserva.email = correoPaypal;
+            this.reserva.cliente = nombrePaypal+' '+apellidoPaypal;
+            this.reserva.cedula = this.cedula;
             this.reservarService.insertarReserva(this.reserva).subscribe(
               (respuesta) => {
                 console.log('Respuesta del servicio:', respuesta);
