@@ -48,13 +48,20 @@ CREATE PROCEDURE BuscarTipoHabitacionPorOferta
     @IDBUSCAR INT
 AS
 BEGIN
+<<<<<<< HEAD
+    SELECT TH.id, TH.descripcion 
+=======
 
+>>>>>>> 79d6fa5555da73fa51b737b149c5f34f1519cd07
     FROM [dbo].[TipoHabitacion] TH
     JOIN [dbo].[OfertaTipoHabitacion] OTH ON TH.id = OTH.tipoHabitacionId
     WHERE OTH.ofertaId = @IDBUSCAR
 END
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79d6fa5555da73fa51b737b149c5f34f1519cd07
 CREATE PROCEDURE InsertarOfertaTipoHabitacion
     @ofertaId int,
     @tipoHabitacionId int
@@ -158,6 +165,8 @@ BEGIN
         THROW;
     END CATCH
 END
+<<<<<<< HEAD
+=======
 
 CREATE PROCEDURE SeleccionarOfertaPorFecha
     @fechaInicio DATETIME,
@@ -171,3 +180,4 @@ BEGIN
         OR ([inicio] <= @fechaInicio AND [fin] >= @fechaFin);
 END;
 
+>>>>>>> 79d6fa5555da73fa51b737b149c5f34f1519cd07
