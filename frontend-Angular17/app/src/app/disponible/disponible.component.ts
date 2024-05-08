@@ -80,9 +80,13 @@ export class DisponibleComponent {
             }
           }]
         });
-      },
+      },  
       onApprove: (data: any, actions: any) => {
         // Mostrar confirmación antes de ejecutar el pago
+        if(!this.cedula){
+          alert('Por favor agregue un numero de identificación para continuar');
+          return;
+        }
         return actions.order.capture().then((details: any) => {
           //console.log('Pago completado:', details);
           const nombrePaypal = details.payer.name.given_name; // Nombre del comprador de PayPal
