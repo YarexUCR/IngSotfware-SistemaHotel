@@ -8,3 +8,8 @@ export interface Habitacion{
     tipo : TipoHabitacion;
     
   }
+
+  export interface HabitacionesDisponibles {
+    tipo: string,
+    cantidad: number;
+  }
