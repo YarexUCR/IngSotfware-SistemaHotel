@@ -1,8 +1,14 @@
 Backend-.NET/Nucleo/Nucleo/.vs/
-Backend-.NET/Seguridad/ReglasNegocio/obj/Debug/net6.0/ReglasNegocio.csproj.AssemblyReference.cache
+Backend-.NET/Nucleo/Nucleo/.bin/
+Backend-.NET/Nucleo/Nucleo/.obj/
 Backend-.NET/Seguridad/Seguridad/.vs/
-Backend-.NET\Seguridad\Seguridad\.vs
+Backend-.NET/Seguridad/Seguridad/.bin/
+Backend-.NET/Seguridad/Seguridad/.obj/
 Backend-.NET/Nucleo/Datos/bin/
 Backend-.NET/Nucleo/Datos/obj/
 Backend-.NET/Nucleo/Dominio/bin/
 Backend-.NET/Nucleo/Dominio/obj/
+Backend-.NET/Seguridad/Datos/bin/
+Backend-.NET/Seguridad/Datos/obj/
+Backend-.NET/Seguridad/Dominio/bin/
+Backend-.NET/Seguridad/Dominio/obj/
