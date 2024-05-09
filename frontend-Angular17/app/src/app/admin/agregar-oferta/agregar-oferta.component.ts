@@ -13,12 +13,10 @@ import { CommonModule } from '@angular/common';
 import { differenceInDays, parseISO } from 'date-fns';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ThemePalette } from '@angular/material/core';
-
-interface TipoHabitacion {
-  id: number;
-  nombre: string;
-  checked: boolean;
-}
+import{TipoHabitacionService} from '../../api/tipo.habitacion.service';
+import { TipoHabitacion } from '../../dominio/TipoHabitacion';
+import { ChangeDetectorRef } from '@angular/core';
+import { Oferta } from '../../dominio/Oferta';
 
 @Component({
   selector: 'app-agregar-oferta',
@@ -30,7 +28,7 @@ interface TipoHabitacion {
     MatIconModule,
     MatButtonModule,
     MatCardModule,FooterComponent,
-    MatFormFieldModule,MatCheckboxModule,],
+    MatFormFieldModule,MatCheckboxModule],
   templateUrl: './agregar-oferta.component.html',
   styleUrl: './agregar-oferta.component.scss'
 })
@@ -38,20 +36,58 @@ interface TipoHabitacion {
 
 
 
+
 export class AgregarOfertaComponent implements OnInit{
   token: string | null;//token de session
-  formData: any = [];
+  formData: any = {
+    checkIn: '',
+    checkOut: '',
+    montoDescuento: '',
+    nombreOferta: '',
+    // Otros campos necesarios
+  };
   checkOutDesactivado : boolean;
   checkInDesactivado : boolean;
   cantidad_habitacionDesactivado : boolean;
-  tiposDeHabitaciones: TipoHabitacion[] = [
-    { id: 1, nombre: 'Individual', checked: false },
-    { id: 2, nombre: 'Doble', checked: false },
-    { id: 3, nombre: 'Suite', checked: false }
-  ];
-  
+  tiposDeHabitaciones: TipoHabitacion[] = [];
+  TipoHabitacion: (TipoHabitacion & { check: boolean })[] = [];
+  tiposSeleccionados:TipoHabitacion [] = [];
 
-  constructor( private router: Router,private routerA: ActivatedRoute) {
+  agregarOferta(){
+    this.obtenerTiposSeleccionados();
+ 
+
+    const nuevaOferta: Oferta = {
+      id: 0, // Esto puede variar dependiendo de cómo maneje la API la generación de IDs
+      inicio: this.formData.checkIn, // Ajusta la fecha de inicio según sea necesario
+      fin: this.formData.checkOut, // Ajusta la fecha de fin según sea necesario
+      descuento: this.formData.montoDescuento,
+      descripcion: this.formData.nombreOferta,
+      tipoHabitacions: this.tiposSeleccionados // Puedes llenar esto con los tipos de habitación seleccionados
+    };
+   
+    this.reiniciarFormulario();
+
+
+  }
+
+  reiniciarFormulario(){
+    this.formData.checkIn = undefined ;
+    this.formData.checkOut = undefined ;
+    this.formData.montoDescuento = undefined ;
+    this.formData.nombreOferta = undefined ;
+    
+    this.obtenerTipoHabitacion();
+  // Forzar detección de cambios
+
+  }
+
+  obtenerTiposSeleccionados(): void {
+    this.tiposSeleccionados = this.tiposDeHabitaciones
+        .filter((tipo: any) => tipo.check); // Filtra solo los tipos de habitaciones que estén seleccionados
+}
+
+  constructor(   private router: Router,private routerA: ActivatedRoute,private readonly serv_TipoHabitacion_: TipoHabitacionService,private readonly changeDetectorRef: ChangeDetectorRef) {
     //mostrar campos para entradas de forma ordenada
     this.checkInDesactivado = false;
     this.checkOutDesactivado = false;
@@ -68,21 +104,18 @@ export class AgregarOfertaComponent implements OnInit{
   }
 
   ngOnInit(): void{
-    
+    this.obtenerTipoHabitacion();
+
     //verificar autenticacion
     if (this.token == null) {
       this.router.navigate(['/login']);
     }
-
   }
   mensajeError = '';
   mostrarError = false;
   mostrarConfirmacion = false;
   mensajeConfirmacion = '';
-  agregarOferta(){
-
-   
-  }
+  
   mensajeError_ = '';
   mostrarError_ = false;
   mostrarConfirmacion_ = false;
@@ -162,18 +195,22 @@ export class AgregarOfertaComponent implements OnInit{
     return;
   }
 
-  reiniciarFormulario(){
-    this.formData.checkIn='';
-    this.formData.checkOut='';
-    this.formData.cantidad_habitacion='';
-    this.formData.tipo='';
  
-     //mostrar campos para entradas de forma ordenada
-     this.checkInDesactivado = false;
-     this.checkOutDesactivado = false;
-     this.cantidad_habitacionDesactivado =true;
+  obtenerTipoHabitacion(): void  { 
+    this.serv_TipoHabitacion_.obtenerTiposHabitaciones().subscribe(
+      (data: TipoHabitacion[]) => {
+        this.tiposDeHabitaciones = data.map(tipo => ({ ...tipo, check: false }));
 
+        this.changeDetectorRef.detectChanges(); // Forzar detección de cambios
+      },
+      (error: any) => {
+        console.error(error);
+        // Maneja el error aquí
+      }
+    );
   }
+  }
+  
 
 
-}
+

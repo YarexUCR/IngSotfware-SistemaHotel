@@ -26,6 +26,13 @@ namespace ReglasNegocio
             return await datos.agregarOferta(oferta);
         }
 
+
+
+        public async Task<bool> updateOferta(Oferta oferta)
+        {
+            return await datos.updateOferta(oferta);
+        }
+
       
     }
 }

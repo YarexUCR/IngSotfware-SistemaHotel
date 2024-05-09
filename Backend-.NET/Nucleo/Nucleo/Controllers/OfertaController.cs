@@ -33,7 +33,9 @@ namespace Nucleo.Controllers
             }
 
             return oferta;
-        }*/
+           
+    }
+         */
         /*
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOferta(int id, Oferta oferta)

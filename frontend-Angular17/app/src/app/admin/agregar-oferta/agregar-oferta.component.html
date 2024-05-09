@@ -47,30 +47,37 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <mat-form-field class="example-full-width">
-                        <label for="Descrip">Nombre de la Oferta</label>
-                        <textarea matInput placeholder="Día de San Valentín....."></textarea>
-                    </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <label for="nombreOferta">Nombre de la Oferta</label>
+                    <textarea matInput placeholder="Día de San Valentín....." id="nombreOferta" name="nombreOferta" [(ngModel)]="formData.nombreOferta"></textarea>
+                  </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field class="example-full-width">
-                        <label for="Descuento">Monto de descueto</label>
-                        <mat-label>Monto de descueto</mat-label>
-                        <input matInput placeholder="30" value="">
-                    </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <label for="montoDescuento">Monto de descuento</label>
+                    <mat-label>Monto de descuento</mat-label>
+                    <input matInput type="number" placeholder="30" id="montoDescuento" name="montoDescuento" [(ngModel)]="formData.montoDescuento">
+                  </mat-form-field>
                 </div>
-            </div>
+              </div>
             <div class="row">
-                <label for="TipoHabitacion"><H2>Selecione a cual Tipo de habitacion desea asignar</H2></label>
+                <label for="TipoDeHabitacion">
+                  <h2>Seleccione a qué tipo de habitación desea asignar</h2>
+                </label>
+                
+                <ng-container *ngIf="tiposDeHabitaciones && tiposDeHabitaciones.length">
+                  <ng-container *ngTemplateOutlet="habitacionTemplate; context: { $implicit: tiposDeHabitaciones }"></ng-container>
+                </ng-container>
+            
+                <ng-template #habitacionTemplate let-habitaciones>
+                  <div *ngFor="let tipoHabitacion of habitaciones; let i = index">
+                    <input type="checkbox" [(ngModel)]="tipoHabitacion.check" [value]="tipoHabitacion.id" [name]="tipoHabitacion.id">
+                    {{ tipoHabitacion.Nombre }}
+                  </div>
+                </ng-template>
+              </div>
+            <button class="btn btn-primary" type="submit">Crear Oferta</button>
 
-                <div *ngFor="let tipoHabitacion of tiposDeHabitaciones">
-                    <label>
-                        <input type="checkbox" [value]="tipoHabitacion.id" [(ngModel)]="tipoHabitacion.checked"> {{
-                        tipoHabitacion.nombre }}
-                    </label>
-                </div>
-
-            </div>
 
         </form>
 
