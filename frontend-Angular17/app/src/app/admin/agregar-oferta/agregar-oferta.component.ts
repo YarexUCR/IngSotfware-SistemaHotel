@@ -42,7 +42,7 @@ export class AgregarOfertaComponent implements OnInit{
   formData: any = {
     checkIn: '',
     checkOut: '',
-    montoDescuento: '',
+    montoDescuento:  0,
     nombreOferta: '',
     // Otros campos necesarios
   };
@@ -52,34 +52,34 @@ export class AgregarOfertaComponent implements OnInit{
   tiposDeHabitaciones: TipoHabitacion[] = [];
   TipoHabitacion: (TipoHabitacion & { check: boolean })[] = [];
   tiposSeleccionados:TipoHabitacion [] = [];
-
+  updateMontoDescuento(event: any) {
+    this.formData.montoDescuento = event.target.value;
+  }
+  
   agregarOferta(){
     this.obtenerTiposSeleccionados();
- 
+  alert(this.formData.montoDescuento)
 
     const nuevaOferta: Oferta = {
       id: 0, // Esto puede variar dependiendo de cómo maneje la API la generación de IDs
       inicio: this.formData.checkIn, // Ajusta la fecha de inicio según sea necesario
       fin: this.formData.checkOut, // Ajusta la fecha de fin según sea necesario
-      descuento: this.formData.montoDescuento,
+      descuento: Number(this.formData.montoDescuento),
       descripcion: this.formData.nombreOferta,
       tipoHabitacions: this.tiposSeleccionados // Puedes llenar esto con los tipos de habitación seleccionados
     };
+    console.log(nuevaOferta);
    
     this.reiniciarFormulario();
 
 
   }
 
-  reiniciarFormulario(){
-    this.formData.checkIn = undefined ;
-    this.formData.checkOut = undefined ;
-    this.formData.montoDescuento = undefined ;
-    this.formData.nombreOferta = undefined ;
-    
-    this.obtenerTipoHabitacion();
-  // Forzar detección de cambios
-
+  reiniciarFormulario() {
+    this.router.navigateByUrl('/admin/agregarOferta', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/admin/agregarOferta']);
+    }); // Forzar detección de cambios
+    window.location.reload();
   }
 
   obtenerTiposSeleccionados(): void {
