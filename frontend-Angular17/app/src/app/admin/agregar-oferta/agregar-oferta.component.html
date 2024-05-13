@@ -14,7 +14,8 @@
             <div class="row">
                 <div class="col">
                     <label for="checkIn">Fecha de Inicio</label>
-                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkIn" name="checkIn" [(ngModel)]="formData.checkIn">
+                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkIn" name="checkIn"
+                        [(ngModel)]="formData.checkIn">
 
 
                     <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
@@ -30,7 +31,8 @@
 
                 <div class="col">
                     <label for="checkOut">Fecha de Fin</label>
-                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkOut" name="checkOut" [(ngModel)]="formData.checkOut">
+                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkOut" name="checkOut"
+                        [(ngModel)]="formData.checkOut">
 
                     <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
                         La Fecha Final es obligatorio
@@ -45,37 +47,41 @@
             </div>
             <div class="row">
                 <div class="col">
-                  <mat-form-field class="example-full-width">
-                    <label for="nombreOferta">Nombre de la Oferta</label>
-                    <textarea matInput placeholder="Día de San Valentín....." id="nombreOferta" name="nombreOferta" [(ngModel)]="formData.nombreOferta"></textarea>
-                  </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <label for="nombreOferta">Nombre de la Oferta</label>
+                        <textarea matInput placeholder="Día de San Valentín....." id="nombreOferta" name="nombreOferta"
+                            [(ngModel)]="formData.nombreOferta"></textarea>
+                    </mat-form-field>
                 </div>
-               <div class="col">
-    <mat-form-field class="example-full-width">
-        <label for="montoDescuento">Monto de descuento</label>
-        <mat-label>Monto de descuento</mat-label>
-        <input matInput type="number" placeholder="30" id="montoDescuento" name="montoDescuento" [(ngModel)]="formData.montoDescuento" (input)="updateMontoDescuento($event)">
-    </mat-form-field>
-</div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <label for="montoDescuento">Monto de descuento</label>
+                        <mat-label>Monto de descuento</mat-label>
+                        <input matInput type="number" placeholder="30" id="montoDescuento" name="montoDescuento"
+                            [(ngModel)]="formData.montoDescuento" (input)="updateMontoDescuento($event)">
+                    </mat-form-field>
+                </div>
 
-                
-              </div>
+
+            </div>
             <div class="row">
                 <label for="TipoDeHabitacion">
-                  <h2>Seleccione a qué tipo de habitación desea asignar</h2>
+                    <h2>Seleccione a qué tipo de habitación desea asignar</h2>
                 </label>
-                
+
                 <ng-container *ngIf="tiposDeHabitaciones && tiposDeHabitaciones.length">
-                  <ng-container *ngTemplateOutlet="habitacionTemplate; context: { $implicit: tiposDeHabitaciones }"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="habitacionTemplate; context: { $implicit: tiposDeHabitaciones }"></ng-container>
                 </ng-container>
-            
+
                 <ng-template #habitacionTemplate let-habitaciones>
-                  <div *ngFor="let tipoHabitacion of habitaciones; let i = index">
-                    <input type="checkbox" [(ngModel)]="tipoHabitacion.check" [value]="tipoHabitacion.id" [name]="tipoHabitacion.id">
-                    {{ tipoHabitacion.Nombre }}
-                  </div>
+                    <div *ngFor="let tipoHabitacion of habitaciones; let i = index">
+                        <input type="checkbox" [(ngModel)]="tipoHabitacion.check" [value]="tipoHabitacion.id"
+                            [name]="tipoHabitacion.id">
+                        {{ tipoHabitacion.Nombre }}
+                    </div>
                 </ng-template>
-              </div>
+            </div>
             <button class="btn btn-primary" type="submit">Crear Oferta</button>
 
 

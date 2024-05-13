@@ -17,7 +17,14 @@ import{TipoHabitacionService} from '../../api/tipo.habitacion.service';
 import { TipoHabitacion } from '../../dominio/TipoHabitacion';
 import { ChangeDetectorRef } from '@angular/core';
 import { Oferta } from '../../dominio/Oferta';
-
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
 @Component({
   selector: 'app-agregar-oferta',
   standalone: true,
@@ -28,7 +35,11 @@ import { Oferta } from '../../dominio/Oferta';
     MatIconModule,
     MatButtonModule,
     MatCardModule,FooterComponent,
-    MatFormFieldModule,MatCheckboxModule],
+    MatFormFieldModule,MatCheckboxModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,],
   templateUrl: './agregar-oferta.component.html',
   styleUrl: './agregar-oferta.component.scss'
 })
@@ -87,7 +98,7 @@ export class AgregarOfertaComponent implements OnInit{
         .filter((tipo: any) => tipo.check); // Filtra solo los tipos de habitaciones que estén seleccionados
 }
 
-  constructor(   private router: Router,private routerA: ActivatedRoute,private readonly serv_TipoHabitacion_: TipoHabitacionService,private readonly changeDetectorRef: ChangeDetectorRef) {
+  constructor(public dialog: MatDialog,   private router: Router,private routerA: ActivatedRoute,private readonly serv_TipoHabitacion_: TipoHabitacionService,private readonly changeDetectorRef: ChangeDetectorRef) {
     //mostrar campos para entradas de forma ordenada
     this.checkInDesactivado = false;
     this.checkOutDesactivado = false;

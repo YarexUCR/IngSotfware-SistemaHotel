@@ -33,6 +33,17 @@ namespace ReglasNegocio
             return await datos.updateOferta(oferta);
         }
 
+
+        public async Task<bool> deleteOferta(int id)
+        {
+            return await datos.deleteOferta(id);
+        }
+
+        public async Task<Oferta> getOferta(int id)
+        {
+            return await datos.getOferta(id);
+        }
+
       
     }
 }

@@ -21,7 +21,7 @@ namespace Nucleo.Controllers
         {
             return await _ofertaReglaDeNegocio.getAllOfertas();
         }
-        /*
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Oferta>> GetOferta(int id)
         {
@@ -35,35 +35,8 @@ namespace Nucleo.Controllers
             return oferta;
            
     }
-         */
-        /*
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOferta(int id, Oferta oferta)
-        {
-            if (id != oferta.Id)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                await _ofertaReglaDeNegocio.updateOferta(oferta);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OfertaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-        */
+         
+  
         [HttpPost]
         public async Task<bool> PostOferta(Oferta oferta)
         {
@@ -71,25 +44,26 @@ namespace Nucleo.Controllers
 
             return await _ofertaReglaDeNegocio.agregarOferta(oferta);
         }
-        /*
+        
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Oferta>> DeleteOferta(int id)
+        public async Task<ActionResult<bool>> DeleteOferta(int id)
         {
-            var oferta = await _ofertaReglaDeNegocio.getOferta(id);
-            if (oferta == null)
+
+
+            return await _ofertaReglaDeNegocio.deleteOferta(id);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<bool>> PutOferta(int id, Oferta oferta)
+        {
+            if (id != oferta.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            await _ofertaReglaDeNegocio.deleteOferta(oferta);
-
-            return oferta;
+            return await _ofertaReglaDeNegocio.updateOferta(oferta);
         }
 
-        private bool OfertaExists(int id)
-        {
-            return _ofertaReglaDeNegocio.getOferta(id) != null;
-        }
-        */
+       
     }
 }

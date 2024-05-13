@@ -11,10 +11,26 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { OfertaService } from '../../api/ofertas.service';
+import { ActalizarOfertaComponent } from '../actalizar-oferta/actalizar-oferta.component';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose
+} from '@angular/material/dialog';
 @Component({
   selector: 'app-lista-ofertas',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatDividerModule, MatIconModule, CommonModule, MatPaginatorModule,MatPaginator,FooterComponent],
+  imports: [MatTableModule, MatButtonModule, MatDividerModule, 
+    MatIconModule, CommonModule, MatPaginatorModule,MatPaginator,
+    FooterComponent,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose],
   templateUrl: './lista-ofertas.component.html',
   styleUrl: './lista-ofertas.component.scss'
 })
@@ -25,7 +41,7 @@ export class ListaOfertasComponent implements OnInit{
   displayedColumns: string[] = ['descripcion', 'inicio', 'fin', 'descuento', 'tipoHabitacions','Editar','eliminar'];
 
 
-  constructor(private router: Router,private routerA: ActivatedRoute,private ofertasService: OfertaService) {
+  constructor(private dialog: MatDialog,private router: Router,private routerA: ActivatedRoute,private ofertasService: OfertaService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -53,7 +69,7 @@ cargarfOfertas(){
     (data) => {
       this.Ofertas = data;
       this.paginacion = this.Ofertas.slice(0, 5);
-    alert("Ofertas cargadas correctamente");
+  
     },
     (error) => {
       console.error(error);
@@ -61,4 +77,28 @@ cargarfOfertas(){
   );
 
 }
+//----funcion para eliminar ofertas'
+
+//----funcion para actualizar ofertas'
+
+openDialogActualizarOferta(idOferta:number): void {
+  const dialogRef  = this.dialog.open(ActalizarOfertaComponent, {
+    data: {id: idOferta},
+  });
 }
+
+deleteOferta(idOferta:number){
+  this.ofertasService.eliminarOferta(idOferta).subscribe(
+    (data) => {
+
+      this.cargarfOfertas();
+    },
+    (error) => {
+      console.error(error);
+    }
+  );}
+
+
+
+
+}//fin de la clase  ListaOfertasComponent
