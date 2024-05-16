@@ -75,6 +75,24 @@
                         <div class="alert alert-danger mt-2" role="alert" *ngIf="mostrarErrorCantidadHabitacion">
                             Es requerido una cantidad de habitaciones
                         </div>
+                        <div class="alert alert-info mt-2" role="alert" *ngIf="this.recomendacionDesactivado">
+                            Catidad de habitaciones disponibles en una semana desde el check out
+                            <table class="table" style="max-width: 100;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <td>Fecha</td>
+                                        <td>Cantidad</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let recomendacion_ of recomendaciones; let i = index">
+                                        <td>{{recomendacion_.fecha}} </td>
+                                        <td>{{recomendacion_.cantidad}}</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
