@@ -11,13 +11,18 @@ import { FormsModule, NgForm, Validators } from '@angular/forms';
 import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { HotelService } from '../api/hotel.service';
-import { differenceInDays, parseISO } from 'date-fns';
+import { differenceInDays, parseISO, addDays, format  } from 'date-fns';
 import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Reserva } from '../dominio/Reserva';
 import { Habitacion, HabitacionesDisponibles } from '../dominio/Habitacion';
 import { TipoHabitacionService } from '../api/tipo.habitacion.service';
 import{ModalComponent} from '../modal/modal.component';
  
+interface Recomendacion{
+  fecha: string,
+  cantidad : number
+}
+
 @Component({
   selector: 'app-reservar',
   standalone: true,
@@ -115,6 +120,8 @@ export class ReservarComponent {
     return;
   }
 
+  
+
   validarRequerido() {
     this.validarCheckIn();
     this.validarCheckOut();
@@ -189,6 +196,7 @@ export class ReservarComponent {
   maximo: number = 0;
   recomendacion: string = '';
   disponibles : HabitacionesDisponibles[]=[];
+  recomendacionDesactivado=false;
   validarCantidad(event: Event) {
 
     this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion).subscribe(data => {
@@ -197,21 +205,30 @@ export class ReservarComponent {
         this.recomendacion = '¡Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles: \n'
         this.service.obtenerCantidadHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut).
           subscribe(data => {
-           this.disponibles = data;
-           this.disponibles.forEach(element => {
-            
-            this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
+           this.disponibles = data;if(this.disponibles.length==0)
+            {
+              this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
+              alert(this.recomendacion);
+            }else{
+              this.disponibles.forEach(element => {
+              
+              this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
+              this.cantidad_habitacionDesactivado=true;
+              this.recomendacionDesactivado=true;  
             });
-            alert(this.recomendacion);
-            this.modalTitle = 'Recomendaciones';
-            this.modalMessage = this.recomendacion;
-            this.showModal = true;
-            this.cantidad_habitacionDesactivado=true;
+              alert(this.recomendacion);
+              this.modalTitle = 'Recomendaciones';
+              this.modalMessage = this.recomendacion;
+              this.showModal = true;
+              this.cantidad_habitacionDesactivado=true;
+              this.recomendacionDesactivado=true;
+            }
+            this.cargarRecomendacion();
           });
         
-
       } else {
         this.cantidad_habitacionDesactivado = false;
+        this.recomendacionDesactivado = false;
         this.minimo = 1;
         this.maximo = data.length;
       }
@@ -220,6 +237,21 @@ export class ReservarComponent {
 
   }
   ////////////////////////////////////////funciones
+  recomendaciones : Recomendacion []=[];
+  cargarRecomendacion(){
+    this.recomendaciones = [];
+    for (let i = 0; i < 7; i++) {
+      const nextDate = addDays(parseISO(this.formData.checkOut), i);
+      const formattedDate = format(nextDate, 'yyyy-MM-dd');
+      let _recomendacion={
+        fecha : formattedDate,
+        cantidad: 7
+      };
+      this.recomendaciones.push(_recomendacion);
+    }
+  }
+
+
   totalReserva: number = 0;
   detelleReserva = '';
   calcular() {
@@ -258,6 +290,10 @@ export class ReservarComponent {
     ) {
       return;
     }
+    if(this.formData.cantidad_habitacion>this.maximo||this.formData.cantidad_habitacion<this.minimo){
+      alert("El maximo de habitaciones disponibles es "+this.maximo+ " y el minimo "+ this.minimo);
+      return;
+    }
 
     this.tiposDeHabitacionElegidos = this.tiposDeHabitacionElegidos.filter(item => item.id != this.formData.tipo_habitacion);
     this.habitaciones = this.habitaciones.filter(item => item.tipo.id != this.formData.tipo_habitacion);
@@ -270,7 +306,6 @@ export class ReservarComponent {
         subscribe(data => {
             this.habitacionesTemporal = data;
             this.habitacionesTemporal = this.habitacionesTemporal.slice(0, tipoActual.cantidad);
-            alert(this.habitacionesTemporal.length);
             this.habitaciones = this.habitaciones.concat(this.habitacionesTemporal);
         });
       }
