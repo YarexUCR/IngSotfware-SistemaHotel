@@ -10,6 +10,8 @@ import { HabitacionesService } from "../../api/Habitaciones.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import {HabiacionesConsulta} from "../../dominio/HabiacionesConsulta";
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import jsPDF from 'jspdf'; // Import the 'jsPDF' library
+import 'jspdf-autotable';
 @Component({
     selector: 'app-ver-estado-hotel-hoy',
     standalone: true,
@@ -23,7 +25,7 @@ export class VerEstadoHotelHoyComponent implements OnInit {
   token: string | null;//token de session
   habitacionesPaginadas: HabiacionesConsulta[] = [];
   displayedColumns: string[] = ['Numero', 'TipoHabitacion', 'Disponible'];
-
+  
   cargarHabitacionesPaginadas(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
     const endIndex = startIndex + event.pageSize;
@@ -37,8 +39,11 @@ export class VerEstadoHotelHoyComponent implements OnInit {
       this.token = null;
     }
   }
+  logoBase64: string | undefined;
+
   ngOnInit(): void{
     this.obtenerHora();
+    this.loadImage();
     //verificar autenticacion
     if (this.token == null) {
       this.router.navigate(['/login']);
@@ -70,7 +75,6 @@ obtenerHora(){
         this.habitaciones = [];
         this.habitacionesPaginadas = [];
       }
-      console.log(this.habitaciones);
     });
   })
   .catch(error => {
@@ -78,4 +82,125 @@ obtenerHora(){
   });
 
 }
+
+
+
+
+
+/////PDF
+
+
+
+loadImage(): void {
+  const img = new Image();
+  img.src = 'assets/logoPalm.png';
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(img, 0, 0);
+      this.logoBase64 = canvas.toDataURL('image/png');
+    } else {
+      console.error('Error getting canvas context.');
+    }
+  };
+  img.onerror = (error) => {
+    console.error('Error loading image: ', error);
+  };
 }
+
+generarPDF(): void {
+  if (!this.logoBase64) {
+    console.error('Image not loaded yet.');
+    return;
+  }
+
+  const doc = new jsPDF('p', 'pt', 'a4');
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+
+  const drawHeader = () => {
+
+
+    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    doc.setLineWidth(4); // Ancho del borde
+    doc.rect(2, 2, pageWidth - 4, 75);
+
+    // Dibujar el rectángulo azul oscuro
+    doc.setFillColor(0, 24, 64);
+    doc.rect(4, 4, pageWidth - 8, 71, 'F');
+
+    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    doc.setLineWidth(4); // Ancho del borde
+    doc.rect(20, 78, pageWidth-40, pageHeight - 100);
+    // Encabezado
+   // doc.setFillColor(0, 24, 64);
+   // doc.rect(0, 0, pageWidth, 50, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.text('REPORTE', 60, 30);
+    doc.text('ESTADO DEL HOTEL HOY', pageWidth - 300, 30);
+
+    // Añadir imagen
+    if (this.logoBase64) {
+      const imgWidth = 40;
+      const imgHeight = 40;
+      doc.addImage(this.logoBase64, 'PNG', 10, 5, imgWidth, imgHeight);
+    }
+  };
+
+  drawHeader();
+
+  // Fecha del reporte
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text(`Fecha: ${this.check}`, 350, 69);
+
+  // Datos de la tabla
+  const columns = ['Número de Habitación', 'Tipo de Habitacion', 'Activo'];
+  const filas = this.habitaciones.map(habitacion => [
+    habitacion.numero,
+    habitacion.tipo.nombre,
+    habitacion.activo ? 'Disponible' : 'Ocupando'
+]);
+
+(doc as any).autoTable({
+  headStyles: {
+    fillColor: [0, 24, 64], // Color de fondo del encabezado en formato RGB
+    textColor: [255, 255, 255], // Color de texto del encabezado en formato RGB
+    fontStyle: 'bold', // Estilo de fuente del encabezado (opcional)
+  },
+  startY: 100, // Ajustar esta propiedad si es necesario para posicionar la tabla correctamente
+  head: [columns],
+  body: filas,
+  didDrawCell: (data:any) => {
+    if (data.column.index === 2 && data.row.index>=0 && data.section === 'body') { // Comprueba si la celda es de la columna "Activo"
+      const activo = data.cell.raw;
+      if (activo === 'Disponible') {
+        doc.addImage('assets/iconos/ck_circle - Copy.png', data.cell.x-20 , data.cell.y+5 , 15, 15);
+      } else {
+        doc.addImage('assets/iconos/cancel - Copy.png', data.cell.x-20 , data.cell.y+5  , 15, 15);
+      }
+    }
+  },
+  styles: {
+    fontSize: 17 // Cambia el tamaño de letra de toda la tabla
+  }
+});
+
+  doc.save('reporte_estado_hotel_hoy.pdf');
+}
+
+
+}
+
+
+
+
+
+function autoTable(doc: jsPDF, arg1: { head: string[][]; body: string[][]; startY: number; theme: string; styles: { fontSize: number; cellPadding: number; }; headStyles: { fillColor: number[]; textColor: number[]; }; didDrawPage: (data: any) => void; }) {
+  throw new Error('Function not implemented.');
+}
+
