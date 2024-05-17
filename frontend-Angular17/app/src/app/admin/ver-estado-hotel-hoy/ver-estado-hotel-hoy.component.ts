@@ -160,7 +160,7 @@ generarPDF(): void {
 
   doc.setTextColor(0, 24, 64);
   doc.setFontSize(12);
-  doc.text(`Copyright©Hotel Palm 2024`, 250, pageHeight-10);
+  doc.text(`Copyright © HotelPalm 2024`, 250, pageHeight-10);
 
   
 
@@ -193,6 +193,14 @@ generarPDF(): void {
   },
   styles: {
     fontSize: 17 // Cambia el tamaño de letra de toda la tabla
+  },didDrawPage: (data: any) => {
+    // Verifica si la tabla se ha extendido más allá de los límites de la página actual
+    if (data.startY === false) {
+      // Agrega una nueva página antes de dibujar la siguiente parte de la tabla
+      doc.addPage();
+      // Ajusta startY para comenzar desde la parte superior de la nueva página
+      data.startY = 50; // Ajusta este valor según sea necesario
+    }
   }
 });
 doc.addImage('assets/iconos/Fondo.png', 45 , 150 , 500, 500);
@@ -206,7 +214,4 @@ doc.addImage('assets/iconos/Fondo.png', 45 , 150 , 500, 500);
 
 
 
-function autoTable(doc: jsPDF, arg1: { head: string[][]; body: string[][]; startY: number; theme: string; styles: { fontSize: number; cellPadding: number; }; headStyles: { fillColor: number[]; textColor: number[]; }; didDrawPage: (data: any) => void; }) {
-  throw new Error('Function not implemented.');
-}
 
