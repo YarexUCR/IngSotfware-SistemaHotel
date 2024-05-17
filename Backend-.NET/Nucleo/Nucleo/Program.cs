@@ -12,6 +12,7 @@ builder.Services.AddScoped<TipoDeHabitacionReglasNegocio>();
 builder.Services.AddScoped<HabitacionReglasNegocio>();
 builder.Services.AddScoped<OfertaReglaDeNegocio, OfertaReglaDeNegocio>();
 builder.Services.AddScoped<OfertaDatos>();
+builder.Services.AddScoped<ReservaReglasNegocio, ReservaReglasNegocio>();
 
 
 // Configure CORS para ser consumido por la capa de interfaz grafica de angular
