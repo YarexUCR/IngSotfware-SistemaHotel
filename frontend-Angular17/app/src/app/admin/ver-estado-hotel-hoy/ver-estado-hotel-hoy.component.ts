@@ -116,11 +116,11 @@ generarPDF(): void {
     console.error('Image not loaded yet.');
     return;
   }
-
+    
   const doc = new jsPDF('p', 'pt', 'a4');
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-
+ 
   const drawHeader = () => {
 
 
@@ -158,6 +158,12 @@ generarPDF(): void {
   doc.setFontSize(20);
   doc.text(`Fecha: ${this.check}`, 350, 69);
 
+  doc.setTextColor(0, 24, 64);
+  doc.setFontSize(12);
+  doc.text(`Copyright©Hotel Palm 2024`, 250, pageHeight-10);
+
+  
+
   // Datos de la tabla
   const columns = ['Número de Habitación', 'Tipo de Habitacion', 'Activo'];
   const filas = this.habitaciones.map(habitacion => [
@@ -189,7 +195,7 @@ generarPDF(): void {
     fontSize: 17 // Cambia el tamaño de letra de toda la tabla
   }
 });
-
+doc.addImage('assets/iconos/Fondo.png', 45 , 150 , 500, 500);
   doc.save('reporte_estado_hotel_hoy.pdf');
 }
 
