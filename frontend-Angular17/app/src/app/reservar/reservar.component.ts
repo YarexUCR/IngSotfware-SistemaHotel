@@ -205,7 +205,8 @@ export class ReservarComponent {
         this.recomendacion = '¡Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles: \n'
         this.service.obtenerCantidadHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut).
           subscribe(data => {
-           this.disponibles = data;if(this.disponibles.length==0)
+           this.disponibles = data;
+           if(this.disponibles.length==0)
             {
               this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
               alert(this.recomendacion);
@@ -238,16 +239,24 @@ export class ReservarComponent {
   }
   ////////////////////////////////////////funciones
   recomendaciones : Recomendacion []=[];
+  recomendacionesTemporal : Recomendacion []=[];
+  cargando : boolean =false;
   cargarRecomendacion(){
     this.recomendaciones = [];
     for (let i = 0; i < 7; i++) {
       const nextDate = addDays(parseISO(this.formData.checkOut), i);
       const formattedDate = format(nextDate, 'yyyy-MM-dd');
-      let _recomendacion={
-        fecha : formattedDate,
-        cantidad: 7
-      };
-      this.recomendaciones.push(_recomendacion);
+      const cantidad = 0;
+      this.service.obtenerCantidadHabitacionesDisponiblesPorDiaTipo(this.formData.tipo_habitacion, formattedDate).subscribe
+        (data=>{
+          let _recomendacion={
+            fecha : formattedDate,
+            cantidad: data
+          };
+          this.recomendaciones.push(_recomendacion);
+          this.recomendaciones.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+      });
+      
     }
   }
 
