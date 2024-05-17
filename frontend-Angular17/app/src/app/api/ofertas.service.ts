@@ -25,5 +25,11 @@ export class OfertaService {
     getOferta(id: number): Observable<Oferta> {
       return this.http.get<Oferta>(`${this.apiUrl}/api/Oferta/${id}`);
     }
+    actualizarOferta(id: number, oferta: Oferta): Observable<boolean> {
+ 
+            return this.http.put<boolean>(`${this.apiUrl}/api/Oferta/${id}`, oferta);
+    }
+   
+    
     
   }

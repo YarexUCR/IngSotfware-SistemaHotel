@@ -17,6 +17,7 @@ import{TipoHabitacionService} from '../../api/tipo.habitacion.service';
 import { TipoHabitacion } from '../../dominio/TipoHabitacion';
 import { ChangeDetectorRef } from '@angular/core';
 import { Oferta } from '../../dominio/Oferta';
+import { OfertaService } from '../../api/ofertas.service';
 import {
   MatDialog,
   MatDialogRef,
@@ -49,12 +50,12 @@ import {
 
 
 export class AgregarOfertaComponent implements OnInit{
-  token: string | null;//token de session
+
   formData: any = {
     checkIn: '',
     checkOut: '',
     montoDescuento:  0,
-    nombreOferta: '',
+    descripcion: '',
     // Otros campos necesarios
   };
   checkOutDesactivado : boolean;
@@ -67,23 +68,9 @@ export class AgregarOfertaComponent implements OnInit{
     this.formData.montoDescuento = event.target.value;
   }
   
-  agregarOferta(){
-    this.obtenerTiposSeleccionados();
-  alert(this.formData.montoDescuento)
-
-    const nuevaOferta: Oferta = {
-      id: 0, // Esto puede variar dependiendo de cómo maneje la API la generación de IDs
-      inicio: this.formData.checkIn, // Ajusta la fecha de inicio según sea necesario
-      fin: this.formData.checkOut, // Ajusta la fecha de fin según sea necesario
-      descuento: Number(this.formData.montoDescuento),
-      descripcion: this.formData.nombreOferta,
-      tipoHabitacions: this.tiposSeleccionados // Puedes llenar esto con los tipos de habitación seleccionados
-    };
-    console.log(nuevaOferta);
-   
-    this.reiniciarFormulario();
-
-
+ 
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   reiniciarFormulario() {
@@ -98,29 +85,61 @@ export class AgregarOfertaComponent implements OnInit{
         .filter((tipo: any) => tipo.check); // Filtra solo los tipos de habitaciones que estén seleccionados
 }
 
-  constructor(public dialog: MatDialog,   private router: Router,private routerA: ActivatedRoute,private readonly serv_TipoHabitacion_: TipoHabitacionService,private readonly changeDetectorRef: ChangeDetectorRef) {
+  constructor(public dialog: MatDialog, 
+      private router: Router,
+      private routerA: ActivatedRoute,
+      private readonly serv_TipoHabitacion_: TipoHabitacionService,
+      public readonly changeDetectorRef: ChangeDetectorRef,
+      public dialogRef: MatDialogRef<Oferta>,
+      private serv_Oferta_: OfertaService
+    ) {
+
     //mostrar campos para entradas de forma ordenada
     this.checkInDesactivado = false;
     this.checkOutDesactivado = false;
     this.cantidad_habitacionDesactivado =true;
  
     //para resguardar ruta
-    if (typeof localStorage !== 'undefined') {
-      this.token = localStorage.getItem('token');
-    } else {
-      this.token = null;
-    }
+    
    
     
+  }
+
+   agregarOferta(){
+    this.obtenerTiposSeleccionados();
+
+
+    const nuevaOferta: Oferta = {
+      id: 0, // Esto puede variar dependiendo de cómo maneje la API la generación de IDs
+      inicio: this.formData.checkIn, // Ajusta la fecha de inicio según sea necesario
+      fin: this.formData.checkOut, // Ajusta la fecha de fin según sea necesario
+      descuento: Number(this.formData.montoDescuento),
+      nombre: this.formData.descripcion,
+      tipoHabitacions: this.tiposSeleccionados // Puedes llenar esto con los tipos de habitación seleccionados
+    };
+   
+     this.serv_Oferta_.insertarOferta(nuevaOferta).subscribe(
+      (data: boolean) => {
+        if (data) {
+        
+          this.dialogRef.close();
+        }
+      },
+      (error: any) => {
+        console.error(error);
+       
+      }
+     );
+    
+ 
+
   }
 
   ngOnInit(): void{
     this.obtenerTipoHabitacion();
 
     //verificar autenticacion
-    if (this.token == null) {
-      this.router.navigate(['/login']);
-    }
+    
   }
   mensajeError = '';
   mostrarError = false;

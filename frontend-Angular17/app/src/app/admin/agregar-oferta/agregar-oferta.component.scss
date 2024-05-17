@@ -10,3 +10,21 @@
 
 
   
+  input[type="checkbox"] {
+    border-color: black;
+}
+
+/* Cambiar el color de fondo del checkbox cuando está seleccionado */
+input[type="checkbox"]:checked {
+
+    border-color: black;
+}
+
+/* Cambiar el color del indicador (tick) del checkbox cuando está seleccionado */
+input[type="checkbox"]:checked::before {
+    border-color: white;
+}
+
+label {
+  color: #001840;
+    }

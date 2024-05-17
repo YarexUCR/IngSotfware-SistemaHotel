@@ -61,32 +61,31 @@ namespace Datos
         }
 
 
-       public async Task<Oferta> getOferta(int id)
+        public async Task<Oferta> getOferta(int id)
         {
             Oferta oferta = new Oferta();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand command = new SqlCommand("SeleccionarOferta", connection))
+                using (SqlCommand command = new SqlCommand("SeleccionarOfertaPorId", connection))
                 {
-
-
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = await command.ExecuteReaderAsync();
 
                     while (reader.Read())
                     {
                         List<TipoHabitacion> tipoHabitacion = new List<TipoHabitacion>();
 
                         oferta.Id = Convert.ToInt32(reader["id"]);
-                            oferta.Nombre = Convert.ToString(reader["descripcion"]);
+                        oferta.Nombre = Convert.ToString(reader["descripcion"]);
                         oferta.Descuento = Convert.ToInt32(reader["descuento"]);
                         oferta.Inicio = Convert.ToDateTime(reader["inicio"]);
                         oferta.Fin = Convert.ToDateTime(reader["fin"]);
 
-
                         tipoHabitacion = await getTipoDeHabitcion(oferta.Id);
                         oferta.TipoHabitacions = tipoHabitacion;
-                       
                     }
 
                     reader.Close();
@@ -96,7 +95,8 @@ namespace Datos
             return oferta;
         }
 
-         async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id)
+
+        async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id)
         {
 
             List<TipoHabitacion> tipoHabitaciones = new List<TipoHabitacion>();
@@ -172,7 +172,7 @@ namespace Datos
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agrega los parámetros al procedimiento almacenado
-                    command.Parameters.AddWithValue("@id", oferta.Id);
+                    command.Parameters.AddWithValue("@ofertaId", oferta.Id);
                     command.Parameters.AddWithValue("@inicio", oferta.Inicio);
                     command.Parameters.AddWithValue("@fin", oferta.Fin);
                     command.Parameters.AddWithValue("@descripcion", oferta.Nombre);
