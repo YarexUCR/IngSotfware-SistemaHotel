@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Dominio;
+using Microsoft.Extensions.Configuration;
 
 namespace ReglasNegocio
 {
@@ -12,18 +13,13 @@ namespace ReglasNegocio
     {
         private ReservaDatos datos;
 
-        public ReservaReglasNegocio()
+        public ReservaReglasNegocio(IConfiguration configuration)
         {
-            datos = new ReservaDatos();
+            datos = new ReservaDatos(configuration);
         }
 
-        public List<Reserva> obtenerReservas() { 
-            return this.datos.obtenerReservas();
-        }
-
-        public bool agregarReserva(Reserva reserva) 
-        {
-            return this.datos.agregarReserva(reserva);
+        public bool InsertarReserva(Reserva reserva) {
+            return this.datos.InsertarReserva(reserva);
         }
     }
 }

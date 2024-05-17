@@ -4,24 +4,26 @@
         <div class="container">
             <div *ngIf="reserva">
                 <a href="\reservar">Volver</a>
-                <div *ngFor="let habitacion of reserva.habitaciones">
+                <div *ngFor="let tipo of tipos">
                     <h2>Habitacion disponible</h2>
                     <div class="row">
                         <div class="col-md-5">
                             <p>
-                                <img style="max-width: 100%;margin-right: 20px;" [src]="habitacion.tipo.imagen"
+                                <img style="max-width: 100%;margin-right: 20px;" [src]="tipo.imagen"
                                     align="left">
                             <p>
                         </div>
                         <div class="col-md-7">
                             <p>
-                            <h3>Habitacion {{habitacion.tipo.nombre}}</h3>
+                            <h3>Habitacion {{tipo.nombre}}</h3>
                             <br>
-                            {{habitacion.tipo.descripcion}}
+                            {{tipo.descripcion}}
                             <br>
                             <br>
-                            Numero de habitacion {{habitacion.numero}}
-                            
+                            <h4>Numero de habitacion</h4>
+                            <p *ngFor="let habitacion of obtenerHabitacionesPorTipo(tipo.id)">
+                                {{habitacion.numero}}
+                            </p>
                             <p>
                         </div>
                     </div>

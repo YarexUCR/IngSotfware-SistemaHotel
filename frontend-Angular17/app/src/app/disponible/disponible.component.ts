@@ -12,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva } from '../dominio/Reserva'; // Importa la interfaz Reserva
 import { ReservaService } from '../api/reserva.service';
 import { FormsModule } from '@angular/forms';
+import { TipoHabitacion } from '../dominio/TipoHabitacion';
+import { Habitacion } from '../dominio/Habitacion';
 
 
 
@@ -45,6 +47,20 @@ export class DisponibleComponent {
     }
   }
 
+  tipos : TipoHabitacion []=[];
+
+  obtenerTipos(){
+    this.reserva?.habitaciones.forEach(habitacion=>{
+    const tipoExistente = this.tipos.find(tipo => tipo.id === habitacion.tipo.id);
+    if (!tipoExistente) {
+      this.tipos.push(habitacion.tipo);
+      alert(habitacion.tipo.nombre);
+    }
+    });
+  }
+  obtenerHabitacionesPorTipo(id:number){
+    return  this.reserva?.habitaciones.filter(habitacion => habitacion.tipo.id === id);
+  }
   ngOnInit(): void {
     //verificar autenticacion
     if (this.token != null) {
@@ -54,7 +70,7 @@ export class DisponibleComponent {
       this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro
       
     });
-    
+    this.obtenerTipos();
   }
 
   renderPaypalButton() {
