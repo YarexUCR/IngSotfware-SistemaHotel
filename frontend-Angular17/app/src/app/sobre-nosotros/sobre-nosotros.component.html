@@ -5,26 +5,28 @@
         <div class="container">
             <div class="row">
 
-                    <p>Desde nuestra apertura en 2002, el Hotel La Palma ha sido un destino de ensueño para aquellos
-                        que buscan la combinación perfecta de relajación y aventura junto al mar. Fundado por una
-                        familia local comprometida con la preservación del medio ambiente y la hospitalidad
-                        auténtica, hemos creado un espacio donde los viajeros pueden reconectar con la naturaleza y
-                        disfrutar de la vida costarricense en su máxima expresión. Somos un Hotel de playa familiar
-                    </p>
-                    <div class="card">
-                        <p-galleria [value]="images" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions"
-                            [circular]="true" [numVisible]="5">
-                            <ng-template pTemplate="item" let-item>
-                                <img class="imgPrincipal" [src]="item.itemImageSrc"
-                                    style="height: 100%; display: block;" />
-                            </ng-template>
-                            <ng-template pTemplate="thumbnail" let-item>
-                                <div class="grid grid-nogutter justify-content-center">
-                                    <img class="imgSecundaria" [src]="item.thumbnailImageSrc" style="display: block;" />
-                                </div>
-                            </ng-template>
-                        </p-galleria>
-                    </div>
+                <p>Desde nuestra apertura en 2002, el Hotel La Palma ha sido un destino de ensueño para aquellos
+                    que buscan la combinación perfecta de relajación y aventura junto al mar. Fundado por una
+                    familia local comprometida con la preservación del medio ambiente y la hospitalidad
+                    auténtica, hemos creado un espacio donde los viajeros pueden reconectar con la naturaleza y
+                    disfrutar de la vida costarricense en su máxima expresión. Somos un Hotel de playa familiar
+                </p>
+                <div class="card">
+                    <p-galleria [value]="images" [showItemNavigators]="true" [circular]="true" [numVisible]="5"
+                        [containerStyle]="{ 'max-width': '640px' }">
+                        <ng-template pTemplate="item" let-item>
+                            <img class="imgPrincipal" [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+                        </ng-template>
+                        <ng-template pTemplate="thumbnail" let-item>
+                            <div class="grid grid-nogutter justify-content-center">
+                                <img class="imgSecundaria" [src]="item.thumbnailImageSrc" style="display: block;" />
+                            </div>
+                        </ng-template>
+                    </p-galleria>
+
+                </div>
+
+
 
             </div>
         </div>

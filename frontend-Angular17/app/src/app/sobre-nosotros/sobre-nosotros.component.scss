@@ -2,22 +2,12 @@
   margin: 20px;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-.dashboard-card-content {
-  text-align: center;
+.galleria-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; /* Para centrar el texto dentro del contenido */
 }
 
 
@@ -31,7 +21,62 @@ img {
   height: 100px;
 }
 
-.row {
-  height: 100%;
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px; /* Puedes mantener este margen si lo deseas */
+  text-align: center; /* Alinea el texto al centro si es necesario */
+}
+
+
+
+.p-galleria-thumbnail-next {
+  background-color: transparent;
+  background-image: none;
+  border: none; /* Opcional: elimina cualquier borde si lo hay */
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  background-color: rgb(234, 242, 255);
+}
+
+
+::ng-deep .p-galleria .p-galleria-item-next,
+::ng-deep .p-galleria .p-galleria-item-prev,
+::ng-deep .p-galleria .p-galleria-thumbnail-next,
+::ng-deep .p-galleria .p-galleria-thumbnail-prev {
+    background-color: transparent;
+    border: none;
+    // Otros estilos que desees aplicar
+    
+    // Estilos para el efecto de hover
+    transition: background-color 0.3s ease; // Añade transición suave
+}
+
+::ng-deep .p-galleria .p-galleria-item-next:hover,
+::ng-deep .p-galleria .p-galleria-item-prev:hover,
+::ng-deep .p-galleria .p-galleria-thumbnail-next:hover,
+::ng-deep .p-galleria .p-galleria-thumbnail-prev:hover {
+    background-color: rgba(255, 255, 255, 0.5); // Fondo semi-transparente blanco
+}
+
+::ng-deep .p-galleria .p-galleria-thumbnail-next-icon,
+::ng-deep .p-galleria .p-galleria-thumbnail-prev-icon {
+    fill: #fff9f9; // Cambia el color del icono, si es necesario
+    // Otros estilos que desees aplicar
+}
+
+
+::ng-deep .p-galleria .p-galleria-item-next-icon,
+::ng-deep .p-galleria .p-galleria-item-prev-icon
+ {
+    fill: #fbfbfb; // Cambia el color del icono, si es necesario
+    // Otros estilos que desees aplicar
 }
 
