@@ -42,7 +42,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aquamarine
+ 
+  background-color: rgb(234, 242, 255);
 }
 
 
@@ -67,7 +68,7 @@ img {
 
 ::ng-deep .p-galleria .p-galleria-thumbnail-next-icon,
 ::ng-deep .p-galleria .p-galleria-thumbnail-prev-icon {
-    fill: #000; // Cambia el color del icono, si es necesario
+    fill: #fff9f9; // Cambia el color del icono, si es necesario
     // Otros estilos que desees aplicar
 }
 

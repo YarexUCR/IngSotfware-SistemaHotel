@@ -11,6 +11,20 @@ import { FooterComponent } from '../footer/footer.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { GalleriaResponsiveOptions } from 'primeng/galleria';
 import { Router } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
+import { CloudinaryService } from '../api/CloudinaryService';
+export const environment = {
+  production: false,
+  cloudinary: {
+    cloudName: 'dw2xzcpf7',
+    apiKey: '344191312322118',
+    apiSecret: 'v5SCZED9ZJaiX3p4VGESbsSFKA8'
+  }
+};
+
+
+
+
 
 @Component({
   selector: 'app-sobre-nosotros',
@@ -28,11 +42,11 @@ import { Router } from "@angular/router";
   templateUrl: './sobre-nosotros.component.html',
   styleUrls: ['./sobre-nosotros.component.scss'] // Corregido 'styleUrls'
 })
-export class SobreNosotrosComponent  {
+export class SobreNosotrosComponent {
 
   token: string | null;//token de session
-
-  constructor(private router: Router) {
+  images: any[] = [];
+  constructor(private router: Router, private http: HttpClient, public cloudinaryService: CloudinaryService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -44,54 +58,20 @@ export class SobreNosotrosComponent  {
     //verificar autenticacion
     if (this.token != null) {
       this.router.navigate(['/admin/home']);
-      
+
+    } else {
+
+      this.cloudinaryService.getCloudinaryImages().subscribe(data => {
+        alert(JSON.stringify(data));
+        this.images = data.resources.map((resource: any) => ({
+          itemImageSrc: resource.url,
+          thumbnailImageSrc: resource.url // Usamos la misma URL como miniatura por simplicidad
+        }));
+        alert(JSON.stringify(data.resources));
+      });
+
     }
   }
 
-  images: any[] = [
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel1.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel1.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel2.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel2.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel3.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel3.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel4.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel4.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel5.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel5.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel6.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel6.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel7.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel7.jpg'
-    }
-  ];
-  responsiveOptions: GalleriaResponsiveOptions[] = [
-    {
-      breakpoint: '1024px',
-      numVisible: 3
-    },
-    {
-      breakpoint: '768px',
-      numVisible: 2
-    },
-    {
-      breakpoint: '560px',
-      numVisible: 1
-    }
-  
-  ];
+}
 
-} 
