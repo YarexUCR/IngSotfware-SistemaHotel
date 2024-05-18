@@ -212,5 +212,64 @@ namespace Datos
             return tipoHabitacion;
         }
 
+        public List<Habitacion> ObtenerTodasHabitaciones()
+        {
+            List<Habitacion> habitacionesDisponibles = new List<Habitacion>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerTodasHabitaciones", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Habitacion habitacion = new Habitacion
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Numero = Convert.ToInt32(reader["numero"]),
+                            Activo = Convert.ToBoolean(reader["activo"])
+                            // Mapea otros campos según tu estructura de datos
+                        };
+                        habitacion.tipo = this.ObtenerTipoHabitacionPorId(Convert.ToInt32(reader["tipoHabitacionId"]));
+                        habitacionesDisponibles.Add(habitacion);
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return habitacionesDisponibles;
+        }
+
+        public bool ActualizarTipoHabitacion(TipoHabitacion tipo)
+        {
+            bool cambiosRealizados = false;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ActualizarTipoHabitacion", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@id", tipo.Id);
+                    command.Parameters.AddWithValue("@descripcion", tipo.Descripcion);
+                    command.Parameters.AddWithValue("@precio", tipo.Precio);
+                    command.Parameters.AddWithValue("@imagen", tipo.Imagen);
+                    command.Parameters.AddWithValue("@nombre", tipo.Nombre);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    cambiosRealizados = rowsAffected > 0;
+
+                }
+            }
+            return cambiosRealizados;
+        }
+
     }
 }

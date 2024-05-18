@@ -3,6 +3,26 @@
     <div class="container">
            <div class="row">
                  <h1 class="mat-h1">Administrar Habitaciones</h1>
+                 <div *ngFor="let tipo of tipos">
+                    <h2>{{ tipo.nombre }}  <a class="custom-link" (click)="cargarTipo(tipo.id)">cambiar descripción</a></h2>
+                    <table class="table" style="max-width: 100;">
+                        <thead class="table-light">
+                            <tr>
+                                <td>Numero de Habitacion</td>
+                                <td>Estado</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let habitacion of obtenerHabitacionesPorTipo(tipo.id)">
+                                <td>{{habitacion.numero}} </td>
+                                <td>
+                                <input type="checkbox" checked="{{habitacion.activo}}">
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
            </div>
        </div> 
        
