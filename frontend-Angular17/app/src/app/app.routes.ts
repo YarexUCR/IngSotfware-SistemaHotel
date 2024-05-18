@@ -20,6 +20,8 @@ import { ConsultarDisponibilidadHabitacionesComponent } from "./admin/consultar-
 import { PublicidadAdminComponent } from "./admin/publicidad-admin/publicidad-admin.component";
 
 import { ReservacionRealizadaComponent } from "./reservacion-realizada/reservacion-realizada.component";
+import { Component } from "@angular/core";
+import { CargarTipoHabitacionComponent } from "./admin/cargar-tipo-habitacion/cargar-tipo-habitacion.component";
 
 export const routes : Routes =[
     {path: "admin/modificarPaginas", component : ModificarPaginasComponent},
@@ -39,7 +41,7 @@ export const routes : Routes =[
     {path: "tarifas", component : TarifasComponent},
     {path: "admin/home", component : HomeComponent},
     {path: "admin/listaOferta", component : ListaOfertasComponent},
-
+    {path: "admin/cargarTipoHabitacion", component: CargarTipoHabitacionComponent},
     {path: "reserva-realizada", component: ReservacionRealizadaComponent},
 
     { path: '**', component: InicioComponent }

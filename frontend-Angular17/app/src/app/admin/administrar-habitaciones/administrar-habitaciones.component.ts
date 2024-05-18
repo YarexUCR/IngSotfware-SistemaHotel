@@ -43,7 +43,9 @@ export class AdministrarHabitacionesComponent {
     return  this.habitaciones.filter(habitacion => habitacion.tipo.id === id);
   }
 
+  
   cargarTipo(id:number){
-    alert(id);
+    
+    this.router.navigate(['admin/cargarTipoHabitacion'], { queryParams: { tipo: JSON.stringify(this.tipos.find(tipo => tipo.id===id)) } });
   }
 }

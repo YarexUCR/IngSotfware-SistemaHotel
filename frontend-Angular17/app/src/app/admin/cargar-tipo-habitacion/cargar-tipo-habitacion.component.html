@@ -1,0 +1,53 @@
+<div class="grid-container">
+
+    <div class="container">
+        <div class="row">
+            <h1>Modificar Habitacion</h1>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="">{{tipo?.nombre}}</label>
+                </div>
+
+                <div class="col">
+                    <label for="precio">Tarifa Diaria</label>
+                    <input type="number" class="form-control" id="precio" name="precio" value="{{tipo?.precio}}" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="descripcion">Descripcion</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="5">
+                    {{tipo?.descripcion}}
+                </textarea>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label>Imagen actual</label>
+                    <img style="max-width: 80%;margin-right: 20px;" [src]="tipo?.imagen"
+                                    align="left">
+                </div>
+                <div class="col mb-3">
+                    <label for="imagen">Subir nueva imagen</label>
+                    <input class="form-control" type="file" id="imagen" name="imagen" value="{{tipo?.imagen}}">
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <button type="submit" class="btn btn-sm"
+                    style="background-color: #001840; 
+                    color: #fffdf0; float: right;">
+                    Aceptar
+                </button>
+            </div>
+            <div class="col-4">
+                <button type="submit" class="btn btn-sm"
+                    style="background-color: #001840; 
+                    color: #fffdf0; float: right;">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
