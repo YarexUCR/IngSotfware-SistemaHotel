@@ -19,3 +19,9 @@
   .dashboard-card-content {
     text-align: center;
   }
+
+  .custom-link {
+    color: blue; /* Color azul */
+    text-decoration: underline; /* Subrayado */
+    cursor: pointer; /* Cambio de cursor al pasar el mouse */
+}

@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { TipoHabitacionService } from '../../api/tipo.habitacion.service';
 import { TipoHabitacion } from '../../dominio/TipoHabitacion';
 import { Habitacion } from '../../dominio/Habitacion';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-administrar-habitaciones',
     standalone: true,
     templateUrl: './administrar-habitaciones.component.html',
     styleUrl: './administrar-habitaciones.component.scss',
-    imports: [FooterComponent]
+    imports: [FooterComponent,CommonModule]
 })
 export class AdministrarHabitacionesComponent {
   token: string | null;//token de session
@@ -40,5 +41,9 @@ export class AdministrarHabitacionesComponent {
 
   obtenerHabitacionesPorTipo(id:number){
     return  this.habitaciones.filter(habitacion => habitacion.tipo.id === id);
+  }
+
+  cargarTipo(id:number){
+    alert(id);
   }
 }
