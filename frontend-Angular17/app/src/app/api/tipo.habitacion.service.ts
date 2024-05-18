@@ -30,4 +30,8 @@ export class TipoHabitacionService {
   obtenerCantidadHabitacionesDisponiblesPorDiaTipo(tipo:number, fecha:string):Observable<number>{
     return this._http.get<number>('https://localhost:7200/TipoHabitacion/ObtenerCantidadHabitacionesDisponiblesPorDiaTipo?fecha='+fecha+'&tipoHabitacionId='+tipo);
   }
+
+  obtenerTodasHabitaciones():Observable<Habitacion[]>{
+    return this._http.get<Habitacion[]>('https://localhost:7200/TipoHabitacion/ObtenerTodasHabitaciones');
+  }
 }

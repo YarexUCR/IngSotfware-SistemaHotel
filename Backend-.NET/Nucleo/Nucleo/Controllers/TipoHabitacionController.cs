@@ -40,5 +40,10 @@ namespace Nucleo.Controllers
         {
             return Ok(_reglasNegocio.ObtenerTodasHabitacionesDisponiblesParaReserva(checkIn,checkOut));
         }
+
+        [HttpGet("ObtenerTodasHabitaciones")]
+        public IActionResult ObtenerTodasHabitaciones() {
+            return Ok(_reglasNegocio.ObtenerTodasHabitaciones());
+        }
     }
 }
