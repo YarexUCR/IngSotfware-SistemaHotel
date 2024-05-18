@@ -18,7 +18,7 @@ namespace ReglasNegocio
             datos = new ReservaDatos(configuration);
         }
 
-        public bool InsertarReserva(Reserva reserva) {
+        public int InsertarReserva(Reserva reserva) {
             return this.datos.InsertarReserva(reserva);
         }
     }

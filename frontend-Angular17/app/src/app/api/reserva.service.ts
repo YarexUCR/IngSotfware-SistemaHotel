@@ -11,7 +11,7 @@ export class ReservaService {
     constructor(private http: HttpClient) { }
   
     // Método para insertar una reserva
-    insertarReserva(nuevaReserva: Reserva): Observable<string> {
-          return this.http.post<any>(`${this.apiUrl}/Reserva`, nuevaReserva);
+    insertarReserva(nuevaReserva: Reserva): Observable<number> {
+          return this.http.post<number>(`${this.apiUrl}/Reserva`, nuevaReserva);
     }
   }

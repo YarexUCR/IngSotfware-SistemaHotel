@@ -54,7 +54,6 @@ export class DisponibleComponent {
     const tipoExistente = this.tipos.find(tipo => tipo.id === habitacion.tipo.id);
     if (!tipoExistente) {
       this.tipos.push(habitacion.tipo);
-      alert(habitacion.tipo.nombre);
     }
     });
   }
@@ -115,16 +114,21 @@ export class DisponibleComponent {
             this.reserva.cedula = this.cedula;
             this.reservarService.insertarReserva(this.reserva).subscribe(
               (respuesta) => {
-                console.log('Respuesta del servicio:', respuesta);
                 // Aquí puedes manejar la respuesta según tu lógica
+                const id =respuesta;
+                if (this.reserva) { // Asegurarse de que this.reserva no es null ni undefined
+                  this.reserva.id = id;
+                  this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+                }
               },
               (error) => {
                 console.error('Error al llamar al servicio:', error);
                 // Aquí puedes manejar el error según tu lógica
+                alert('Error con el servicio');
               }
             );
           }
-          //this.router.navigate(['disponible'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+          //
           // Aquí puedes enviar el ID de la orden a tu backend para procesar la reserva
           
         });

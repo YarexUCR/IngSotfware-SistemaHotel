@@ -21,9 +21,9 @@ namespace Datos
 
         }
 
-        public bool InsertarReserva(Reserva reserva)
+        public int InsertarReserva(Reserva reserva)
         {
-            bool insertado = false;
+            
             int idReserva = 0; // Variable para almacenar el ID de la reserva insertada
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -46,7 +46,6 @@ namespace Datos
                     {
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
-                        insertado = true;
 
                         if (reader.HasRows)
                         {
@@ -69,7 +68,7 @@ namespace Datos
                 }
             }
 
-            return insertado;
+            return idReserva;
         }
 
         public bool InsertarReservaHabitacion(int reservaId, int habitacionId, double precio)
