@@ -37,4 +37,8 @@ export class AdministrarHabitacionesComponent {
       this.habitaciones = data;
     });
   }
+
+  obtenerHabitacionesPorTipo(id:number){
+    return  this.habitaciones.filter(habitacion => habitacion.tipo.id === id);
+  }
 }
