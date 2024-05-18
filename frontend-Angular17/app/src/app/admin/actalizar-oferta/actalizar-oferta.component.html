@@ -1,13 +1,15 @@
-
-    <mat-dialog-content class="altura">
-        <h2 mat-dialog-title>Agregar Oferta</h2>
+<mat-dialog-content>
+    <h2 mat-dialog-title>Actualizar Oferta</h2>
     <div class="container">
-      
+        <form class="row g-2">
+
             <div class="row">
                 <div class="col">
                     <label for="checkIn">Fecha de Inicio</label>
-                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkIn" name="checkIn"
-                    class="form-control" [(ngModel)]="formData.checkIn" >
+                    <input class="form-control"  type="date" id="checkIn" name="checkIn" [(ngModel)]="formData.checkIn "
+                        [value]="formData.checkIn | date:'yyyy-MM-dd'" required>
+
+
 
                     <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
                         Fecha de Inicio es obligatorio
@@ -19,11 +21,12 @@
                         {{mensajeConfirmacion}}
                     </div>
                 </div>
-                
+
                 <div class="col">
                     <label for="checkOut">Fecha de Fin</label>
-                    <input matInput type="date" placeholder="yyyy-mm-dd" id="checkOut" name="checkOut"
-                    class="form-control"  [(ngModel)]="formData.checkOut">
+                    <input class="form-control"  type="date" id="checkOut" name="checkOut" [(ngModel)]="formData.checkOut"
+                        [value]="formData.checkOut | date:'yyyy-MM-dd'" required>
+
 
                     <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
                         La Fecha Final es obligatorio
@@ -40,16 +43,19 @@
                 <div class="col">
                     <mat-form-field class="example-full-width">
                         <label for="descripcion">Nombre de la Oferta</label>
-                        <textarea matInput placeholder="Día de San Valentín....." id="descripcion" name="descripcion"
-                        class="form-control" [(ngModel)]="formData.descripcion"></textarea>
+                        <textarea class="form-control"  placeholder="Día de San Valentín....." id="descripcion" name="descripcion"
+                            [(ngModel)]="formData.descripcion" [value]="formData.descripcion " required></textarea>
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="example-full-width">
-                        <label for="montoDescuento">Monto de descuento</label>
+                        <label for="descuento">Monto de descuento</label>
                         <mat-label>Monto de descuento</mat-label>
-                        <input matInput type="number" placeholder="30" id="montoDescuento" name="montoDescuento"
-                        class="form-control"  [(ngModel)]="formData.montoDescuento" (input)="updateMontoDescuento($event)">
+                        <input  class="form-control"  type="number" placeholder="30" id="descuento" name="descuento"
+                        [value]="formData.descuento" [(ngModel)]="formData.descuento" (input)="updateMontoDescuento($event)" required>
+                 
+                          
+
                     </mat-form-field>
                 </div>
 
@@ -67,19 +73,22 @@
 
                 <ng-template #habitacionTemplate let-habitaciones>
                     <div *ngFor="let tipoHabitacion of habitaciones; let i = index">
-                        <input type="checkbox" [(ngModel)]="tipoHabitacion.check" [value]="tipoHabitacion.id"
-                            [name]="tipoHabitacion.id" class="d-flex justify-content-between">
-                        <label class="form-check-label" >  {{ tipoHabitacion.Nombre }}</label>
+                        <input type="checkbox" [(ngModel)]="tipoHabitacion.check" [value]="tipoHabitacion.id " class="form-check-input"
+                            [name]="tipoHabitacion.id">
+                            <label class="form-check-label" >  {{ tipoHabitacion.Nombre }}</label>
 
+                     
                     </div>
                 </ng-template>
             </div>
-            <mat-dialog-actions >
-                <button  (click)="onNoClick()" class="btn btn-primary">Cerrar</button>
-                <button  (click)="agregarOferta()" class="btn btn-success "
-                    cdkFocusInitial>Agregar</button>
+
+            <mat-dialog-actions class="d-flex justify-content-between">
+                <button mat-button (click)="onNoClick()" class="btn btn-primary">Cerrar</button>
+                <button mat-button (click)="actualizarOferta()" class="btn btn-success" cdkFocusInitial>Actualizar</button>
             </mat-dialog-actions>
+            
+
+        </form>
 
     </div>
-
     <mat-dialog-content>
