@@ -60,7 +60,43 @@ namespace Datos
             return ofertas;
         }
 
-         async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id)
+
+        public async Task<Oferta> getOferta(int id)
+        {
+            Oferta oferta = new Oferta();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SeleccionarOfertaPorId", connection))
+                {
+                    connection.Open();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                    while (reader.Read())
+                    {
+                        List<TipoHabitacion> tipoHabitacion = new List<TipoHabitacion>();
+
+                        oferta.Id = Convert.ToInt32(reader["id"]);
+                        oferta.Nombre = Convert.ToString(reader["descripcion"]);
+                        oferta.Descuento = Convert.ToInt32(reader["descuento"]);
+                        oferta.Inicio = Convert.ToDateTime(reader["inicio"]);
+                        oferta.Fin = Convert.ToDateTime(reader["fin"]);
+
+                        tipoHabitacion = await getTipoDeHabitcion(oferta.Id);
+                        oferta.TipoHabitacions = tipoHabitacion;
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return oferta;
+        }
+
+
+        async Task<List<TipoHabitacion>> getTipoDeHabitcion(int id)
         {
 
             List<TipoHabitacion> tipoHabitaciones = new List<TipoHabitacion>();
@@ -118,11 +154,46 @@ namespace Datos
                 }
             }
 
-            await insertarTipoHabitacionoferta(nuevoID, oferta.TipoHabitacions);
-            if (nuevoID == 0) { return false; }
-            else { return true;}
+            
+            if (nuevoID == 0 ) { return false; }
+            else {
+                await insertarTipoHabitacionoferta(nuevoID, oferta.TipoHabitacions);
+                return true;
+            }
         }
+        public async Task<bool> updateOferta(Oferta oferta)
+        {
+            bool isUpdated = false;
 
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ActualizarOferta", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega los parámetros al procedimiento almacenado
+                    command.Parameters.AddWithValue("@ofertaId", oferta.Id);
+                    command.Parameters.AddWithValue("@inicio", oferta.Inicio);
+                    command.Parameters.AddWithValue("@fin", oferta.Fin);
+                    command.Parameters.AddWithValue("@descripcion", oferta.Nombre);
+                    command.Parameters.AddWithValue("@descuento", oferta.Descuento);
+
+                    await connection.OpenAsync();
+
+                    // Ejecuta el comando asíncronamente
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    // Verifica si se actualizó al menos una fila
+                    isUpdated = rowsAffected > 0;
+                }
+            }
+            if (isUpdated)
+            {
+                await insertarTipoHabitacionoferta(oferta.id, oferta.TipoHabitacions);
+            }
+
+            return isUpdated;
+        }
 
         async Task<bool> insertarTipoHabitacionoferta(int idOferta, List<TipoHabitacion> tipoHabitacions)
         {
@@ -153,9 +224,72 @@ namespace Datos
                 return false;
             }
         }
+        /*
+        public async Task<Oferta> getOferta(int id )
+        {
+            List<TipoHabitacion> tipoHabitacions = new List<TipoHabitacion>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerTodasHabitacionesDisponiblesParaReserva", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@idOferta", id);
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Habitacion habitacion = new Habitacion
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Numero = Convert.ToInt32(reader["numero"]),
+                            Activo = Convert.ToBoolean(reader["activo"])
+                            // Mapea otros campos según tu estructura de datos
+                        };
+                        habitacion.tipo = this.ObtenerTipoHabitacionPorId(Convert.ToInt32(reader["tipoHabitacionId"]));
+                        habitacionesDisponibles.Add(habitacion);
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return habitacionesDisponibles;
+        }
+        */
+        public async Task<bool> deleteOferta(int ofertaId)
+        {
+            bool isDeleted = false;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("EliminarOferta", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega el parámetro @ofertaId al procedimiento almacenado
+                    command.Parameters.AddWithValue("@ofertaId", ofertaId);
+
+                    await connection.OpenAsync();
+
+                    // Ejecuta el comando asíncronamente
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    // Verifica si se eliminó al menos una fila
+                    isDeleted = rowsAffected > 0;
+                }
+            }
+
+            return isDeleted;
+        }
+
 
     }
 
+
+   
 
 
 }

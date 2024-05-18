@@ -4,6 +4,7 @@ export interface Oferta {
     inicio: Date;
     fin: Date;
     descuento: number;
-    descripcion: string;
+    nombre: string;
     tipoHabitacions: TipoHabitacion[];
   }
+  

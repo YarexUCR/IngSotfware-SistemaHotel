@@ -1,22 +1,10 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 50%;
-  }
-  
-  .example-full-width {
-    width: 50%;
-  }
-
-
-  
-  input[type="checkbox"] {
+input[type="checkbox"] {
     border-color: black;
 }
 
 /* Cambiar el color de fondo del checkbox cuando está seleccionado */
 input[type="checkbox"]:checked {
-
+ 
     border-color: black;
 }
 
@@ -26,5 +14,5 @@ input[type="checkbox"]:checked::before {
 }
 
 label {
-  color: #001840;
-    }
+    color: #001840;
+      }

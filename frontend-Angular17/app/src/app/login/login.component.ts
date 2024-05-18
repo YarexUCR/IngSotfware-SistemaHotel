@@ -60,15 +60,18 @@ export class LoginComponent {
       return;
     }
     this.seguridad.login(this.usuario,this.password).subscribe(
+    
       (respuesta) => {
-        console.log('Respuesta del servicio:', respuesta);
-        // Aquí puedes manejar la respuesta según tu lógica
+        alert(JSON.stringify(respuesta));
         if(respuesta ==""){
+
+         
           //alert('usario y constraseña invalido');
           this.modalTitle = 'Error';
           this.modalMessage = 'Usuario y/o contraseña incorrecta';
           this.showModal = true;
         }else{
+         
           localStorage.setItem('token', respuesta);
           window.location.reload();
         }
