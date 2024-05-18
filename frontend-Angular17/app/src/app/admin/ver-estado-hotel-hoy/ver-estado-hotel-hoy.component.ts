@@ -124,17 +124,17 @@ generarPDF(): void {
   const drawHeader = () => {
 
 
-    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
-    doc.setLineWidth(4); // Ancho del borde
-    doc.rect(2, 2, pageWidth - 4, 75);
+    //doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    //doc.setLineWidth(4); // Ancho del borde
+    //doc.rect(2, 2, pageWidth - 4, 75);
 
     // Dibujar el rectángulo azul oscuro
     doc.setFillColor(0, 24, 64);
     doc.rect(4, 4, pageWidth - 8, 71, 'F');
 
-    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
-    doc.setLineWidth(4); // Ancho del borde
-    doc.rect(20, 78, pageWidth-40, pageHeight - 100);
+    //doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    //doc.setLineWidth(4); // Ancho del borde
+    //doc.rect(20, 78, pageWidth-40, pageHeight - 100);
     // Encabezado
    // doc.setFillColor(0, 24, 64);
    // doc.rect(0, 0, pageWidth, 50, 'F');
