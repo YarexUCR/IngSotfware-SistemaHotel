@@ -8,26 +8,18 @@ namespace Nucleo.Controllers
     [ApiController]
     [Route("[controller]")]//Ensablado de clase
     public class ReservaController : ControllerBase
-    { 
-        ReservaReglasNegocio reglasNegocio;
-        List<Reserva> reservas;
-        public ReservaController() { 
-            this.reglasNegocio = new ReservaReglasNegocio();
-            this.reservas = new List<Reserva>();
-        }
-        [HttpGet]
-        public IActionResult obetenr()
+    {
+        private readonly ReservaReglasNegocio _reglasNegocio;
+        public ReservaController(IConfiguration configuration, ReservaReglasNegocio reglasNegocio)
         {
-           
-            return Ok(this.reservas);
+            _reglasNegocio = reglasNegocio;
         }
+
 
         [HttpPost]
         public IActionResult InsertarReserva([FromBody] Reserva reserva)
         {   
-            this.reservas.Add(reserva);
-            // Puedes retornar un mensaje de éxito u otro tipo de respuesta según tu necesidad
-            return Ok(reserva);
+            return Ok(_reglasNegocio.InsertarReserva(reserva));
         }
     }
 }

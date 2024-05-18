@@ -12,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva } from '../dominio/Reserva'; // Importa la interfaz Reserva
 import { ReservaService } from '../api/reserva.service';
 import { FormsModule } from '@angular/forms';
+import { TipoHabitacion } from '../dominio/TipoHabitacion';
+import { Habitacion } from '../dominio/Habitacion';
 
 
 
@@ -45,6 +47,19 @@ export class DisponibleComponent {
     }
   }
 
+  tipos : TipoHabitacion []=[];
+
+  obtenerTipos(){
+    this.reserva?.habitaciones.forEach(habitacion=>{
+    const tipoExistente = this.tipos.find(tipo => tipo.id === habitacion.tipo.id);
+    if (!tipoExistente) {
+      this.tipos.push(habitacion.tipo);
+    }
+    });
+  }
+  obtenerHabitacionesPorTipo(id:number){
+    return  this.reserva?.habitaciones.filter(habitacion => habitacion.tipo.id === id);
+  }
   ngOnInit(): void {
     //verificar autenticacion
     if (this.token != null) {
@@ -54,7 +69,7 @@ export class DisponibleComponent {
       this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro
       
     });
-    
+    this.obtenerTipos();
   }
 
   renderPaypalButton() {
@@ -99,16 +114,21 @@ export class DisponibleComponent {
             this.reserva.cedula = this.cedula;
             this.reservarService.insertarReserva(this.reserva).subscribe(
               (respuesta) => {
-                console.log('Respuesta del servicio:', respuesta);
                 // Aquí puedes manejar la respuesta según tu lógica
+                const id =respuesta;
+                if (this.reserva) { // Asegurarse de que this.reserva no es null ni undefined
+                  this.reserva.id = id;
+                  this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+                }
               },
               (error) => {
                 console.error('Error al llamar al servicio:', error);
                 // Aquí puedes manejar el error según tu lógica
+                alert('Error con el servicio');
               }
             );
           }
-          //this.router.navigate(['disponible'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+          //
           // Aquí puedes enviar el ID de la orden a tu backend para procesar la reserva
           
         });

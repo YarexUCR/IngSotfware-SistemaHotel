@@ -1,0 +1,12 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Reservar en Línea</h1>
+    <div *ngIf="reserva">
+        <p>¡Reservación Realizada!</p>
+        <p>Gracias {{reserva.cliente}} su reservación fue realizada exitosamente</p>
+        <p>Numero de reservacion: {{reserva.id}}</p>
+        <p>Acabamos de enviar esta informacion a la direccion {{reserva.email}}</p>
+        <p>¡Gracias por preferirnos!</p>
+    </div>
+    <app-footer></app-footer>
+</div>
+
