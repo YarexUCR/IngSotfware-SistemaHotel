@@ -245,7 +245,31 @@ namespace Datos
             return habitacionesDisponibles;
         }
 
+        public bool ActualizarTipoHabitacion(TipoHabitacion tipo)
+        {
+            bool cambiosRealizados = false;
 
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ActualizarTipoHabitacion", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@id", tipo.Id);
+                    command.Parameters.AddWithValue("@descripcion", tipo.Descripcion);
+                    command.Parameters.AddWithValue("@precio", tipo.Precio);
+                    command.Parameters.AddWithValue("@imagen", tipo.Imagen);
+                    command.Parameters.AddWithValue("@nombre", tipo.Nombre);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    cambiosRealizados = rowsAffected > 0;
+
+                }
+            }
+            return cambiosRealizados;
+        }
 
     }
 }

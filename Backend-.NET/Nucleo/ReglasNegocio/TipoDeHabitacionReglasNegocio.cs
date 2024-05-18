@@ -35,5 +35,9 @@
         public List<Habitacion> ObtenerTodasHabitaciones() {
             return this.datos.ObtenerTodasHabitaciones();
         }
+
+        public bool ActualizarTipoHabitacion(TipoHabitacion tipo) {
+            return this.datos.ActualizarTipoHabitacion(tipo);
+        }
     }
 }

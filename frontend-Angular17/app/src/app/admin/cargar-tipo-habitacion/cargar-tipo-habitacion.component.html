@@ -10,12 +10,12 @@
 
                 <div class="col">
                     <label for="precio">Tarifa Diaria</label>
-                    <input type="number" class="form-control" id="precio" name="precio" value="{{tipo?.precio}}" required>
+                    <input type="number" class="form-control" [(ngModel)]="precio" id="precio" name="precio" value="{{tipo?.precio}}" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="descripcion">Descripcion</label>
-                <textarea class="form-control" id="descripcion" name="descripcion" rows="5">
+                <textarea class="form-control" [(ngModel)]="descripcion"  id="descripcion" name="descripcion" rows="5">
                     {{tipo?.descripcion}}
                 </textarea>
             </div>
@@ -37,14 +37,14 @@
             <div class="col-4">
                 <button type="submit" class="btn btn-sm"
                     style="background-color: #001840; 
-                    color: #fffdf0; float: right;">
+                    color: #fffdf0; float: right;" (click)="actualizar()">
                     Aceptar
                 </button>
             </div>
             <div class="col-4">
-                <button type="submit" class="btn btn-sm"
+                <button type="button" class="btn btn-sm"
                     style="background-color: #001840; 
-                    color: #fffdf0; float: right;">
+                    color: #fffdf0; float: right;" (click)="cancelar()">
                     Cancelar
                 </button>
             </div>
