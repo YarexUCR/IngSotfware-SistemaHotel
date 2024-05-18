@@ -62,7 +62,7 @@ export class LoginComponent {
     this.seguridad.login(this.usuario,this.password).subscribe(
     
       (respuesta) => {
-        alert(JSON.stringify(respuesta));
+        //alert(JSON.stringify(respuesta));
         if(respuesta ==""){
 
          
