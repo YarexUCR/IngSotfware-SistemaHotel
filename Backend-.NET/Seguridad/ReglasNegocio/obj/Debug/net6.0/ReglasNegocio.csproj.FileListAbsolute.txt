@@ -1,0 +1,6 @@
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.csproj.AssemblyReference.cache
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.AssemblyInfoInputs.cache
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.AssemblyInfo.cs
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.csproj.CoreCompileInputs.cache
+C:\Users\yarex\Videos\IngSotfware-SistemaHotel\Backend-.NET\Seguridad\ReglasNegocio\obj\Debug\net6.0\ReglasNegocio.sourcelink.json
