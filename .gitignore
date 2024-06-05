@@ -642,3 +642,11 @@ Backend-.NET/Nucleo/Nucleo/bin/Debug/net6.0/Dominio.dll
 Backend-.NET/Nucleo/Nucleo/bin/Debug/net6.0/Nucleo.dll
 Backend-.NET/Nucleo/Nucleo/bin/Debug/net6.0/Nucleo.exe
 Backend-.NET/Nucleo/Nucleo/bin/Debug/net6.0/ReglasNegocio.dll
+Backend-.NET/Nucleo/Nucleo/obj/Debug/net6.0/Nucleo.AssemblyInfo.cs
+Backend-.NET/Nucleo/Nucleo/obj/Debug/net6.0/apphost.exe
+Backend-.NET/Nucleo/Nucleo/obj/Debug/net6.0/Nucleo.csproj.AssemblyReference.cache
+Backend-.NET/Nucleo/Nucleo/obj/Debug/net6.0/Nucleo.GeneratedMSBuildEditorConfig.editorconfig
+Backend-.NET/Nucleo/ReglasNegocio/obj/Debug/net6.0/ReglasNegocio.AssemblyInfo.cs
+Backend-.NET/Nucleo/ReglasNegocio/obj/Debug/net6.0/ReglasNegocio.AssemblyInfoInputs.cache
+Backend-.NET/Nucleo/ReglasNegocio/obj/Debug/net6.0/ReglasNegocio.csproj.AssemblyReference.cache
+Backend-.NET/Nucleo/ReglasNegocio/obj/Debug/net6.0/ReglasNegocio.GeneratedMSBuildEditorConfig.editorconfig
