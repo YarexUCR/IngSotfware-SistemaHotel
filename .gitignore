@@ -711,4 +711,3 @@ Backend-.NET/Nucleo/ReglasNegocio/obj/ReglasNegocio.csproj.nuget.g.props
 *.editorconfig
 *.cache
 *.cache
-*.cs
