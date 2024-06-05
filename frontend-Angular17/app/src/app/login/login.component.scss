@@ -1,0 +1,12 @@
+
+  /* Puedes agregar más reglas @media según sea necesario para otros tamaños de pantalla */
+  .centered-spinner-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .centered-spinner {
+    width: 50px; /* Ancho del spinner */
+    height: 50px; /* Altura del spinner */
+  }

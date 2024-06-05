@@ -22,6 +22,10 @@ import { PublicidadAdminComponent } from "./admin/publicidad-admin/publicidad-ad
 import { ReservacionRealizadaComponent } from "./reservacion-realizada/reservacion-realizada.component";
 import { Component } from "@angular/core";
 import { CargarTipoHabitacionComponent } from "./admin/cargar-tipo-habitacion/cargar-tipo-habitacion.component";
+import { ModificarHomeComponent } from "./admin/modificar-home/modificar-home.component";
+import { ModificarSobreNosotrosComponent } from "./admin/modificar-sobre-nosotros/modificar-sobre-nosotros.component";
+import { ModificarFacilidadesComponent } from "./admin/modificar-facilidades/modificar-facilidades.component";
+import { ModificarComoLlegarComponent } from "./admin/modificar-como-llegar/modificar-como-llegar.component";
 
 export const routes : Routes =[
     {path: "admin/modificarPaginas", component : ModificarPaginasComponent},
@@ -43,7 +47,10 @@ export const routes : Routes =[
     {path: "admin/listaOferta", component : ListaOfertasComponent},
     {path: "admin/cargarTipoHabitacion", component: CargarTipoHabitacionComponent},
     {path: "reserva-realizada", component: ReservacionRealizadaComponent},
-
+    {path:"admin/modificarHome", component : ModificarHomeComponent },
+    {path:"admin/modificarSobreNosotros", component : ModificarSobreNosotrosComponent },
+    {path:"admin/modificarFacilidades", component : ModificarFacilidadesComponent },
+    {path:"admin/modificarComoLegar", component : ModificarComoLlegarComponent },
     { path: '**', component: InicioComponent }
     
 ]

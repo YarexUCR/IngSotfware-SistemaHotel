@@ -1,0 +1,38 @@
+<div class="grid-container">
+
+    <div class="container">
+        <div class="row">
+            <h1 class="mat-h1">Modificar Páginas</h1>
+            <a href="/admin/modificarPaginas" class="" style="float: right;">
+                <button class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                      </svg>
+                    Regresar
+                </button>
+            </a>
+            <h2>¿Como llegar?</h2>
+        </div>
+        <div class="row mb-3">
+            <editor apiKey="znh3lfytid67l6ebvfo1baqhvqrsh51ikna2ythhu7go467y" [init]="{ plugins: 'lists link image table code help wordcount',
+                language: 'es',
+                menubar: false
+             }" [(ngModel)]="contenido"></editor>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <button type="submit" class="btn btn-sm" style="background-color: #001840; 
+                    color: #fffdf0; float: right;" (click)="Actualizar()">
+                    Aceptar
+                </button>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-sm" style="background-color: #001840; 
+                    color: #fffdf0; float: right;" (click)="cancelar()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

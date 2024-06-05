@@ -3,14 +3,9 @@
     <mat-grid-list cols="2" rowHeight="350px">
 
         <div class="container">
-            <div class="row">
 
-                <p>Desde nuestra apertura en 2002, el Hotel La Palma ha sido un destino de ensueño para aquellos
-                    que buscan la combinación perfecta de relajación y aventura junto al mar. Fundado por una
-                    familia local comprometida con la preservación del medio ambiente y la hospitalidad
-                    auténtica, hemos creado un espacio donde los viajeros pueden reconectar con la naturaleza y
-                    disfrutar de la vida costarricense en su máxima expresión. Somos un Hotel de playa familiar
-                </p>
+            <div class="row">
+                <div class="container" [innerHTML]="hotel?.sobre_nosotros"></div>
                 <div class="card">
                     <p-galleria [value]="images" [showItemNavigators]="true" [circular]="true" [numVisible]="5"
                         [containerStyle]="{ 'max-width': '640px' }">
@@ -25,8 +20,6 @@
                     </p-galleria>
 
                 </div>
-
-
 
             </div>
         </div>

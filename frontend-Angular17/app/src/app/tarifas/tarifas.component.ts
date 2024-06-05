@@ -38,9 +38,7 @@ export class TarifasComponent {
         if (this.token != null) {
             this.router.navigate(['/admin/home']);
           }
-        this.hotelService.getTiposHabitaciones().subscribe(data => {
-            this.tiposDeHabitacion = data;
-        });
+        
     }
 
 

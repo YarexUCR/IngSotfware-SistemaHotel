@@ -10,44 +10,49 @@
 
                 <div class="col">
                     <label for="precio">Tarifa Diaria</label>
-                    <input type="number" class="form-control" [(ngModel)]="precio" id="precio" name="precio" value="{{tipo?.precio}}" required>
+                    <input type="number" class="form-control" [(ngModel)]="precio" id="precio" name="precio"
+                        value="{{tipo?.precio}}" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="descripcion">Descripcion</label>
-                <textarea class="form-control" [(ngModel)]="descripcion"  id="descripcion" name="descripcion" rows="5">
-                    {{tipo?.descripcion}}
-                </textarea>
+
+                <editor apiKey="znh3lfytid67l6ebvfo1baqhvqrsh51ikna2ythhu7go467y" [init]="{ plugins: 'lists link image table code help wordcount',
+                language: 'es',
+                menubar: false
+             }" [(ngModel)]="descripcion">{{tipo?.descripcion}}</editor>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-sm" style="background-color: #001840; 
+                        color: #fffdf0; float: right;" (click)="actualizar()">
+                        Aceptar
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-sm" style="background-color: #001840; 
+                        color: #fffdf0; float: right;" (click)="cancelar()">
+                        Cancelar
+                    </button>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <label>Imagen actual</label>
-                    <img style="max-width: 80%;margin-right: 20px;" [src]="tipo?.imagen"
-                                    align="left">
+                    <img style="max-width: 80%;margin-right: 20px;" [src]="tipo?.imagen" align="left">
                 </div>
                 <div class="col mb-3">
                     <label for="imagen">Subir nueva imagen</label>
-                    <input class="form-control" type="file" id="imagen" name="imagen" value="{{tipo?.imagen}}">
-                    
+                    <input class="form-control mb-3" type="file" id="imagen" name="imagen" [(ngModel)]="imagen"
+                        accept=".jpg,.jpeg,.png,.gif">
+                        <button type="submit" class="btn btn-sm" style="background-color: #001840; 
+                        color: #fffdf0; float: right;" >
+                        Cambiar Imagen
+                    </button>
                 </div>
             </div>
             
         </div>
-        <div class="row mb-3">
-            <div class="col-4">
-                <button type="submit" class="btn btn-sm"
-                    style="background-color: #001840; 
-                    color: #fffdf0; float: right;" (click)="actualizar()">
-                    Aceptar
-                </button>
-            </div>
-            <div class="col-4">
-                <button type="button" class="btn btn-sm"
-                    style="background-color: #001840; 
-                    color: #fffdf0; float: right;" (click)="cancelar()">
-                    Cancelar
-                </button>
-            </div>
-        </div>
+        
     </div>
 </div>

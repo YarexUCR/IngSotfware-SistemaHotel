@@ -7,11 +7,12 @@ import { Habitacion } from '../../dominio/Habitacion';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { error } from 'console';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'app-cargar-tipo-habitacion',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,EditorModule],
   templateUrl: './cargar-tipo-habitacion.component.html',
   styleUrl: './cargar-tipo-habitacion.component.scss'
 })
@@ -20,6 +21,7 @@ export class CargarTipoHabitacionComponent {
   tipo : TipoHabitacion | null = null;
   precio : number|null=null;
   descripcion: string|null=null;
+  imagen : string|null=null;
   constructor(private route: ActivatedRoute,private router: Router,private servicio : TipoHabitacionService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -53,6 +55,7 @@ export class CargarTipoHabitacionComponent {
         if(data){
           if(this.tipo){
             alert('Actualizacion completa');
+            this.router.navigate(['/admin/administrarHabitaciones']);
           }
           
         }else{

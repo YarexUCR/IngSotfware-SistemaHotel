@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<TipoDeHabitacionReglasNegocio>();
 builder.Services.AddScoped<HabitacionReglasNegocio>();
 builder.Services.AddScoped<OfertaReglaDeNegocio, OfertaReglaDeNegocio>();
+builder.Services.AddScoped<HotelReglasNegocio, HotelReglasNegocio>();
 builder.Services.AddScoped<OfertaDatos>();
 builder.Services.AddScoped<ReservaReglasNegocio, ReservaReglasNegocio>();
 

@@ -1,7 +1,7 @@
 <div class="grid-container justify-content-center">
     <h1><br></h1>
     <mat-grid-list cols="2" rowHeight="350px">
-        <div class="container form-container">
+        <div class="container form-container" *ngIf="!cargando">
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <label for="usuario">Usuario</label>
@@ -21,6 +21,9 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="centered-spinner-container" *ngIf="cargando">
+            <mat-spinner class="centered-spinner"></mat-spinner>
         </div>
         <app-footer></app-footer>
     </mat-grid-list>

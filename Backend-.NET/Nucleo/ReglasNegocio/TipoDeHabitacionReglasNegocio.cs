@@ -9,7 +9,7 @@
 
         private TipoHabitacionDatos datos;
 
-        public TipoDeHabitacionReglasNegocio(IConfiguration configuration) { 
+        public TipoDeHabitacionReglasNegocio(IConfiguration configuration) {
             datos = new TipoHabitacionDatos(configuration);
         }
 
@@ -22,14 +22,14 @@
         }
 
         public int ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(DateTime fecha, int tipoHabitacionId) {
-            return this.datos.ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(fecha,tipoHabitacionId);
+            return this.datos.ObtenerCantidadHabitacionesDisponiblesPorDiaTipo(fecha, tipoHabitacionId);
         }
 
         public List<Habitacion> ObtenerHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut, int tipoHabitacion) {
-            return this.datos.ObtenerHabitacionesDisponiblesParaReserva(checkIn,checkOut,tipoHabitacion);
+            return this.datos.ObtenerHabitacionesDisponiblesParaReserva(checkIn, checkOut, tipoHabitacion);
         }
         public List<Habitacion> ObtenerTodasHabitacionesDisponiblesParaReserva(DateTime checkIn, DateTime checkOut) {
-            return this.datos.ObtenerTodasHabitacionesDisponiblesParaReserva(checkIn,checkOut);
+            return this.datos.ObtenerTodasHabitacionesDisponiblesParaReserva(checkIn, checkOut);
         }
 
         public List<Habitacion> ObtenerTodasHabitaciones() {
@@ -37,7 +37,12 @@
         }
 
         public bool ActualizarTipoHabitacion(TipoHabitacion tipo) {
+            Console.WriteLine(tipo.descripcion);
             return this.datos.ActualizarTipoHabitacion(tipo);
+        }
+
+        public bool ActualizarEstadoHabitacion(int id, bool activo) {
+            return this.datos.ActualizarEstadoHabitacion(id, activo);
         }
     }
 }

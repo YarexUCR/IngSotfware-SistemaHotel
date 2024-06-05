@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj": {}
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\yarex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\obj\\",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yarex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gmg55\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -70,21 +69,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj",
         "projectName": "ReglasNegocio",
-        "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj",
-        "packagesPath": "C:\\Users\\yarex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\obj\\",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj",
+        "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yarex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gmg55\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,8 +101,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj": {
-                "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj"
+              "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Datos\\Datos.csproj"
               }
             }
           }
@@ -108,11 +111,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -134,21 +132,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj": {
+    "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj",
+        "projectUniqueName": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj",
         "projectName": "Seguridad",
-        "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj",
-        "packagesPath": "C:\\Users\\yarex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\obj\\",
+        "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\Seguridad.csproj",
+        "packagesPath": "C:\\Users\\gmg55\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\Seguridad\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yarex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gmg55\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -156,14 +158,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj": {
-                "projectPath": "C:\\Users\\yarex\\Videos\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj"
+              "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj": {
+                "projectPath": "C:\\Users\\gmg55\\Desktop\\kerex\\Kerex\\IngSotfware-SistemaHotel\\Backend-.NET\\Seguridad\\ReglasNegocio\\ReglasNegocio.csproj"
               }
             }
           }
@@ -172,11 +175,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -211,7 +209,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

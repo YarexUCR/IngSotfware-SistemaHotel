@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -9,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FooterComponent } from '../footer/footer.component';
 import { Router } from "@angular/router";
+import { HotelService } from '../api/hotel.service';
+import { Hotel } from '../dominio/Hotel';
 
 @Component({
   selector: 'app-inicio',
@@ -30,8 +30,9 @@ import { Router } from "@angular/router";
 export class InicioComponent {
 
   token: string | null;//token de session
+  hotel: Hotel | null = null;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private servicio: HotelService ) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -44,28 +45,15 @@ export class InicioComponent {
     if (this.token != null) {
       this.router.navigate(['/admin/home']);
     }
+    this.servicio.ObtenerHome(1).subscribe(
+      data => {
+        this.hotel = data;
+      },
+      error => {
+        alert('Ha ocurrido un erro con el servicio');
+      }
+    );
   }
 
-  private breakpointObserver = inject(BreakpointObserver);
-
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
-
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
+  
 }

@@ -18,7 +18,7 @@
                             <p>
                             <h3>Habitacion {{tipo.nombre}}</h3>
                             <br>
-                            {{tipo.descripcion}}
+                            <div [innerHTML]="tipo.descripcion"></div>
                             <br>
                             <br>
                             <h4>Numero de habitacion</h4>
@@ -62,3 +62,6 @@
         </div>
     </mat-grid-list>
 </div>
+
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage"></app-modal>
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage" (closeModalEvent)="closeModal()"></app-modal>

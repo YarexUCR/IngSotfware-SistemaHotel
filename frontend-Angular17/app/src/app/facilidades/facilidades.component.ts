@@ -1,37 +1,43 @@
 import { Component } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
-import { CommonModule } from '@angular/common';
+import { HotelService } from '../api/hotel.service';
+import { Hotel } from '../dominio/Hotel';
+
 
 @Component({
-    selector: 'app-facilidades',
-    standalone: true,
-    templateUrl: './facilidades.component.html',
-    styleUrl: './facilidades.component.scss',
-    imports: [FooterComponent]
+  selector: 'app-facilidades',
+  standalone: true,
+  templateUrl: './facilidades.component.html',
+  styleUrl: './facilidades.component.scss',
+  imports: [FooterComponent]
 
 })
 export class FacilidadesComponent {
-    token: string | null;//token de session
+  token: string | null;//token de session
+  hotel: Hotel | null = null;
 
-    constructor(private router: Router) {
-      //para resguardar ruta
-      if (typeof localStorage !== 'undefined') {
-        this.token = localStorage.getItem('token');
-      } else {
-        this.token = null;
-      }
+  constructor(private router: Router, private servicio: HotelService) {
+    //para resguardar ruta
+    if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
     }
-    ngOnInit() {
-      //verificar autenticacion
-      if (this.token != null) {
-        this.router.navigate(['/admin/home']);
-      }
+  }
+  ngOnInit() {
+    //verificar autenticacion
+    if (this.token != null) {
+      this.router.navigate(['/admin/home']);
     }
+
+    this.servicio.ObtenerFacilidades(1).subscribe(
+      data => {
+        this.hotel = data;
+      },
+      error => {
+        alert('Ha ocurrido un erro con el servicio');
+      }
+    );
+  }
 }

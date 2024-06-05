@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
-import { Tipo, TipoHabitacion } from "../dominio/TipoHabitacion";
+import { TipoHabitacion } from "../dominio/TipoHabitacion";
 import { DatePipe } from '@angular/common';
 import { Habitacion } from "../dominio/Habitacion";
 import { HabitacionesDisponibles } from "../dominio/Habitacion";
@@ -46,4 +46,10 @@ export class TipoHabitacionService {
     }
     return this._http.post<boolean>(`https://localhost:7200/TipoHabitacion/ActualizarTipoHabitacion`, _tipo);
   }
+
+  actualizarEstadoHabitacion(id:number,activo:boolean):Observable<any>{
+    return this._http.put<any>(`https://localhost:7200/TipoHabitacion/ActualizarEstadoHabitacion/${id}/${activo}`, {});
+  
+  }
+
 }

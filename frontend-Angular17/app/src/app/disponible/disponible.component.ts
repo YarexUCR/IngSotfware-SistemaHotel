@@ -14,6 +14,7 @@ import { ReservaService } from '../api/reserva.service';
 import { FormsModule } from '@angular/forms';
 import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Habitacion } from '../dominio/Habitacion';
+import { ModalComponent } from '../modal/modal.component';
 
 
 
@@ -29,13 +30,17 @@ import { Habitacion } from '../dominio/Habitacion';
       MatButtonModule,
       MatCardModule,
       CommonModule,
-      FormsModule
+      FormsModule,
+      ModalComponent
     ]
 })
 export class DisponibleComponent {
   token: string | null;//token de session
   reserva: Reserva | null = null; // Propiedad para recibir la reserva
   cedula: string = '';
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
   private paypalSDK: any;
   constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService){
     this.paypalSDK = (window as any).paypal;
@@ -99,7 +104,10 @@ export class DisponibleComponent {
       onApprove: (data: any, actions: any) => {
         // Mostrar confirmación antes de ejecutar el pago
         if(!this.cedula){
-          alert('Por favor agregue un numero de identificación para continuar');
+          //alert('Por favor agregue un numero de identificación para continuar');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Por favor agregue un numero de identificación para continuar';
+          this.showModal = true;
           return;
         }
         return actions.order.capture().then((details: any) => {
@@ -124,7 +132,10 @@ export class DisponibleComponent {
               (error) => {
                 console.error('Error al llamar al servicio:', error);
                 // Aquí puedes manejar el error según tu lógica
-                alert('Error con el servicio');
+                //alert('Error con el servicio');
+                this.modalTitle = 'Mensaje';
+                this.modalMessage = 'Error con el servicio';
+                this.showModal = true;
               }
             );
           }
@@ -136,6 +147,9 @@ export class DisponibleComponent {
     }).render('#paypal-button-container');
   }  
   
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  } 
 
 
    ////////////////////////////////////paypal

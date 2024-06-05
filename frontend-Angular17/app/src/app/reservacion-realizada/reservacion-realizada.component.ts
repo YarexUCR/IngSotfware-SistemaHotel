@@ -14,17 +14,21 @@ import { ReservaService } from '../api/reserva.service';
 import { FormsModule } from '@angular/forms';
 import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Habitacion } from '../dominio/Habitacion';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
     selector: 'app-reservacion-realizada',
     standalone: true,
     templateUrl: './reservacion-realizada.component.html',
     styleUrl: './reservacion-realizada.component.scss',
-    imports: [CommonModule, FooterComponent]
+    imports: [CommonModule, FooterComponent, ModalComponent]
 })
 export class ReservacionRealizadaComponent {
   token: string | null;//token de session
   reserva: Reserva | null = null; // Propiedad para recibir la reserva
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   constructor(private route: ActivatedRoute, private router: Router){
      //para resguardar ruta
@@ -45,4 +49,9 @@ export class ReservacionRealizadaComponent {
       
     });
   }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
+
 }

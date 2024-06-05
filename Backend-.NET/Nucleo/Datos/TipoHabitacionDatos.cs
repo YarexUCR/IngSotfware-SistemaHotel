@@ -271,5 +271,27 @@ namespace Datos
             return cambiosRealizados;
         }
 
+        // Método para actualizar el estado de una habitación
+        public bool ActualizarEstadoHabitacion(int id, bool activo)
+        {
+            bool resultado = false;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ActualizarEstadoHabitacion", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@activo", activo);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    resultado = rowsAffected > 0;
+                }
+            }
+
+            return resultado;
+        }
+
     }
 }

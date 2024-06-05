@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { SeguridadService } from '../api/seguridad.service';
 import { ModalComponent } from "../modal/modal.component";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -24,7 +25,8 @@ import { ModalComponent } from "../modal/modal.component";
         FooterComponent,
         CommonModule,
         FormsModule,
-        ModalComponent
+        ModalComponent,
+        MatProgressSpinnerModule
     ]
 })
 export class LoginComponent {
@@ -34,6 +36,7 @@ export class LoginComponent {
   showModal: boolean = false;
   modalTitle!: string;
   modalMessage!: string;
+  cargando :boolean = false;
 
   constructor(private router: Router, private seguridad: SeguridadService) {
     //para resguardar ruta
@@ -59,10 +62,11 @@ export class LoginComponent {
       //alert('Por favor, completa todos los campos.');
       return;
     }
+    this.cargando= true;
     this.seguridad.login(this.usuario,this.password).subscribe(
-    
       (respuesta) => {
         //alert(JSON.stringify(respuesta));
+        
         if(respuesta ==""){
 
          
@@ -75,7 +79,7 @@ export class LoginComponent {
           localStorage.setItem('token', respuesta);
           window.location.reload();
         }
-        
+        this.cargando =false;
       },
       (error) => {
         console.error('Error al llamar al servicio:', error);

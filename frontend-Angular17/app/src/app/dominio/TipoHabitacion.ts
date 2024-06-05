@@ -10,11 +10,3 @@ export interface TipoHabitacion{
     cantidad : number;
   }
   
-  export interface Tipo{
-    nombre : string;
-    id : number;
-    descripcion : string;
-    precio : number;
-    imagen : string;
-    cantidad : number;
-  }

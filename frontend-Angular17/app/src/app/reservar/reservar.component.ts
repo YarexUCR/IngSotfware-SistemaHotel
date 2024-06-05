@@ -7,17 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, NgForm, Validators } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
-import { HotelService } from '../api/hotel.service';
 import { differenceInDays, parseISO, addDays, format  } from 'date-fns';
 import { TipoHabitacion } from '../dominio/TipoHabitacion';
-import { Reserva } from '../dominio/Reserva';
 import { Habitacion, HabitacionesDisponibles } from '../dominio/Habitacion';
 import { TipoHabitacionService } from '../api/tipo.habitacion.service';
-import{ModalComponent} from '../modal/modal.component';
- 
+import { ModalComponent } from '../modal/modal.component';
+
 interface Recomendacion{
   fecha: string,
   cantidad : number
@@ -120,8 +118,8 @@ export class ReservarComponent {
     return;
   }
 
-  
 
+  
   validarRequerido() {
     this.validarCheckIn();
     this.validarCheckOut();
@@ -209,24 +207,28 @@ export class ReservarComponent {
            if(this.disponibles.length==0)
             {
               this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
-              alert(this.recomendacion);
-            }else{
-              this.disponibles.forEach(element => {
-              
-              this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
-              this.cantidad_habitacionDesactivado=true;
-              this.recomendacionDesactivado=true;  
-            });
-              alert(this.recomendacion);
-              this.modalTitle = 'Recomendaciones';
-              this.modalMessage = this.recomendacion;
+              //alert(this.recomendacion);
+              this.modalTitle = 'Mensaje';
+              this.modalMessage = this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
               this.showModal = true;
-              this.cantidad_habitacionDesactivado=true;
-              this.recomendacionDesactivado=true;
+            }else{
+           this.disponibles.forEach(element => {
+            
+            this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
+            this.cantidad_habitacionDesactivado=true;
+            this.recomendacionDesactivado=true;
+            });
+            //alert(this.recomendacion);
+            this.modalTitle = 'Recomendaciones';
+            this.modalMessage = this.recomendacion;
+            this.showModal = true;
+            this.cantidad_habitacionDesactivado=true;
+            this.recomendacionDesactivado=true;
             }
             this.cargarRecomendacion();
           });
         
+
       } else {
         this.cantidad_habitacionDesactivado = false;
         this.recomendacionDesactivado = false;
@@ -300,7 +302,9 @@ export class ReservarComponent {
       return;
     }
     if(this.formData.cantidad_habitacion>this.maximo||this.formData.cantidad_habitacion<this.minimo){
-      alert("El maximo de habitaciones disponibles es "+this.maximo+ " y el minimo "+ this.minimo);
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = "El maximo de habitaciones disponibles es "+this.maximo+ " y el minimo "+ this.minimo;
+      this.showModal = true;
       return;
     }
 
@@ -341,19 +345,7 @@ export class ReservarComponent {
 
 
   reservar() {
-    /*for (const tipo of this.tiposDeHabitacionElegidos) {
-      for (let i = 1; i <= tipo.cantidad; i++) {
-        const habitacion: Habitacion = {
-          id: this.habitaciones.length + 1, // ID dinámico
-          estado: 'Disponible',
-          numero: this.habitaciones.length + 101, // Número dinámico
-          tipo: tipo,
-          activo: true
-        };
-        this.habitaciones.push(habitacion);
-      }
-    }*/
-
+   
     let reserva = {
       id: 0,
       cliente: "",

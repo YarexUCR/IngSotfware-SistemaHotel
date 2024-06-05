@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { HotelService } from '../api/hotel.service';
+import { Hotel } from '../dominio/Hotel';
 
 declare const google: any;
 @Component({
@@ -28,8 +30,9 @@ declare const google: any;
 
 export class ComoLlegarComponent implements OnInit {
   token: string | null;//token de session
+  hotel: Hotel | null = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,private router: Router) { 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private router: Router, private servicio: HotelService) { 
      //para resguardar ruta
      if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -46,6 +49,9 @@ export class ComoLlegarComponent implements OnInit {
       this.router.navigate(['/admin/home']);
       
     }
+    
+
+
     // Verifica si el código se está ejecutando en el lado del cliente
     if (isPlatformBrowser(this.platformId)) {
       // Define la función `initMap` en el ámbito global
@@ -57,6 +63,15 @@ export class ComoLlegarComponent implements OnInit {
       document.body.appendChild(script);
 
     }
+
+    this.servicio.ObtenerComoLlegar(1).subscribe(
+      data => {
+        this.hotel = data;
+      },
+      error => {
+        alert('Ha ocurrido un erro con el servicio');
+      }
+    );
   }
 
 

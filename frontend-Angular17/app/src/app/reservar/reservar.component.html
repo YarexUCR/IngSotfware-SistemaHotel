@@ -120,7 +120,7 @@
                         <tbody>
                             <tr *ngFor="let habitacion of tiposDeHabitacionElegidos; let i = index">
                                 <td>{{habitacion.nombre}} </td>
-                                <td>{{habitacion.descripcion}}</td>
+                                <td><div [innerHTML]="habitacion.descripcion"></div></td>
                                 <td>{{habitacion.cantidad}}</td>
                                 <td>{{habitacion.precio}}</td>
                                 <td>
@@ -159,3 +159,6 @@
         <app-footer></app-footer>
     </mat-grid-list>
 </div>
+
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage"></app-modal>
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage" (closeModalEvent)="closeModal()"></app-modal>
