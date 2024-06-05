@@ -43,6 +43,9 @@ if (app.Environment.IsDevelopment())
 }
 // Add CORS middleware
 app.UseCors("AllowAngularDev");
+
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
