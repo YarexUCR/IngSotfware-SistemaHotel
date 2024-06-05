@@ -1,11 +1,15 @@
-<div class="grid-container">
+<diV class="grid-container2">
     <h1 class="mat-h1">Sobre Nosotros</h1>
+    <div class="container" [innerHTML]="hotel?.sobre_nosotros"></div>
+</diV>
+<div class="grid-container">
+    
     <mat-grid-list cols="2" rowHeight="350px">
-
+       
         <div class="container">
 
             <div class="row">
-                <div class="container" [innerHTML]="hotel?.sobre_nosotros"></div>
+                
                 <div class="card">
                     <p-galleria [value]="images" [showItemNavigators]="true" [circular]="true" [numVisible]="5"
                         [containerStyle]="{ 'max-width': '640px' }">
