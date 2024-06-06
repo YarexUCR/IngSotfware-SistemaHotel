@@ -62,7 +62,7 @@ namespace Nucleo.Controllers
             return Ok(_reglasNegocio.ActualizarFacilidades(hotel));
         }
 
-
+        
         [HttpPost("CargarImagenHome")]
         public async Task<IActionResult> CargarImagenHome(IFormFile file)
         {
@@ -90,27 +90,6 @@ namespace Nucleo.Controllers
             var fileUrl = $"{Request.Scheme}://{Request.Host}/imagenes/{file.FileName}";
 
             return Ok(new { Url = fileUrl });
-        }
-
-        [HttpPost("ObetenrImegenHome")]
-        public async Task<IActionResult> ObetenrImegenHome(string rutaArchivo)
-        {
-            if (string.IsNullOrEmpty(rutaArchivo))
-            {
-                return BadRequest("La ruta del archivo no puede estar vacía.");
-            }
-
-            // Verificar si el archivo existe en la ruta proporcionada
-            if (!System.IO.File.Exists(rutaArchivo))
-            {
-                return NotFound("El archivo no existe en la ruta especificada.");
-            }
-
-            // Leer el archivo como arreglo de bytes
-            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(rutaArchivo);
-
-            // Enviar el archivo como respuesta
-            return File(fileBytes, "application/octet-stream", Path.GetFileName(rutaArchivo));
         }
     }
 }

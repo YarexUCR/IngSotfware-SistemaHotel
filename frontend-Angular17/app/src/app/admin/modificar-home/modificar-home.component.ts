@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HotelService } from '../../api/hotel.service';
 import { error } from 'console';
 import { Hotel } from '../../dominio/Hotel';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modificar-home',
@@ -13,7 +14,8 @@ import { Hotel } from '../../dominio/Hotel';
   imports: [
     FooterComponent,
     EditorModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './modificar-home.component.html',
   styleUrl: './modificar-home.component.scss'
@@ -46,6 +48,15 @@ export class ModificarHomeComponent {
         alert('Ha ocurrido un erro con el servicio');
       }
     );
+  }
+
+  nuevaImagen : File | null = null;
+  archivoSeleccionado(event : any ){
+    const imagen = event.target.files[0];
+    if(imagen){
+      this.nuevaImagen = imagen;
+      alert(this.nuevaImagen?.name);
+    }      
   }
 
   cancelar() {

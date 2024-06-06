@@ -5,9 +5,11 @@
             <h1 class="mat-h1">Modificar Páginas</h1>
             <a href="/admin/modificarPaginas" class="" style="float: right;">
                 <button class="btn btn-sm" style="background-color: #001840; color: #fffdf0; float: right;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fffdf0"
+                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                    </svg>
                     Regresar
                 </button>
             </a>
@@ -39,12 +41,16 @@
                 <img style="max-width: 80%;margin-right: 20px;" src="../../../assets/photo.jpg" align="left">
             </div>
             <div class="col mb-3">
-                <label for="imagen">Subir nueva imagen</label>
-                <input class="form-control mb-3" type="file" id="imagen" name="imagen" accept=".jpg,.jpeg,.png,.gif">
-                <button type="submit" class="btn btn-sm" style="background-color: #001840; 
+                <form #fileForm="ngForm">
+                    <input type="file" class="form-control mb-3" (change)="archivoSeleccionado($event)" accept=".jpg,.jpeg,.png,.gif">
+                    <button type="submit" class="btn btn-sm" style="background-color: #001840; 
                     color: #fffdf0; float: right;">
-                    Cambiar Imagen
-                </button>
+                        Cambiar Imagen
+                    </button>
+                </form>
+                <div *ngIf="nuevaImagen">
+                    Archivo seleccionado: {{ nuevaImagen }}
+                  </div>
             </div>
         </div>
     </div>
