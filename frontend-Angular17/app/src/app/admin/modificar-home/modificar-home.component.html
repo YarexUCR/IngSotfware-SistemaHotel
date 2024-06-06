@@ -44,7 +44,7 @@
                 <form #fileForm="ngForm">
                     <input type="file" class="form-control mb-3" (change)="archivoSeleccionado($event)" accept=".jpg,.jpeg,.png,.gif">
                     <button type="submit" class="btn btn-sm" style="background-color: #001840; 
-                    color: #fffdf0; float: right;">
+                    color: #fffdf0; float: right;" (click)="cambiarImagenHome()">
                         Cambiar Imagen
                     </button>
                 </form>

@@ -40,4 +40,11 @@ export class HotelService {
         return this.http.post<boolean>("https://localhost:7200/Hotel/ActualizarFacilidades",hotel);
     }
 
+    CambiarImagenHome(file: File): Observable<any> {
+        const formulario: FormData = new FormData();
+        formulario.append('file', file, file.name);
+    
+        return this.http.post<any>('https://localhost:7200/Hotel/CargarImagenHome', formulario);
+    }
+
 }

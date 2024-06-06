@@ -66,6 +66,27 @@ export class ModificarHomeComponent {
     }
   }
 
+  cambiarImagenHome(){
+    alert('Hola');
+    alert('Vamos a enviar '+this.nuevaImagen?.name);
+    if(this.nuevaImagen){
+      this.service.CambiarImagenHome(this.nuevaImagen).subscribe(
+        data => {
+          if (data) {
+            alert(JSON.stringify(data));
+            //this.router.navigate(['admin/modificarPaginas']);
+          } else {
+            alert('Ha ocurrido un error al actualizar home');
+          }
+        },
+        error => {
+          alert('Ha ocurrido un erro con el servicio');
+        }
+      
+      );
+    }
+  }
+
   ActualizarHome() {
     if (!this.contenido) {
       alert('Debe ingresar algún valor para el texto de la pagina home');
