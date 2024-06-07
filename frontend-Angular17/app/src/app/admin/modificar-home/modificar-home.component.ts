@@ -8,8 +8,8 @@ import { error } from 'console';
 import { Hotel } from '../../dominio/Hotel';
 import { CommonModule } from '@angular/common';
 
-interface Enlace{
-  url : string
+interface Enlace {
+  url: string
 }
 
 @Component({
@@ -28,6 +28,9 @@ export class ModificarHomeComponent {
   token: string | null;//token de session
   contenido = '';
   hotel: Hotel | null = null;
+  nuevaImagen: File | null = null;
+  enlace: Enlace | null = null;
+
   constructor(private router: Router, private service: HotelService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -54,13 +57,25 @@ export class ModificarHomeComponent {
     );
   }
 
-  nuevaImagen : File | null = null;
-  archivoSeleccionado(event : any ){
+  validarImagen(archivo: File): boolean {
+    const tiposValidos = ['image/jpeg', 'image/png', 'image/gif'];
+      
+      if (!tiposValidos.includes(archivo.type)) {
+        alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        return false;
+      }else{
+        return true;
+      }
+  }
+
+
+  archivoSeleccionado(event: any) {
     const imagen = event.target.files[0];
-    if(imagen){
-      this.nuevaImagen = imagen;
-      alert(this.nuevaImagen?.name);
-    }      
+    if (imagen) {
+      if(this.validarImagen(imagen)){
+        this.nuevaImagen = imagen;
+      }
+    }
   }
 
   cancelar() {
@@ -70,27 +85,28 @@ export class ModificarHomeComponent {
     }
   }
 
-  enlace:Enlace | null=null;
-  cambiarImagenHome(){
-    alert('Hola');
-    alert('Vamos a enviar '+this.nuevaImagen?.name);
-    if(this.nuevaImagen){
+  
+  cambiarImagenHome() {
+    if (this.nuevaImagen) {
+      
       this.service.CambiarImagenHome(this.nuevaImagen).subscribe(
         data => {
           if (data) {
             this.enlace = data;
             alert(this.enlace?.url);
-            
+
             //this.router.navigate(['admin/modificarPaginas']);
           } else {
-            alert('Ha ocurrido un error al actualizar home');
+            alert('Ha ocurrido un error al actualizar la imagen de home');
           }
         },
         error => {
           alert('Ha ocurrido un erro con el servicio');
         }
-      
+
       );
+    } else {
+      alert('Por favor ingresa una imagen ');
     }
   }
 
@@ -99,8 +115,8 @@ export class ModificarHomeComponent {
       alert('Debe ingresar algún valor para el texto de la pagina home');
       return;
     }
-    if(this.hotel){
-      this.hotel.home= this.contenido;
+    if (this.hotel) {
+      this.hotel.home = this.contenido;
       this.service.ActualizarHome(this.hotel).subscribe(
 
         data => {
