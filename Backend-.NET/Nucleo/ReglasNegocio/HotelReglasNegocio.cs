@@ -49,5 +49,15 @@ namespace ReglasNegocio
         public bool ActualizarFacilidades(Hotel hotel) {
             return datos.ActualizarFacilidades(hotel);
         }
+
+        public Hotel ObtenerImagenHome(int id)
+        {
+            return datos.ObtenerImagenHome(id);
+        }
+
+        public bool ActualizarImagenHome(string ruta)
+        {
+            return datos.ActualizarImagenHome(ruta);
+        }
     }
 }

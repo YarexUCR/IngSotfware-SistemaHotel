@@ -13,6 +13,7 @@ namespace Dominio
         public string sobre_nosotros;
         public string facilidades;
         public string como_llegar;
+        public string imagen_home;
 
         public Hotel() { 
             this.id = 0;
@@ -20,6 +21,7 @@ namespace Dominio
             this.sobre_nosotros = "";
             this.facilidades = "";
             this.como_llegar = "";
+            this.imagen_home = "";
         }
 
         public int Id { get => id; set => id = value; }
@@ -29,5 +31,7 @@ namespace Dominio
         public string Facilidades { get => facilidades; set => facilidades = value; }
 
         public string Como_Llegar { get => como_llegar; set => como_llegar = value; }
+
+        public string Imagen_Home { get => imagen_home; set => imagen_home = value; }  
     }
 }

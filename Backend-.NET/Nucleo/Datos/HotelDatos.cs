@@ -276,5 +276,69 @@ namespace Datos
             }
         }
 
+        public Hotel ObtenerImagenHome(int id)
+        {
+            Hotel hotel = new Hotel();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand("Obtener_imagen_home", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@id", id);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+
+                                hotel.Imagen_Home = reader["imagenHome"].ToString();
+                                hotel.Id = id;
+                                return hotel;
+                            }
+                            else
+                            {
+                                return hotel;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Manejo de errores (puedes registrar el error o manejarlo según tu necesidad)
+                return hotel; // Error al obtener el como llegar
+            }
+        }
+
+        public bool ActualizarImagenHome(string ruta)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand("actualizar_imagen_home", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@id", 1);
+                        command.Parameters.AddWithValue("@imagen", ruta);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                return true; // La actualización fue exitosa
+            }
+            catch (Exception)
+            {
+                // Manejo de errores (puedes registrar el error o manejarlo según tu necesidad)
+                return false; // La actualización falló
+            }
+        }
+
     }
 }

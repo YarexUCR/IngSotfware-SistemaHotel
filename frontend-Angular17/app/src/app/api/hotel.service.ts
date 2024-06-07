@@ -47,4 +47,8 @@ export class HotelService {
         return this.http.post<any>('https://localhost:7200/Hotel/CargarImagenHome', formulario);
     }
 
+    ObtenerImagenHome(id: number): Observable<Hotel> {
+        return this.http.get<Hotel>("https://localhost:7200/Hotel/ObtenerImagenHome?id="+id);
+    }
+
 }

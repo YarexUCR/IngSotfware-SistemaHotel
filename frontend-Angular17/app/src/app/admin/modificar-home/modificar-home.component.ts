@@ -4,9 +4,9 @@ import { Router } from '@angular/router';;
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule } from '@angular/forms';
 import { HotelService } from '../../api/hotel.service';
-import { error } from 'console';
+import { Console, error } from 'console';
 import { Hotel } from '../../dominio/Hotel';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 
 interface Enlace {
   url: string
@@ -28,9 +28,10 @@ export class ModificarHomeComponent {
   token: string | null;//token de session
   contenido = '';
   hotel: Hotel | null = null;
+  hotelTemporal : Hotel | null = null;
   nuevaImagen: File | null = null;
   enlace: Enlace | null = null;
-
+  imagen : string | null = null;
   constructor(private router: Router, private service: HotelService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -41,11 +42,15 @@ export class ModificarHomeComponent {
 
 
   }
+
+
+  prueba: string | null=null;
   ngOnInit() {
     //verificar autenticacion
     if (this.token == null) {
       this.router.navigate(['/login']);
     }
+
     this.service.ObtenerHome(1).subscribe(
       data => {
         this.hotel = data;
@@ -55,6 +60,21 @@ export class ModificarHomeComponent {
         alert('Ha ocurrido un erro con el servicio');
       }
     );
+
+    this.service.ObtenerImagenHome(1).subscribe(
+      data => {
+        this.hotelTemporal = data;
+        if(this.hotelTemporal){
+          if(this.hotel){
+            this.hotel.imagen_Home =this.hotelTemporal.imagen_Home;
+          }
+        }   
+      },
+      error => {
+        alert('Ha ocurrido un erro con el servicio');
+      }
+    );
+
   }
 
   validarImagen(archivo: File): boolean {
@@ -106,7 +126,7 @@ export class ModificarHomeComponent {
 
       );
     } else {
-      alert('Por favor ingresa una imagen ');
+      alert('Por favor ingresa una imagen de tipo JPEG, PNG O GIF');
     }
   }
 
