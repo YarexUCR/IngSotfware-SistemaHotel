@@ -8,6 +8,10 @@ import { error } from 'console';
 import { Hotel } from '../../dominio/Hotel';
 import { CommonModule } from '@angular/common';
 
+interface Enlace{
+  url : string
+}
+
 @Component({
   selector: 'app-modificar-home',
   standalone: true,
@@ -66,6 +70,7 @@ export class ModificarHomeComponent {
     }
   }
 
+  enlace:Enlace | null=null;
   cambiarImagenHome(){
     alert('Hola');
     alert('Vamos a enviar '+this.nuevaImagen?.name);
@@ -73,7 +78,9 @@ export class ModificarHomeComponent {
       this.service.CambiarImagenHome(this.nuevaImagen).subscribe(
         data => {
           if (data) {
-            alert(JSON.stringify(data));
+            this.enlace = data;
+            alert(this.enlace?.url);
+            
             //this.router.navigate(['admin/modificarPaginas']);
           } else {
             alert('Ha ocurrido un error al actualizar home');
