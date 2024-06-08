@@ -31,6 +31,8 @@ export class InicioComponent {
 
   token: string | null;//token de session
   hotel: Hotel | null = null;
+  ruta : string | null = null;
+  hotelTemporal: Hotel | null = null;
 
   constructor(private router: Router,private servicio: HotelService ) {
     //para resguardar ruta
@@ -48,6 +50,20 @@ export class InicioComponent {
     this.servicio.ObtenerHome(1).subscribe(
       data => {
         this.hotel = data;
+      },
+      error => {
+        alert('Ha ocurrido un erro con el servicio');
+      }
+    );
+
+    this.servicio.ObtenerImagenHome(1).subscribe(
+      data => {
+        this.hotelTemporal = data;
+        if(this.hotelTemporal){
+          if(this.hotel){
+            this.hotel.imagen_Home =this.hotelTemporal.imagen_Home;
+          }
+        }   
       },
       error => {
         alert('Ha ocurrido un erro con el servicio');
