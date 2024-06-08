@@ -47,9 +47,16 @@ export class TipoHabitacionService {
     return this._http.post<boolean>(`https://localhost:7200/TipoHabitacion/ActualizarTipoHabitacion`, _tipo);
   }
 
-  actualizarEstadoHabitacion(id:number,activo:boolean):Observable<any>{
+  actualizarEstadoHabitacion(id: number, activo: boolean): Observable<any> {
     return this._http.put<any>(`https://localhost:7200/TipoHabitacion/ActualizarEstadoHabitacion/${id}/${activo}`, {});
-  
+
+  }
+
+  CambiarImagen(file: File): Observable<any> {
+    const formulario: FormData = new FormData();
+    formulario.append('file', file, file.name);
+
+    return this._http.post<any>('https://localhost:7200/TipoHabitacion/CargarImagenHabitacion', formulario);
   }
 
 }

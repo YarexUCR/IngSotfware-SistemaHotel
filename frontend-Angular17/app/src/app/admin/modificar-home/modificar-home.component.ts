@@ -4,7 +4,7 @@ import { Router } from '@angular/router';;
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule } from '@angular/forms';
 import { HotelService } from '../../api/hotel.service';
-import { Console, error } from 'console';
+import { MatDividerModule } from '@angular/material/divider';
 import { Hotel } from '../../dominio/Hotel';
 import { CommonModule, JsonPipe } from '@angular/common';
 
@@ -16,6 +16,7 @@ interface Enlace {
   selector: 'app-modificar-home',
   standalone: true,
   imports: [
+    MatDividerModule,
     FooterComponent,
     EditorModule,
     FormsModule,
@@ -113,9 +114,8 @@ export class ModificarHomeComponent {
         data => {
           if (data) {
             this.enlace = data;
-            alert(this.enlace?.url);
-
-            //this.router.navigate(['admin/modificarPaginas']);
+            alert('Home ha sido actualizado la imagen se encuentra '+ this.enlace?.url);
+            this.router.navigate(['admin/modificarPaginas']);
           } else {
             alert('Ha ocurrido un error al actualizar la imagen de home');
           }

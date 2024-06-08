@@ -35,6 +35,7 @@
                 </button>
             </div>
         </div>
+        <mat-divider class="row mb-3" style="border-width: 2px;"></mat-divider>
         <div class="row mb-3">
             <div class="col">
                 <label>Imagen actual</label>
@@ -42,13 +43,14 @@
             </div>
             <div class="col mb-3">
                 <form #fileForm="ngForm">
-                    <input type="file" class="form-control mb-3" (change)="archivoSeleccionado($event)" accept=".jpg,.jpeg,.png,.gif">
+                    <input type="file" class="form-control mb-3" (change)="archivoSeleccionado($event)"
+                        accept=".jpg,.jpeg,.png,.gif">
                     <button type="submit" class="btn btn-sm" style="background-color: #001840; 
                     color: #fffdf0; float: right;" (click)="cambiarImagenHome()">
                         Cambiar Imagen
                     </button>
                 </form>
-                
+
             </div>
         </div>
     </div>
