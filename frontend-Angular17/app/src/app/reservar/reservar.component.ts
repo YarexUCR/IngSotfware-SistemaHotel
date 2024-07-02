@@ -209,12 +209,12 @@ export class ReservarComponent {
               this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
               //alert(this.recomendacion);
               this.modalTitle = 'Mensaje';
-              this.modalMessage = this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
               this.showModal = true;
             }else{
            this.disponibles.forEach(element => {
-            
-            this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles\n";
+            if(element.tipo!=this.formData.tipo_habitacion0){
+              this.recomendacion += "Para las habitaciones de tipo "+element.tipo+" tenemos "+element.cantidad+" habitaciones disponibles. ";
+            }
             this.cantidad_habitacionDesactivado=true;
             this.recomendacionDesactivado=true;
             });
@@ -246,7 +246,7 @@ export class ReservarComponent {
   cargarRecomendacion(){
     this.recomendaciones = [];
     for (let i = 0; i < 7; i++) {
-      const nextDate = addDays(parseISO(this.formData.checkOut), i);
+      const nextDate = addDays(parseISO(this.formData.checkIn), i);
       const formattedDate = format(nextDate, 'yyyy-MM-dd');
       const cantidad = 0;
       this.service.obtenerCantidadHabitacionesDisponiblesPorDiaTipo(this.formData.tipo_habitacion, formattedDate).subscribe

@@ -16,6 +16,8 @@ import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Habitacion } from '../dominio/Habitacion';
 import { ModalComponent } from '../modal/modal.component';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @Component({
@@ -31,7 +33,8 @@ import { ModalComponent } from '../modal/modal.component';
       MatCardModule,
       CommonModule,
       FormsModule,
-      ModalComponent
+      ModalComponent,
+      MatProgressSpinnerModule
     ]
 })
 export class DisponibleComponent {
@@ -42,6 +45,8 @@ export class DisponibleComponent {
   modalTitle!: string;
   modalMessage!: string;
   private paypalSDK: any;
+  cargando : boolean = false;
+
   constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService){
     this.paypalSDK = (window as any).paypal;
      //para resguardar ruta
@@ -65,6 +70,17 @@ export class DisponibleComponent {
   obtenerHabitacionesPorTipo(id:number){
     return  this.reserva?.habitaciones.filter(habitacion => habitacion.tipo.id === id);
   }
+
+  validarCedula(cedula: string): boolean {
+     // Condiciones de validación
+    const fisica = cedula.length === 9 && !/^0/.test(cedula);
+    const juridica = cedula.length === 10 && !/^0/.test(cedula);
+    const dimex = (cedula.length === 11 || cedula.length === 12) && !/^0/.test(cedula);
+    const nite = cedula.length === 10 && !/^0/.test(cedula);
+
+    return fisica || juridica || dimex || nite;
+  }
+
   ngOnInit(): void {
     //verificar autenticacion
     if (this.token != null) {
@@ -110,6 +126,13 @@ export class DisponibleComponent {
           this.showModal = true;
           return;
         }
+
+        if(!this.validarCedula(this.cedula.toString())){
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Por favor agregue un numero de identificación valido para continuar ya sea cedula física, jurídica, DIMEX o NITE';
+          this.showModal = true;
+          return;
+        }
         return actions.order.capture().then((details: any) => {
           //console.log('Pago completado:', details);
           const nombrePaypal = details.payer.name.given_name; // Nombre del comprador de PayPal
@@ -117,6 +140,7 @@ export class DisponibleComponent {
           const correoPaypal = details.payer.email_address; // Correo electrónico del comprador de PayPal
         
           if(this.reserva){
+            this.cargando= true;
             this.reserva.email = correoPaypal;
             this.reserva.cliente = nombrePaypal+' '+apellidoPaypal;
             this.reserva.cedula = this.cedula;
@@ -125,9 +149,11 @@ export class DisponibleComponent {
                 // Aquí puedes manejar la respuesta según tu lógica
                 const id =respuesta;
                 if (this.reserva) { // Asegurarse de que this.reserva no es null ni undefined
+                  this.cargando= false;
                   this.reserva.id = id;
-                  this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+                  //this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
                 }
+                this.cargando= false;
               },
               (error) => {
                 console.error('Error al llamar al servicio:', error);
@@ -136,8 +162,10 @@ export class DisponibleComponent {
                 this.modalTitle = 'Mensaje';
                 this.modalMessage = 'Error con el servicio';
                 this.showModal = true;
+                this.cargando= false;
               }
             );
+            
           }
           //
           // Aquí puedes enviar el ID de la orden a tu backend para procesar la reserva
