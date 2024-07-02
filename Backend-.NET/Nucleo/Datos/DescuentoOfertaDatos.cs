@@ -48,7 +48,8 @@ namespace Datos
                                 Descuento = Convert.ToInt32(reader["descuento"]),
                                 MontoDescuento = Convert.ToDouble(reader["montoDescuento"]),
                                 PrecioConDescuento = Convert.ToDouble(reader["precioConDescuento"]),
-                                Oferta = reader["oferta"].ToString()
+                                Oferta = reader["oferta"].ToString(),
+                                
                             };
 
                             descuentos.Add(descuento);
@@ -61,7 +62,7 @@ namespace Datos
         }
 
 
-        public List<DescuentoOferta> ObtenerTodasOfertas(int idTipoHabitacion)
+        public List<DescuentoOferta> ObtenerTodasOfertas()
         {
             List<DescuentoOferta> descuentos = new List<DescuentoOferta>();
 
@@ -73,8 +74,7 @@ namespace Datos
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    // Parámetro del procedimiento almacenado
-                    command.Parameters.Add(new SqlParameter("@idTipoHabitacion", idTipoHabitacion));
+                   
 
                     // Ejecutar el procedimiento almacenado
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -88,7 +88,9 @@ namespace Datos
                                 Descuento = Convert.ToInt32(reader["descuento"]),
                                 MontoDescuento = Convert.ToDouble(reader["montoDescuento"]),
                                 PrecioConDescuento = Convert.ToDouble(reader["precioConDescuento"]),
-                                Oferta = reader["oferta"].ToString()
+                                Oferta = reader["oferta"].ToString(),
+                               Inicio = reader.GetDateTime(reader.GetOrdinal("inicio")),
+                                Fin = reader.GetDateTime(reader.GetOrdinal("fin"))
                             };
 
                             descuentos.Add(descuento);

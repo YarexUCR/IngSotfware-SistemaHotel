@@ -21,8 +21,8 @@ namespace Nucleo.Controllers
         }
 
         [HttpGet("ObtenerTodasOfertas")]//para tarifas
-        public IActionResult ObtenerTodasOfertas(int idTipoHabitacion) {
-            return Ok(this._reglasNegocio.ObtenerTodasOfertas(idTipoHabitacion));
+        public IActionResult ObtenerTodasOfertas() {
+            return Ok(this._reglasNegocio.ObtenerTodasOfertas());
         }
     }
 }

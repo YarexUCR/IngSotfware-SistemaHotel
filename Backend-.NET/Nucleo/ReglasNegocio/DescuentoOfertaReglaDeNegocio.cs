@@ -22,8 +22,8 @@ namespace ReglasNegocio
             return this.datos.ObtenerDescuentoOferta(fecha,idTipoHabitacion);
         }
 
-        public List<DescuentoOferta> ObtenerTodasOfertas(int idTipoHabitacion) { 
-            return this.datos.ObtenerTodasOfertas(idTipoHabitacion);
+        public List<DescuentoOferta> ObtenerTodasOfertas() { 
+            return this.datos.ObtenerTodasOfertas();
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Dominio
         public double montoDescuento;
         public double precioConDescuento;
         public string oferta;
+        DateTime inicio;
+        DateTime fin;
 
         public DescuentoOferta() {
             this.nombre = "";
@@ -35,5 +37,9 @@ namespace Dominio
         public double PrecioConDescuento { get => precioConDescuento; set => precioConDescuento = value; }
 
         public string Oferta { get => oferta; set => oferta = value; }
+
+        public DateTime Inicio { get => inicio; set => inicio = value; }
+
+        public DateTime Fin { get => fin; set => fin = value; }
     }
 }
