@@ -13,13 +13,11 @@ import { Publicidad } from '../../dominio/Publicidada';
 })
 export class PublicidadCrearComponent {
   token: string | null;//token de session
-  nombre : string | null;
-  enlace : string | null;
-  imagen : string | null;
+  datosFormulario: any = [];//acceso a los input del formulario para reservar
+  nuevaImagen: File | null = null;
+
   constructor(private router: Router) {
-    this.nombre = "";
-    this.enlace = "";
-    this.imagen = "";
+    
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -34,13 +32,33 @@ export class PublicidadCrearComponent {
     }
   }
 
-  crearPublicidad(){
-    if(!this.nombre || !this.enlace){
-      alert('Todos los campos son obligatorios');
-      alert(this.nombre);
-      alert(this.enlace);
-    }else{
+  validarImagen(archivo: File): boolean {
+    const tiposValidos = ['image/jpeg', 'image/png', 'image/gif'];
       
+      if (!tiposValidos.includes(archivo.type)) {
+        alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        return false;
+      }else{
+        return true;
+      }
+  }
+
+  archivoSeleccionado(event: any) {
+    const imagen = event.target.files[0];
+    
+    if (imagen) {
+      if(this.validarImagen(imagen)){
+        this.nuevaImagen = imagen;
+        alert(this.nuevaImagen?.name+" ha sido seleccionada");
+      }
+    }
+  }
+
+  crearPublicidad(){
+    if(this.datosFormulario.nombre && this.datosFormulario.enlace && this.nuevaImagen){
+      alert(this.datosFormulario.nombre+" "+this.datosFormulario.enlace+" "+this.nuevaImagen.name);
+    }else{
+      alert("Todos los datos son requeridos");
     }
   }
 }
