@@ -199,7 +199,7 @@ export class ReservarComponent {
 
     this.service.obtenerHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut, this.formData.tipo_habitacion).subscribe(data => {
 
-      if (data.length === 0) {
+      if (data.length == 0) {
         this.recomendacion = '¡Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles: \n'
         this.service.obtenerCantidadHabitacionesDisponibles(this.formData.checkIn, this.formData.checkOut).
           subscribe(data => {
@@ -208,6 +208,7 @@ export class ReservarComponent {
             {
               this.recomendacion+="Todas nuestras habitaciones estan ocupadas";
               //alert(this.recomendacion);
+              this.modalMessage = this.recomendacion;
               this.modalTitle = 'Mensaje';
               this.showModal = true;
             }else{
