@@ -24,7 +24,7 @@ export class VerEstadoHotelHoyComponent implements OnInit {
   check: string | null = null;
   token: string | null;//token de session
   habitacionesPaginadas: HabiacionesConsulta[] = [];
-  displayedColumns: string[] = ['Numero', 'TipoHabitacion', 'Disponible'];
+  displayedColumns: string[] = ['Numero', 'TipoHabitacion', 'Disponible','Activo'];
   
   cargarHabitacionesPaginadas(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
@@ -124,7 +124,7 @@ generarPDF(): void {
   const drawHeader = () => {
 
 
-    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    doc.setFillColor(0, 24, 64);
     doc.setLineWidth(4); // Ancho del borde
     doc.rect(2, 2, pageWidth - 4, 75);
 
@@ -132,7 +132,7 @@ generarPDF(): void {
     doc.setFillColor(0, 24, 64);
     doc.rect(4, 4, pageWidth - 8, 71, 'F');
 
-    doc.setDrawColor(245, 196, 0); // Color del borde amarillo
+    doc.setFillColor(0, 24, 64);
     doc.setLineWidth(4); // Ancho del borde
     doc.rect(20, 78, pageWidth-40, pageHeight - 100);
     // Encabezado
@@ -160,16 +160,18 @@ generarPDF(): void {
 
   doc.setTextColor(0, 24, 64);
   doc.setFontSize(12);
-  doc.text(`Copyright © HotelPalm 2024`, 250, pageHeight-10);
+  doc.text(`Copyright © Hotel Palm 2024`, 250, pageHeight-10);
 
   
 
   // Datos de la tabla
-  const columns = ['Número de Habitación', 'Tipo de Habitacion', 'Activo'];
+  const columns = ['Número de Habitación', 'Tipo de Habitacion', 'Disponibilidad','Activo'];
   const filas = this.habitaciones.map(habitacion => [
     habitacion.numero,
     habitacion.tipo.nombre,
-    habitacion.activo ? 'Disponible' : 'Ocupando'
+    habitacion.disponible ? 'Disponible' : 'Ocupando',
+    habitacion.activo ? 'Activa' : 'Desactivada'
+
 ]);
 
 (doc as any).autoTable({
@@ -188,6 +190,16 @@ generarPDF(): void {
         doc.addImage('assets/iconos/ck_circle - Copy.png', data.cell.x-20 , data.cell.y+5 , 15, 15);
       } else {
         doc.addImage('assets/iconos/cancel - Copy.png', data.cell.x-20 , data.cell.y+5  , 15, 15);
+
+      }
+    }
+    if (data.column.index === 3 && data.row.index>=0 && data.section === 'body') { // Comprueba si la celda es de la columna "Activo"
+      const activo = data.cell.raw;
+      if (activo === 'Activa') {
+        doc.addImage('assets/iconos/ck_circle - Copy.png', data.cell.x-20 , data.cell.y+5 , 15, 15);
+      } else {
+        doc.addImage('assets/iconos/cancel - Copy.png', data.cell.x-20 , data.cell.y+5  , 15, 15);
+
       }
     }
   },

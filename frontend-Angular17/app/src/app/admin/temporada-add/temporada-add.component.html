@@ -1,0 +1,61 @@
+
+<mat-dialog-content class="altura">
+    <h2 mat-dialog-title>Agregar Temporada</h2>
+<div class="container">
+  
+        <div class="row">
+            <div class="col">
+                <label for="checkIn">Fecha de Inicio</label>
+                <input matInput type="date" placeholder="yyyy-mm-dd" id="checkIn" name="checkIn"
+                class="form-control" [(ngModel)]="formData.checkIn" >
+
+                <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
+                    Fecha de Inicio es obligatorio
+                </div>
+             
+                <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion">
+                    {{mensajeConfirmacion}}
+                </div>
+            </div>
+            
+            <div class="col">
+                <label for="checkOut">Fecha de Fin</label>
+                <input matInput type="date" placeholder="yyyy-mm-dd" id="checkOut" name="checkOut"
+                class="form-control"  [(ngModel)]="formData.checkOut">
+
+                <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
+                    La Fecha Final es obligatorio
+                </div>
+                <div class="alert alert-danger mt-2" *ngIf="mostrarError_">
+                    {{mensajeError_}}
+                </div>
+                <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion_">
+                    {{mensajeConfirmacion_}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           
+            <div class="col">
+                <mat-form-field class="example-full-width">
+                    <label for="montoDescuento">Monto de descuento</label>
+                    <mat-label>Monto de descuento</mat-label>
+                    <input matInput type="number" placeholder="30" id="montoDescuento" name="montoDescuento"
+                    class="form-control"  [(ngModel)]="formData.montoDescuento" (input)="updateMontoDescuento($event)">
+                </mat-form-field>
+            </div>
+
+
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="mostrarError">
+            {{mensajeError}}
+        </div>
+        <mat-dialog-actions >
+            <button  (click)="onNoClick()" class="btn btn-primary">Cerrar</button>
+            <button  (click)="agregarTemporada()" class="btn btn-success "
+                cdkFocusInitial>Agregar</button>
+        </mat-dialog-actions>
+
+</div>
+
+<mat-dialog-content>

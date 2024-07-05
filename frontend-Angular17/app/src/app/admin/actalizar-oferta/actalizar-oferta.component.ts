@@ -88,6 +88,8 @@ export class ActalizarOfertaComponent {
         this.formData.id = oferta.id;
         this.formData.checkIn = oferta.inicio;
         this.formData.checkOut = oferta.fin;
+   
+
         this.formData.descuento =  parseInt(oferta.descuento.toString());
         this.formData.descripcion = oferta.nombre;
         this.tipoHabOfertaSer = oferta.tipoHabitacions;
