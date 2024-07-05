@@ -13,6 +13,8 @@ namespace Dominio
         public int numero;
         public TipoHabitacion tipo;
         public bool activo;
+        public bool disponible;
+
 
         public Habitacion() { 
             this.id = 0;
@@ -35,7 +37,7 @@ namespace Dominio
         public string Estado { get => estado; set => estado = value; }
         public bool Activo { get => activo; set => activo = value; }
         public int Numero { get => numero; set => numero = value; }
-        public bool Disponible { get => activo; set => activo = value; }
+        public bool Disponible { get => disponible; set => disponible = value; }
         public TipoHabitacion Tipo { get => tipo; set => tipo = value; }
     }
 }
