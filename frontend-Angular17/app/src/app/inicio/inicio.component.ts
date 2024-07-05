@@ -9,6 +9,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { Router } from "@angular/router";
 import { HotelService } from '../api/hotel.service';
 import { Hotel } from '../dominio/Hotel';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-inicio',
@@ -24,7 +25,8 @@ import { Hotel } from '../dominio/Hotel';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    ModalComponent
   ]
 })
 export class InicioComponent {
@@ -33,6 +35,9 @@ export class InicioComponent {
   hotel: Hotel | null = null;
   ruta : string | null = null;
   hotelTemporal: Hotel | null = null;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   constructor(private router: Router,private servicio: HotelService ) {
     //para resguardar ruta
@@ -52,7 +57,10 @@ export class InicioComponent {
         this.hotel = data;
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un erro con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
 
@@ -66,10 +74,16 @@ export class InicioComponent {
         }   
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un erro con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
   }
 
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
   
 }

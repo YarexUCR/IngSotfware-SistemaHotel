@@ -5,6 +5,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { PublicidadService } from '../api/Publicidad.service';
 import { Publicidad } from '../dominio/Publicidada';
 import { Interface } from 'readline';
+import { ModalComponent } from '../modal/modal.component';
 
 interface image{
   itemImageSrc: string, 
@@ -16,12 +17,15 @@ interface image{
 @Component({
   selector: 'app-publicidad',
   standalone: true,
-  imports: [CommonModule,GalleriaModule],
+  imports: [CommonModule,GalleriaModule, ModalComponent],
   templateUrl: './publicidad.component.html',
   styleUrl: './publicidad.component.scss'
 })
 export class PublicidadComponent {
   publicidades : Publicidad[]=[];
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   images: any[]= [
    { 
@@ -65,9 +69,16 @@ export class PublicidadComponent {
 
       },
       error=>{
-        alert("Error con el servicio");
+        //alert("Error con el servicio");
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
   }
+
+closeModal() {
+  this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+}
   
 }

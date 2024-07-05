@@ -32,3 +32,6 @@
         <app-footer></app-footer>
     </mat-grid-list>
 </div>
+
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage"></app-modal>
+<app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage" (closeModalEvent)="closeModal()"></app-modal>

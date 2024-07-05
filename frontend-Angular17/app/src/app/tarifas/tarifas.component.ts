@@ -8,13 +8,14 @@ import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { DescuentoOfertaService } from '../api/DescuentoOferta.service';
 import { TipoHabitacionService } from '../api/tipo.habitacion.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
     selector: 'app-tarifas',
     standalone: true,
     templateUrl: './tarifas.component.html',
     styleUrl: './tarifas.component.scss',
-    imports: [FooterComponent,CommonModule,MatDividerModule]
+    imports: [FooterComponent,CommonModule,MatDividerModule,ModalComponent]
 })
 
 
@@ -23,6 +24,9 @@ export class TarifasComponent {
     token: string | null;//token de session
     tiposDeHabitacion:TipoHabitacion[]=[];
     descuentosOfertas : DescuentoOferta []=[];
+    showModal: boolean = false;
+    modalTitle!: string;
+    modalMessage!: string;
     constructor(private tipoHabitacionServicio :TipoHabitacionService,private router: Router, private desuentoOfertaSercivio : DescuentoOfertaService){
 
         if (typeof localStorage !== 'undefined') {
@@ -56,9 +60,15 @@ export class TarifasComponent {
         },
         error => {
           alert('Ha ocurrido un erro con el servicio');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ha ocurrido un error con el servicio';
+          this.showModal = true;
         }
       );
     }
 
+    closeModal() {
+      this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+    }
 
 }

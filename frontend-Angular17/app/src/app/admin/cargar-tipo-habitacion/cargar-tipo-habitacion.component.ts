@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { ModalComponent } from '../../modal/modal.component';
 
 interface Enlace {
   url: string
@@ -17,7 +18,7 @@ interface Enlace {
   standalone: true,
   templateUrl: './cargar-tipo-habitacion.component.html',
   styleUrl: './cargar-tipo-habitacion.component.scss',
-  imports: [CommonModule, FormsModule, EditorModule, MatDividerModule, FooterComponent]
+  imports: [CommonModule, FormsModule, EditorModule, MatDividerModule, FooterComponent,ModalComponent]
 })
 
 export class CargarTipoHabitacionComponent {
@@ -29,6 +30,10 @@ export class CargarTipoHabitacionComponent {
   imagen: string | null = null;
   nuevaImagen: File | null = null;
   enlace: Enlace | null = null;
+  
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private servicio: TipoHabitacionService) {
     //para resguardar ruta
@@ -65,27 +70,39 @@ export class CargarTipoHabitacionComponent {
       data => {
         if (data) {
           if (this.tipo) {
-            alert('Actualizacion completa');
+            //alert('Actualizacion completa');
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Actualizacion completa';
+            this.showModal = true;
             this.router.navigate(['/admin/administrarHabitaciones']);
           }
 
         } else {
-          alert('Ha ocurrido un error');
+          //alert('Ha ocurrido un error');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ha ocurrido un error';
+          this.showModal = true;
         }
       },
       error => {
-        alert('Ha ocurrido un error con el servicio');
+        //alert('Ha ocurrido un error con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
   }
 
   actualizar() {
     if (!this.precio || !this.descripcion) {
-      alert('Recuerda que todos los campos son obligatorios');
+      //alert('Recuerda que todos los campos son obligatorios');
       return;
     }
     if (this.precio <= 0) {
-      alert('El precio debe ser mayor a 0');
+      //alert('El precio debe ser mayor a 0');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'El precio debe ser mayor a 0';
+      this.showModal = true;
       return;
     }
     if (this.tipo) {
@@ -99,7 +116,10 @@ export class CargarTipoHabitacionComponent {
     const tiposValidos = ['image/jpeg', 'image/png', 'image/gif'];
 
     if (!tiposValidos.includes(archivo.type)) {
-      alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+      //alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'Debes seleccionar una imagen con formarto JPEG, PNG O GIF';
+      this.showModal = true;
       return false;
     } else {
       return true;
@@ -120,16 +140,25 @@ export class CargarTipoHabitacionComponent {
             }
 
           } else {
-            alert('Ha ocurrido un error al actualizar la imagen');
+            //alert('Ha ocurrido un error al actualizar la imagen');
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Ha ocurrido un error al actualizar la imagen';
+            this.showModal = true;
           }
         },
         error => {
-          alert('Ha ocurrido un erro con el servicio');
+          //alert('Ha ocurrido un erro con el servicio');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ha ocurrido un error con el servicio';
+          this.showModal = true;
         }
 
       );
     } else {
-      alert('Por favor ingresa una imagen de tipo JPEG, PNG O GIF');
+      //alert('Por favor ingresa una imagen de tipo JPEG, PNG O GIF');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'Por favor ingresa una imagen de tipo JPEG, PNG O GIF';
+      this.showModal = true;
     }
   }
 
@@ -140,6 +169,10 @@ export class CargarTipoHabitacionComponent {
         this.nuevaImagen = imagen;
       }
     }
+  }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
   }
 
 }

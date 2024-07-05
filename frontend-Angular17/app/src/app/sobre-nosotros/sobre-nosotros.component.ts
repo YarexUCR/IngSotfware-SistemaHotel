@@ -13,6 +13,7 @@ import { GalleriaResponsiveOptions } from 'primeng/galleria';
 import { Router } from "@angular/router";
 import { Hotel } from '../dominio/Hotel';
 import { HotelService } from '../api/hotel.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-sobre-nosotros',
@@ -25,7 +26,8 @@ import { HotelService } from '../api/hotel.service';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    GalleriaModule
+    GalleriaModule,
+    ModalComponent
   ],
   templateUrl: './sobre-nosotros.component.html',
   styleUrls: ['./sobre-nosotros.component.scss'] // Corregido 'styleUrls'
@@ -34,6 +36,9 @@ export class SobreNosotrosComponent  {
 
   token: string | null;//token de session
   hotel: Hotel | null = null;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
   constructor(private router: Router, private servicio: HotelService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -54,7 +59,10 @@ export class SobreNosotrosComponent  {
         this.hotel = data;
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un erro con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
   }
@@ -84,5 +92,9 @@ export class SobreNosotrosComponent  {
     }
   
   ];
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
 
 } 
