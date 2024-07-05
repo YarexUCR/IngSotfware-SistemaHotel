@@ -1,0 +1,69 @@
+<mat-dialog-content>
+    <h2 mat-dialog-title>Actualizar Temporada</h2>
+    <div class="container">
+        <form class="row g-2">
+
+            <div class="row">
+                <div class="col">
+                    <label for="fechaInicio">Fecha de Inicio  </label>
+                    <input class="form-control" type="date" id="fechaInicio" name="fechaInicio" 
+                    [(ngModel)]="formData.fechaInicio" [value]="formData.fechaInicio | date:'yyyy-MM-dd'" required>
+             
+
+
+
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckIn">
+                        Fecha de Inicio es obligatorio
+                    </div>
+                 
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion">
+                        {{mensajeConfirmacion}}
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label for="fechaFinal">Fecha de Fin</label>
+                    <input class="form-control" type="date" id="fechaFinal" name="fechaFinal" [(ngModel)]="formData.fechaFinal" 
+                    [value]="(formData.fechaFinal | date:'yyyy-MM-dd')" required>
+             
+
+
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarErrorCheckOut">
+                        La Fecha Final es obligatorio
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="mostrarError_">
+                        {{mensajeError_}}
+                    </div>
+                    <div class="alert alert-success mt-2" *ngIf="mostrarConfirmacion_">
+                        {{mensajeConfirmacion_}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <label for="descuento">Monto de descuento</label>
+                        <mat-label>Monto de descuento</mat-label>
+                        <input  class="form-control"  type="number" placeholder="30" id="descuento" name="descuento"
+                        [value]="formData.descuento" [(ngModel)]="formData.descuento" (input)="updateMontoDescuento($event)" required>
+                 
+                          
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="alert alert-danger mt-2" *ngIf="mostrarError">
+                {{mensajeError}}
+            </div>
+
+            <mat-dialog-actions class="d-flex justify-content-between">
+                <button mat-button (click)="onNoClick()" class="btn btn-primary">Cerrar</button>
+                <button mat-button (click)="actualizartemporada()" class="btn btn-success" cdkFocusInitial>Actualizar</button>
+            </mat-dialog-actions>
+            
+
+        </form>
+
+    </div>
+    <mat-dialog-content>

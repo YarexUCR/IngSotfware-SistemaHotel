@@ -32,7 +32,22 @@
                         <ng-template #notAvailable>
                             <img src="assets/iconos/cancel.svg" alt="No disponible">
                         </ng-template>
-                        {{ element.disponible ? 'Disponible' : 'Ocupada' }}
+                        {{ element.disponible  ? 'Disponible' : 'Ocupada' }}
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Activo">
+                    <th mat-header-cell *matHeaderCellDef> Activa </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.activo; else notAvailable">
+                            <img src="assets/iconos/ck_circle.svg" alt="Disponible">
+                        </ng-container>
+                        <ng-template #notAvailable>
+                            <img src="assets/iconos/cancel.svg" alt="No disponible">
+                        </ng-template>
+                        {{ element.activo ? 'Activa' : 'Desactivada' }}
+                       
                     </td>
                 </ng-container>
 
