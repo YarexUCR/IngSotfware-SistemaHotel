@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dominio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReglasNegocio;
 
 namespace Nucleo.Controllers
 {
@@ -7,11 +9,17 @@ namespace Nucleo.Controllers
     [Route("[controller]")]//Ensablado de clase
     public class PublicidadController : ControllerBase
     {
-        [HttpPost("CrearPublicidad")]
-        public async Task<IActionResult> CrearPublicidad(IFormFile file, string enlace, string nombre)
+        private readonly PublicidadReglaDeNegocio _reglasNegocio;
+
+        public PublicidadController(IConfiguration configuration, PublicidadReglaDeNegocio reglasNegocio) { 
+            _reglasNegocio = reglasNegocio;
+        }
+
+        [HttpPost("CrearPublicidadImagen")]
+        public async Task<IActionResult> CrearPublicidadImagen(IFormFile file)
         {
-            Console.WriteLine("enlace " + enlace);
-            Console.WriteLine("nombre" + nombre);
+            //Console.WriteLine("enlace " + enlace);
+            //Console.WriteLine("nombre" + nombre);
             if (file == null || file.Length == 0)
             {
                 return BadRequest("No se guardó el archivo.");
@@ -44,7 +52,23 @@ namespace Nucleo.Controllers
             // Devolver la URL del archivo guardado
             var fileUrl = $"{Request.Scheme}://{Request.Host}/imagenes/publicidad/{file.FileName}";
 
+
             return Ok(new { Url = fileUrl });
+        }
+
+        [HttpPost("InsertarPublicidad")]
+        public IActionResult InsertarPublicidad(Publicidad publicidad) {
+            return Ok(this._reglasNegocio.InsertarPublicidad(publicidad));
+        }
+
+        [HttpGet("ObtenerTodasPublicidad")]
+        public IActionResult ObtenerTodasPublicidad() { 
+            return Ok(this._reglasNegocio.ObtenerTodasPublicidad());
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult EliminarPublicidad(int id) {
+            return Ok(this._reglasNegocio.EliminarPublicidad(id));
         }
     }
 }

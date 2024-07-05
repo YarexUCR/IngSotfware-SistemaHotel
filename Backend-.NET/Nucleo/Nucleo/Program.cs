@@ -13,6 +13,7 @@ builder.Services.AddScoped<HabitacionReglasNegocio>();
 builder.Services.AddScoped<OfertaReglaDeNegocio, OfertaReglaDeNegocio>();
 builder.Services.AddScoped<HotelReglasNegocio, HotelReglasNegocio>();
 builder.Services.AddScoped<DescuentoOfertaReglaDeNegocio>();
+builder.Services.AddScoped<PublicidadReglaDeNegocio>();
 builder.Services.AddScoped<OfertaDatos>();
 builder.Services.AddScoped<ReservaReglasNegocio, ReservaReglasNegocio>();
 

@@ -3,7 +3,11 @@ import { FooterComponent } from "../../footer/footer.component";
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Publicidad } from '../../dominio/Publicidada';
-
+import { PublicidadService } from '../../api/Publicidad.service';
+import { error } from 'console';
+interface Enlace {
+  url: string
+}
 @Component({
   selector: 'app-publicidad-crear',
   standalone: true,
@@ -13,10 +17,12 @@ import { Publicidad } from '../../dominio/Publicidada';
 })
 export class PublicidadCrearComponent {
   token: string | null;//token de session
-  datosFormulario: any = [];//acceso a los input del formulario para reservar
   nuevaImagen: File | null = null;
+  publicidad: Publicidad = {id : 0, nombre : "",enlace: "", imagen: "" };
+  enlace: Enlace | null = null;
 
-  constructor(private router: Router) {
+
+  constructor(private router: Router, private servicio : PublicidadService) {
     
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -54,11 +60,46 @@ export class PublicidadCrearComponent {
     }
   }
 
+  cargarImagen(){
+    if(this.nuevaImagen){
+      this.servicio.InsertarImagen(this.nuevaImagen).subscribe(
+        data=>{
+          this.enlace = data;
+          if(this.enlace){
+            this.publicidad.imagen =this.enlace?.url;
+            this.cargarPublicidad();
+          }else{
+            "Intente de nuevo"
+          }  
+        },
+        error =>{
+          alert('error con el servicio');
+        }
+      );
+    }
+  }
+
+  cargarPublicidad(){
+    this.servicio.InsertarPublicidad(this.publicidad).subscribe(
+      data=>{
+        if(data){
+          alert("La Publicidad se inserto correctamente");
+          this.router.navigate(['admin/publicidadAdmin']);
+        }else{
+          alert("Error al insertar la Publicidad intente de nuevo")
+        }
+      },
+      error=>{
+        alert('error con el servicio');
+      }
+    );
+  }
+
   crearPublicidad(){
-    if(this.datosFormulario.nombre && this.datosFormulario.enlace && this.nuevaImagen){
-      alert(this.datosFormulario.nombre+" "+this.datosFormulario.enlace+" "+this.nuevaImagen.name);
+    if(this.publicidad.nombre==""||this.publicidad.enlace==""||!this.nuevaImagen){
+      alert('Todos los campos son requeirdos');
     }else{
-      alert("Todos los datos son requeridos");
+      this.cargarImagen();//
     }
   }
 }
