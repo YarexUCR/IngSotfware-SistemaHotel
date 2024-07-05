@@ -1,19 +1,39 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Contáctenos</h1>
-     <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <p>Palm Hotel:
+<!-- contact.component.html -->
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4">
+        <h1 class="mat-h1 text-center">Contáctenos</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="text-center">
+                        Palm Hotel:
                         <br>
                         Tel: 2222-2222 / 8888-8888
                         <br>
                         Apartado Postal XYZ
                         <br>
-                        <a>info&commat;palmhotel.com</a>
+                        <a href="mailto:info@palmhotel.com">info&commat;palmhotel.com</a>
                     </p>
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" [(ngModel)]="contactForm.name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" [(ngModel)]="contactForm.email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="message" [(ngModel)]="contactForm.message" name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div> 
-        
-    <app-footer></app-footer>
+        </div>
+    </div>
 </div>
+<app-footer></app-footer>
