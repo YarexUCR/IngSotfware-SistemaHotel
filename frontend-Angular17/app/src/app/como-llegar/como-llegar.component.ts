@@ -9,6 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { HotelService } from '../api/hotel.service';
 import { Hotel } from '../dominio/Hotel';
+import { ModalComponent } from '../modal/modal.component';
 
 declare const google: any;
 @Component({
@@ -23,7 +24,7 @@ declare const google: any;
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-
+    ModalComponent
 
   ]
 })
@@ -31,6 +32,9 @@ declare const google: any;
 export class ComoLlegarComponent implements OnInit {
   token: string | null;//token de session
   hotel: Hotel | null = null;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,private router: Router, private servicio: HotelService) { 
      //para resguardar ruta
@@ -69,7 +73,11 @@ export class ComoLlegarComponent implements OnInit {
         this.hotel = data;
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un erro con el servicio');
+        //modal
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
   }
@@ -156,6 +164,9 @@ export class ComoLlegarComponent implements OnInit {
 
   }
 
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
 
 
 }

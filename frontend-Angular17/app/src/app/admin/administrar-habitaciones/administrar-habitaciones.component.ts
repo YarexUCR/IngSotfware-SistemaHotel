@@ -5,6 +5,7 @@ import { TipoHabitacionService } from '../../api/tipo.habitacion.service';
 import { TipoHabitacion } from '../../dominio/TipoHabitacion';
 import { Habitacion } from '../../dominio/Habitacion';
 import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../../modal/modal.component';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -13,13 +14,16 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     standalone: true,
     templateUrl: './administrar-habitaciones.component.html',
     styleUrl: './administrar-habitaciones.component.scss',
-    imports: [FooterComponent,CommonModule,MatProgressSpinnerModule]
+    imports: [FooterComponent,CommonModule,MatProgressSpinnerModule,ModalComponent]
 })
 export class AdministrarHabitacionesComponent {
   token: string | null;//token de session
   tipos : TipoHabitacion[]=[];
   habitaciones : Habitacion[]=[];
   cargando = false;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
   constructor(private router: Router,private servicio : TipoHabitacionService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -61,15 +65,29 @@ export class AdministrarHabitacionesComponent {
     this.servicio.actualizarEstadoHabitacion(id, esActivo).subscribe(
       response => {
         if(response){
-          alert("La habitacion ha sido modificada");
+          //alert("La habitacion ha sido modificada");
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'La habitacion ha sido modificada';
+          this.showModal = true;
         }else{
-          alert("Ocurrio un error intenta de nuevo");
+          //alert("Ocurrio un error intenta de nuevo");
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ocurrio un error intenta de nuevo';
+          this.showModal = true;
         }
       },
       error => {
-        alert("Ha ocurrido un error con el servicio");
+        //alert("Ha ocurrido un error con el servicio");
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
     
   }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
+
 }
