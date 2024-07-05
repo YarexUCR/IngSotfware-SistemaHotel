@@ -26,7 +26,11 @@ import { ModificarHomeComponent } from "./admin/modificar-home/modificar-home.co
 import { ModificarSobreNosotrosComponent } from "./admin/modificar-sobre-nosotros/modificar-sobre-nosotros.component";
 import { ModificarFacilidadesComponent } from "./admin/modificar-facilidades/modificar-facilidades.component";
 import { ModificarComoLlegarComponent } from "./admin/modificar-como-llegar/modificar-como-llegar.component";
+
 import { TemporadaComponent } from "./admin/temporada/temporada.component";
+
+import { PublicidadCrearComponent } from "./admin/publicidad-crear/publicidad-crear.component";
+
 export const routes : Routes =[
     {path: "admin/modificarPaginas", component : ModificarPaginasComponent},
     {path: "admin/listadoReservaciones", component : ListadoReservacionesComponent},
@@ -34,6 +38,7 @@ export const routes : Routes =[
     {path: "admin/verEstadoHotelHoy", component : VerEstadoHotelHoyComponent},
     {path: "admin/consultarDisponibilidadHabitaciones", component : ConsultarDisponibilidadHabitacionesComponent},
     {path: "admin/publicidadAdmin", component : PublicidadAdminComponent},
+    {path: "admin/publicidadCrear", component : PublicidadCrearComponent},
     {path: "login", component :  LoginComponent},
     {path: "disponible", component :  DisponibleComponent},
     {path: "", component :  InicioComponent},

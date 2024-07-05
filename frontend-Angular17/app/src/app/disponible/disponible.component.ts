@@ -16,23 +16,26 @@ import { TipoHabitacion } from '../dominio/TipoHabitacion';
 import { Habitacion } from '../dominio/Habitacion';
 import { ModalComponent } from '../modal/modal.component';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @Component({
-    selector: 'app-disponible',
-    standalone: true,
-    templateUrl: './disponible.component.html',
-    styleUrl: './disponible.component.scss',
-    imports: [FooterComponent,
-      MatGridListModule,
-      MatMenuModule,
-      MatIconModule,
-      MatButtonModule,
-      MatCardModule,
-      CommonModule,
-      FormsModule,
-      ModalComponent
-    ]
+  selector: 'app-disponible',
+  standalone: true,
+  templateUrl: './disponible.component.html',
+  styleUrl: './disponible.component.scss',
+  imports: [FooterComponent,
+    MatGridListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    CommonModule,
+    FormsModule,
+    ModalComponent,
+    MatProgressSpinnerModule
+  ]
 })
 export class DisponibleComponent {
   token: string | null;//token de session
@@ -42,29 +45,45 @@ export class DisponibleComponent {
   modalTitle!: string;
   modalMessage!: string;
   private paypalSDK: any;
-  constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService){
+  cargando: boolean = false;
+
+  constructor(private route: ActivatedRoute, private router: Router, private reservarService: ReservaService) {
     this.paypalSDK = (window as any).paypal;
-     //para resguardar ruta
-     if (typeof localStorage !== 'undefined') {
+    //para resguardar ruta
+    if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
     } else {
       this.token = null;
     }
   }
 
-  tipos : TipoHabitacion []=[];
+  tipos: TipoHabitacion[] = [];
 
-  obtenerTipos(){
-    this.reserva?.habitaciones.forEach(habitacion=>{
-    const tipoExistente = this.tipos.find(tipo => tipo.id === habitacion.tipo.id);
-    if (!tipoExistente) {
-      this.tipos.push(habitacion.tipo);
-    }
+  obtenerTipos() {
+    this.reserva?.habitaciones.forEach(habitacion => {
+      const tipoExistente = this.tipos.find(tipo => tipo.id === habitacion.tipo.id);
+      if (!tipoExistente) {
+        this.tipos.push(habitacion.tipo);
+      }
     });
   }
-  obtenerHabitacionesPorTipo(id:number){
-    return  this.reserva?.habitaciones.filter(habitacion => habitacion.tipo.id === id);
+  obtenerHabitacionesPorTipo(id: number) {
+    return this.reserva?.habitaciones.filter(habitacion => habitacion.tipo.id === id);
   }
+
+  validarCedula(cedula: string): boolean {
+    // Expresión regular para verificar que solo contenga dígitos
+    const soloDigitos = /^\d+$/;
+
+    // Condiciones de validación
+    const fisica = cedula.length === 9 && soloDigitos.test(cedula) && !/^0/.test(cedula);
+    const juridica = cedula.length === 10 && soloDigitos.test(cedula) && !/^0/.test(cedula);
+    const dimex = (cedula.length === 11 || cedula.length === 12) && soloDigitos.test(cedula) && !/^0/.test(cedula);
+    const nite = cedula.length === 10 && soloDigitos.test(cedula) && !/^0/.test(cedula);
+
+    return fisica || juridica || dimex || nite;
+  }
+
   ngOnInit(): void {
     //verificar autenticacion
     if (this.token != null) {
@@ -72,7 +91,7 @@ export class DisponibleComponent {
     }
     this.route.queryParams.subscribe(params => {
       this.reserva = params['reserva'] ? JSON.parse(params['reserva']) : null; // Recibe la reserva como parámetro
-      
+
     });
     this.obtenerTipos();
   }
@@ -86,9 +105,9 @@ export class DisponibleComponent {
     this.paypalSDK.Buttons({
       style: {
         layout: 'vertical',
-        color:  'gold',
-        shape:  'rect',
-        label:  'paypal',
+        color: 'gold',
+        shape: 'rect',
+        label: 'paypal',
         disableMaxWidth: true
       },
       createOrder: (data: any, actions: any) => {
@@ -100,13 +119,20 @@ export class DisponibleComponent {
             }
           }]
         });
-      },  
+      },
       onApprove: (data: any, actions: any) => {
         // Mostrar confirmación antes de ejecutar el pago
-        if(!this.cedula){
+        if (!this.cedula) {
           //alert('Por favor agregue un numero de identificación para continuar');
           this.modalTitle = 'Mensaje';
           this.modalMessage = 'Por favor agregue un numero de identificación para continuar';
+          this.showModal = true;
+          return;
+        }
+
+        if (!this.validarCedula(this.cedula.toString())) {
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Por favor agregue un numero de identificación valido para continuar ya sea cedula física, jurídica, DIMEX o NITE';
           this.showModal = true;
           return;
         }
@@ -115,19 +141,22 @@ export class DisponibleComponent {
           const nombrePaypal = details.payer.name.given_name; // Nombre del comprador de PayPal
           const apellidoPaypal = details.payer.name.surname;
           const correoPaypal = details.payer.email_address; // Correo electrónico del comprador de PayPal
-        
-          if(this.reserva){
+
+          if (this.reserva) {
+            this.cargando = true;
             this.reserva.email = correoPaypal;
-            this.reserva.cliente = nombrePaypal+' '+apellidoPaypal;
+            this.reserva.cliente = nombrePaypal + ' ' + apellidoPaypal;
             this.reserva.cedula = this.cedula;
             this.reservarService.insertarReserva(this.reserva).subscribe(
               (respuesta) => {
                 // Aquí puedes manejar la respuesta según tu lógica
-                const id =respuesta;
+                const id = respuesta;
                 if (this.reserva) { // Asegurarse de que this.reserva no es null ni undefined
+                  this.cargando = false;
                   this.reserva.id = id;
-                  this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
+                  //this.router.navigate(['reserva-realizada'], { queryParams: { reserva: JSON.stringify(this.reserva) } });
                 }
+                this.cargando = false;
               },
               (error) => {
                 console.error('Error al llamar al servicio:', error);
@@ -136,25 +165,27 @@ export class DisponibleComponent {
                 this.modalTitle = 'Mensaje';
                 this.modalMessage = 'Error con el servicio';
                 this.showModal = true;
+                this.cargando = false;
               }
             );
+
           }
           //
           // Aquí puedes enviar el ID de la orden a tu backend para procesar la reserva
-          
+
         });
       }
     }).render('#paypal-button-container');
-  }  
-  
+  }
+
   closeModal() {
     this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
-  } 
+  }
 
 
-   ////////////////////////////////////paypal
-   ngAfterViewInit() {
+  ////////////////////////////////////paypal
+  ngAfterViewInit() {
     this.renderPaypalButton();
-    
+
   }
 }

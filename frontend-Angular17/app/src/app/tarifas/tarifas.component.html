@@ -1,87 +1,30 @@
 <div class="grid-container">
     <h1 class="mat-h1">Tarifas</h1>
-       <div class="container">
-              <div class="row">
-                  <div class="col-md-5">
-                      <p> 
-                          <img style="max-width: 100%;margin-right: 20px;" src="../../assets/standart.jfif" align="left" >
-                      <p>
-                  </div>
-                  <div class="col-md-7">
-                    <p>
-                        <h1>Habitacion Standart</h1>
-                          <br>
-                          Incluye 1 una cama queen y una cama individual, con aire acondicionado, refigerador baño además de television
-                          <br>
-                          <br>
-                          Precio: ₡28.000
-                          <br>
-                          <br>
-                          Oferta de fin de año: 25% de descuento 
-                          
-                    <p>
-                  </div>
-              </div>
-              <br>
-              <br>
-              <div class="row">
-                <div class="col-md-5">
-                    <p> 
-                        <img style="max-width: 100%;margin-right: 20px;" src="../../assets/junior.jfif" align="left" >
-                    <p>
-                </div>
-                <div class="col-md-7">
+
+    <div class="container ">
+        <div class="row mb-5" *ngFor="let habitacion of tiposDeHabitacion">
+            <div class="col-md-5">
                 <p>
-                    <h1>Habitacion Junior</h1>
-                    <br>
-                    Incluye 1 una cama queen con aire acondicionado, refigerador baño además de television
-                    <br>
-                    <br>
-                    Precio: ₡20.000
-                    <br>
-                    <br>
-                    Oferta de fin de año: 25% de descuento 
+                    <img style="max-width: 100%;margin-right: 20px;" [src]="habitacion.imagen" align="left">
                 <p>
+            </div>
+            <div class="col-md-7">
+                <p>
+                <h1>{{habitacion.nombre}}</h1>
+                <div [innerHTML]="habitacion.descripcion"></div>
+                Precio: <strong>${{habitacion.precio}}</strong>
+                <div *ngFor="let descuentoOferta of descuentosOfertas">
+                    <div *ngIf="habitacion.nombre==descuentoOferta.nombre" class="alert alert-warning" role="alert">
+                        Oferta: <strong>{{" "+descuentoOferta.oferta+" "}}</strong>
+                        desde el <strong>{{descuentoOferta.inicio| date: 'yyyy-MM-dd' }}</strong> hasta el <strong>{{descuentoOferta.fin| date: 'yyyy-MM-dd' }}</strong>
+                        con un descuento del <strong>%{{descuentoOferta.descuento+" "}}</strong>
+                        para un total de <strong>${{descuentoOferta.precioConDescuento+" "}}</strong>por noche
+                    </div>
                 </div>
             </div>
-            <br>
-              <br>
-              <div class="row">
-                <div class="col-md-5">
-                    <p> 
-                        <img style="max-width: 100%;margin-right: 20px;" src="../../assets/presidencial.jfif" align="left" >
-                    <p>
-                </div>
-                <div class="col-md-7">
-                <p>
-                    <h1>Habitación Presidencial</h1>
-                    <br>
-                    Incluye 2 cama queen y 2 cama individual, con aire acondicionado, refigerador baño además de television, terraza con vista al mar junto con 3 dormitorios y una sala de estar
-                    <br>
-                    <br>
-                    Precio ₡40.000
-                    <br>
-                    <br>
-                    Oferta de fin de año: 25% de descuento 
-                <p>
-                </div>
-            </div>
-
-        <!--
-          </div> 
-          <table>
-            <tr *ngFor="let habitacion of tiposDeHabitacion">
-                <td>{{habitacion.nombre}} </td>
-                <td>{{habitacion.descripcion}}</td>
-                <td>{{habitacion.cantidad}}</td>
-                <td>{{habitacion.precio}}</td>
-                <td><p> 
-                    <img style="max-width: 100%;margin-right: 20px;" src={{habitacion.imagen}} align="left" >
-                </p></td>
-            </tr>
-          </table>
-        -->
-
-      <app-footer></app-footer>
-  </div>
-
+            <mat-divider class="row mb-3" style="border-width: 2px;"></mat-divider>
+        </div>
+        
+    </div>
+    <app-footer></app-footer>
+</div>

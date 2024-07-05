@@ -1,8 +1,30 @@
-<div class="grid-container">
-   
+
+<div class="grid-container"  *ngIf="cargando">
+    <h1 class="mat-h1">Reservar en Línea</h1>
+    <div class="centered-spinner-container">
+        <div class="grid-container">
+            <mat-spinner class="centered-spinner"></mat-spinner>
+        </div>   
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<div class="grid-container" *ngIf="reserva?.id!=0">
+    <h1 class="mat-h1">Reservar en Línea</h1>
+    <div *ngIf="reserva">
+        <p>¡Reservación Realizada!</p>
+        <p>Gracias {{reserva.cliente}} su reservación fue realizada exitosamente</p>
+        <p>Numero de reservacion: {{reserva.id}}</p>
+        <p>Acabamos de enviar esta informacion a la direccion {{reserva.email}}</p>
+        <p>¡Gracias por preferirnos!</p>
+    </div>
+    <app-footer></app-footer>
+</div>
+<div class="grid-container"  *ngIf="!cargando && reserva?.id==0">
+    <h1 class="mat-h1">Reservar en Línea</h1>
     <mat-grid-list cols="2" rowHeight="350px">
+        
         <div class="container">
-            <h1 class="mat-h1">Reservar en Línea</h1>
             <div *ngIf="reserva">
                 <a href="\reservar">Volver</a>
                 <div *ngFor="let tipo of tipos">
@@ -58,9 +80,10 @@
                 <div id="paypal-button-container"></div>
             </div>
 
-            <app-footer></app-footer>
+           
         </div>
     </mat-grid-list>
+    <app-footer></app-footer>
 </div>
 
 <app-modal *ngIf="showModal" [title]="modalTitle" [message]="modalMessage"></app-modal>

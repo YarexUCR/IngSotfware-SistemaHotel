@@ -61,32 +61,12 @@ export class SobreNosotrosComponent  {
 
   images: any[] = [
     { 
-      itemImageSrc: 'assets/Hotel/Hotel1.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel1.jpg'
+      itemImageSrc: 'https://www.colonialtours.com/1allinclusiveHotels.jpg', 
+      thumbnailImageSrc: 'https://www.colonialtours.com/1allinclusiveHotels.jpg'
     },
     { 
-      itemImageSrc: 'assets/Hotel/Hotel2.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel2.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel3.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel3.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel4.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel4.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel5.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel5.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel6.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel6.jpg'
-    },
-    { 
-      itemImageSrc: 'assets/Hotel/Hotel7.jpg', 
-      thumbnailImageSrc: 'assets/Hotel/Hotel7.jpg'
+      itemImageSrc: 'https://dev.clubsolaris.com/imgs/make-the-most-of-your-all-inclusive-vacation/all-inclusive-advantages_blog.jpg', 
+      thumbnailImageSrc: 'https://dev.clubsolaris.com/imgs/make-the-most-of-your-all-inclusive-vacation/all-inclusive-advantages_blog.jpg'
     }
   ];
   responsiveOptions: GalleriaResponsiveOptions[] = [
