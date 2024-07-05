@@ -26,9 +26,7 @@ import { ModificarHomeComponent } from "./admin/modificar-home/modificar-home.co
 import { ModificarSobreNosotrosComponent } from "./admin/modificar-sobre-nosotros/modificar-sobre-nosotros.component";
 import { ModificarFacilidadesComponent } from "./admin/modificar-facilidades/modificar-facilidades.component";
 import { ModificarComoLlegarComponent } from "./admin/modificar-como-llegar/modificar-como-llegar.component";
-
 import { TemporadaComponent } from "./admin/temporada/temporada.component";
-
 import { PublicidadCrearComponent } from "./admin/publicidad-crear/publicidad-crear.component";
 
 export const routes : Routes =[
