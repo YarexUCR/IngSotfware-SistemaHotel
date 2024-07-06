@@ -40,11 +40,11 @@ constructor(private reservasService : ReservasService,private router: Router){
 delete(id: number) {
 this.reservasService.actualizarBorradoLogicoReserva(id).subscribe(
   (data:any) => {
-
+    this.cargar();
 this.cargar(); 
  },
   (error:any) => {
-    
+    this.cargar();
   }
 );
   }
@@ -63,6 +63,7 @@ this.reservasService.obtenerReservas().subscribe(
   (error) => {
       console.error(error);
       this.cargando = false;
+      
   }
 );
 
