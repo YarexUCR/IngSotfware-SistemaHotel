@@ -19,6 +19,9 @@ builder.Services.AddScoped<ReservaReglasNegocio, ReservaReglasNegocio>();
 builder.Services.AddScoped<TemporadaReglaDeNegocio>();
 builder.Services.AddScoped<TemporadaDatos>();
 
+builder.Services.AddScoped<ReservaReglaDeNegocio>();
+builder.Services.AddScoped<ReservaData>();
+
 
 // Configure CORS para ser consumido por la capa de interfaz grafica de angular
 builder.Services.AddCors(options =>
