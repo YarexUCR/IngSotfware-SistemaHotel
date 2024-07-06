@@ -75,6 +75,14 @@ export class SobreNosotrosComponent  {
     { 
       itemImageSrc: 'https://dev.clubsolaris.com/imgs/make-the-most-of-your-all-inclusive-vacation/all-inclusive-advantages_blog.jpg', 
       thumbnailImageSrc: 'https://dev.clubsolaris.com/imgs/make-the-most-of-your-all-inclusive-vacation/all-inclusive-advantages_blog.jpg'
+    },
+    { 
+      itemImageSrc: 'https://7seasonsresort.com/wp-content/uploads/2016/10/kids-zone2.jpg', 
+      thumbnailImageSrc: 'https://7seasonsresort.com/wp-content/uploads/2016/10/kids-zone2.jpg'
+    },
+    { 
+      itemImageSrc: 'https://melmagazine.com/wp-content/uploads/2019/06/Swimup_Bar.jpg', 
+      thumbnailImageSrc: 'https://melmagazine.com/wp-content/uploads/2019/06/Swimup_Bar.jpg'
     }
   ];
   responsiveOptions: GalleriaResponsiveOptions[] = [
