@@ -61,7 +61,7 @@ export class VerReservaComponent implements OnInit{
           this.router.navigate(['/admin/listar-reserva']); // Ajusta la ruta según sea necesario
         },
         error => {
-          console.error('Error al eliminar la reserva:', error);
+          this.router.navigate(['/admin/listar-reserva']); // Ajusta la ruta según sea necesario
         }
       );
     }
@@ -73,8 +73,6 @@ export class VerReservaComponent implements OnInit{
 
 
     /////PDF
-
-
 
 loadImage(): void {
   const img = new Image();

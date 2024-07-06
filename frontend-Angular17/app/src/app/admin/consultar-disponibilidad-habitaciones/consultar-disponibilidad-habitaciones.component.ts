@@ -96,28 +96,15 @@ export class ConsultarDisponibilidadHabitacionesComponent implements OnInit {
   //validar que la reserva sea del día actual o posterior, que no sea un día pasado
   validarFechaEntrada(event: Event) {
     //const fechaActualCR = moment().tz('America/Costa_Rica').format('YYYY-MM-DD');
-    const fechaActual = new Date().toISOString().split('T')[0];
+    //const fechaActual = new Date().toISOString().split('T')[0];
     const fechaLlegada = new Date(this.formData.checkIn); // Obtener la fecha de llegada a las 00:00:00
 
-    // Validar que la fecha de llegada sea posterior o igual al día actual
-    if (fechaLlegada.toISOString().slice(0, 10) === fechaActual) {//si es el día de hoy
       this.mostrarConfirmacion = true;
-      this.mensajeConfirmacion = 'El check in es a partir de las 3 pm.';
+      this.mensajeConfirmacion = 'Se ha elegido '+fechaLlegada.toISOString().split('T')[0];
       this.mostrarError = false;
       this.checkOutDesactivado = false;
       this.checkInDesactivado = true;
-    } else if (fechaLlegada.toISOString().slice(0, 10) < fechaActual) {//si elije un día pasado
-      this.mostrarError = true;
-      this.mostrarConfirmacion = false;
-      this.mensajeError = 'La fecha de llegada debe ser el día de ' + fechaActual + ' o posterior';
-
-    } else {//si elije un día futuro
-      this.mostrarError = false;
-      this.mostrarConfirmacion = true;
-      this.mensajeConfirmacion = 'El check in para el día ' + fechaLlegada.toISOString().slice(0, 10) + ' es a partir de las 3 pm.';
-      this.checkOutDesactivado = false;
-      this.checkInDesactivado = true;
-    }
+    
     this.validarCheckIn();
   }
 
