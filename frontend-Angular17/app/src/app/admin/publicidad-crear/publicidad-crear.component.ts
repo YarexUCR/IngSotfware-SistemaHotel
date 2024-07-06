@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { Publicidad } from '../../dominio/Publicidada';
 import { PublicidadService } from '../../api/Publicidad.service';
 import { error } from 'console';
+import { ModalComponent } from '../../modal/modal.component';
 interface Enlace {
   url: string
 }
 @Component({
   selector: 'app-publicidad-crear',
   standalone: true,
-  imports: [FooterComponent,FormsModule],
+  imports: [FooterComponent,FormsModule, ModalComponent],
   templateUrl: './publicidad-crear.component.html',
   styleUrl: './publicidad-crear.component.scss'
 })
@@ -20,8 +21,10 @@ export class PublicidadCrearComponent {
   nuevaImagen: File | null = null;
   publicidad: Publicidad = {id : 0, nombre : "",enlace: "", imagen: "" };
   enlace: Enlace | null = null;
-
-
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
+ 
   constructor(private router: Router, private servicio : PublicidadService) {
     
     //para resguardar ruta
@@ -42,7 +45,10 @@ export class PublicidadCrearComponent {
     const tiposValidos = ['image/jpeg', 'image/png', 'image/gif'];
       
       if (!tiposValidos.includes(archivo.type)) {
-        alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        //alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Debes seleccionar una imagen con formarto JPEG, PNG O GIF';
+        this.showModal = true;
         return false;
       }else{
         return true;
@@ -55,7 +61,10 @@ export class PublicidadCrearComponent {
     if (imagen) {
       if(this.validarImagen(imagen)){
         this.nuevaImagen = imagen;
-        alert(this.nuevaImagen?.name+" ha sido seleccionada");
+        //alert(this.nuevaImagen?.name+" ha sido seleccionada");
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = this.nuevaImagen?.name+" ha sido seleccionada";
+        this.showModal = true;
       }
     }
   }
@@ -73,7 +82,10 @@ export class PublicidadCrearComponent {
           }  
         },
         error =>{
-          alert('error con el servicio');
+          //alert('error con el servicio');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Error con el servicio';
+          this.showModal = true;
         }
       );
     }
@@ -83,23 +95,40 @@ export class PublicidadCrearComponent {
     this.servicio.InsertarPublicidad(this.publicidad).subscribe(
       data=>{
         if(data){
-          alert("La Publicidad se inserto correctamente");
+          //alert("La Publicidad se inserto correctamente");
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'La Publicidad se inserto correctamente';
+          this.showModal = true;
           this.router.navigate(['admin/publicidadAdmin']);
         }else{
-          alert("Error al insertar la Publicidad intente de nuevo")
+          //alert("Error al insertar la Publicidad intente de nuevo")
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Error al insertar la Publicidad intente de nuevo';
+          this.showModal = true;
         }
       },
       error=>{
-        alert('error con el servicio');
+        //alert('Error con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Error con el servicio';
+        this.showModal = true;
       }
     );
   }
 
   crearPublicidad(){
     if(this.publicidad.nombre==""||this.publicidad.enlace==""||!this.nuevaImagen){
-      alert('Todos los campos son requeirdos');
+      //alert('Todos los campos son requeridos');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'Todos los campos son requeridos';
+      this.showModal = true;
     }else{
       this.cargarImagen();//
     }
   }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
+
 }
