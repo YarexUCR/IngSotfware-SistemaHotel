@@ -7,6 +7,7 @@ import { HotelService } from '../../api/hotel.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { Hotel } from '../../dominio/Hotel';
 import { CommonModule, JsonPipe } from '@angular/common';
+import { ModalComponent } from '../../modal/modal.component';
 
 interface Enlace {
   url: string
@@ -20,7 +21,8 @@ interface Enlace {
     FooterComponent,
     EditorModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ModalComponent
   ],
   templateUrl: './modificar-home.component.html',
   styleUrl: './modificar-home.component.scss'
@@ -33,6 +35,9 @@ export class ModificarHomeComponent {
   nuevaImagen: File | null = null;
   enlace: Enlace | null = null;
   imagen : string | null = null;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
   constructor(private router: Router, private service: HotelService) {
     //para resguardar ruta
     if (typeof localStorage !== 'undefined') {
@@ -58,7 +63,10 @@ export class ModificarHomeComponent {
         this.contenido = this.hotel.home;
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un error con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
 
@@ -72,7 +80,10 @@ export class ModificarHomeComponent {
         }   
       },
       error => {
-        alert('Ha ocurrido un erro con el servicio');
+        //alert('Ha ocurrido un error con el servicio');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Ha ocurrido un error con el servicio';
+        this.showModal = true;
       }
     );
 
@@ -82,7 +93,10 @@ export class ModificarHomeComponent {
     const tiposValidos = ['image/jpeg', 'image/png', 'image/gif'];
       
       if (!tiposValidos.includes(archivo.type)) {
-        alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        //alert('Debes seleccionar una imagen con formarto JPEG, PNG O GIF');
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Por favor ingresa una imagen de tipo JPEG, PNG O GIF';
+        this.showModal = true;
         return false;
       }else{
         return true;
@@ -100,10 +114,14 @@ export class ModificarHomeComponent {
   }
 
   cancelar() {
-    const confirmacion = window.confirm('¿Desea desechar los cambios?');
-    if (confirmacion) {
-      this.router.navigate(['admin/modificarPaginas']);
-    }
+    //const confirmacion = window.confirm('¿Desea desechar los cambios?');
+    //if (confirmacion) {
+    //  this.router.navigate(['admin/modificarPaginas']);
+    //}
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Has descartado los cambios'; 
+        this.showModal = true; 
+        this.router.navigate(['admin/modificarPaginas']);
   }
 
   
@@ -114,25 +132,40 @@ export class ModificarHomeComponent {
         data => {
           if (data) {
             this.enlace = data;
-            alert('Home ha sido actualizado la imagen se encuentra '+ this.enlace?.url);
+            //alert('Home ha sido actualizado la imagen se encuentra '+ this.enlace?.url);
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Home ha sido actualizado la imagen se encuentra '+ this.enlace?.url;
+            this.showModal = true;
             this.router.navigate(['admin/modificarPaginas']);
           } else {
-            alert('Ha ocurrido un error al actualizar la imagen de home');
+            //alert('Ha ocurrido un error al actualizar la imagen de home');
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Ha ocurrido un error al actualizar la imagen de home';
+            this.showModal = true;
           }
         },
         error => {
-          alert('Ha ocurrido un erro con el servicio');
+          //alert('Ha ocurrido un erro con el servicio');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ha ocurrido un error con el servicio';
+          this.showModal = true;
         }
 
       );
     } else {
-      alert('Por favor ingresa una imagen de tipo JPEG, PNG O GIF');
+      //alert('Por favor ingresa una imagen de tipo JPEG, PNG O GIF');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'Por favor ingresa una imagen de tipo JPEG, PNG O GIF';
+      this.showModal = true;
     }
   }
 
   ActualizarHome() {
     if (!this.contenido) {
-      alert('Debe ingresar algún valor para el texto de la pagina home');
+      //alert('Debe ingresar algún valor para el texto de la pagina home');
+      this.modalTitle = 'Mensaje';
+      this.modalMessage = 'Debe ingresar algún valor para el texto de la pagina home';
+      this.showModal = true;
       return;
     }
     if (this.hotel) {
@@ -141,16 +174,30 @@ export class ModificarHomeComponent {
 
         data => {
           if (data) {
-            alert('Home ha sido actualizado');
+            //alert('Home ha sido actualizado');
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Home ha sido actualizado';
+            this.showModal = true;
             this.router.navigate(['admin/modificarPaginas']);
           } else {
-            alert('Ha ocurrido un error al actualizar home');
+            //alert('Ha ocurrido un error al actualizar home');
+            this.modalTitle = 'Mensaje';
+            this.modalMessage = 'Ha ocurrido un error al actualizar home';
+            this.showModal = true;
           }
         },
         error => {
-          alert('Ha ocurrido un erro con el servicio');
+          //alert('Ha ocurrido un erro con el servicio');
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Ha ocurrido un error con el servicio';
+          this.showModal = true;
         }
       );
     }
   }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
+  }
+
 }

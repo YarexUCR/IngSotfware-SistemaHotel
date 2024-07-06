@@ -5,6 +5,7 @@ import { PublicidadService } from '../../api/Publicidad.service';
 import { Publicidad } from '../../dominio/Publicidada';
 import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
     selector: 'app-publicidad-admin',
@@ -14,13 +15,17 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     imports: [
       FooterComponent, 
       CommonModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      ModalComponent
     ]
 })
 export class PublicidadAdminComponent {
   token: string | null;//token de session
   publicidades : Publicidad []=[];
   cargando : boolean;
+  showModal: boolean = false;
+  modalTitle!: string;
+  modalMessage!: string;
 
   constructor(private router: Router, private servicio : PublicidadService) {
     //para resguardar ruta
@@ -44,7 +49,10 @@ export class PublicidadAdminComponent {
       },
       error=>{
         this.cargando= true;
-        alert("Error con el servicio");
+        //alert("Error con el servicio");
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Error con el servicio';
+        this.showModal = true;
         this.cargando = false;
       }
     );
@@ -55,17 +63,27 @@ export class PublicidadAdminComponent {
       data=>{
         this.cargando= true;
         if(data){
-          alert("Publicidad eliminada");
+          //alert("Publicidad eliminada");
+          this.modalTitle = 'Mensaje';
+          this.modalMessage = 'Publicidad eliminada';
+          this.showModal = true;
         }
         this.cargando = false;
         window.location.reload();
       },
       error=>{
         this.cargando= true;
-        alert("Error con el servicio");
+        //alert("Error con el servicio");
+        this.modalTitle = 'Mensaje';
+        this.modalMessage = 'Error con el servicio';
+        this.showModal = true;
         this.cargando = false;
       }
     );
+  }
+
+  closeModal() {
+    this.showModal = false; // Cierra el modal cuando se emite el evento desde el componente hijo
   }
   
 }
