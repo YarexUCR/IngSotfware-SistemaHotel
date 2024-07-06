@@ -74,8 +74,6 @@ export class VerReservaComponent implements OnInit{
 
     /////PDF
 
-
-
 loadImage(): void {
   const img = new Image();
   img.src = 'assets/logoPalm.png';
