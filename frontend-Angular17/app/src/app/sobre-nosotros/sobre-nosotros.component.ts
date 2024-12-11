@@ -81,8 +81,8 @@ export class SobreNosotrosComponent  {
       thumbnailImageSrc: 'https://7seasonsresort.com/wp-content/uploads/2016/10/kids-zone2.jpg'
     },
     { 
-      itemImageSrc: 'https://melmagazine.com/wp-content/uploads/2019/06/Swimup_Bar.jpg', 
-      thumbnailImageSrc: 'https://melmagazine.com/wp-content/uploads/2019/06/Swimup_Bar.jpg'
+      itemImageSrc: 'https://rtaoutdoorliving.com/wp-content/uploads/2023/11/pool-bar-with-pergola.jpg', 
+      thumbnailImageSrc: 'https://rtaoutdoorliving.com/wp-content/uploads/2023/11/pool-bar-with-pergola.jpg'
     }
   ];
   responsiveOptions: GalleriaResponsiveOptions[] = [
